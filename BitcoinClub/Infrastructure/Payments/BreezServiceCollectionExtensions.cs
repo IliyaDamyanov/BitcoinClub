@@ -16,6 +16,10 @@ namespace BitcoinClub.Infrastructure.Payments
 
             services.AddSingleton<IBreezClientFactory, BreezClientFactory>();
 
+            // For this task we expose a minimal Breez API abstraction. A real SDK-backed implementation can replace this.
+            services.AddSingleton<IBreezApiClient, BreezApiClient>();
+            services.AddScoped<IBreezePaymentService, BreezPaymentService>();
+
             return services;
         }
     }
@@ -38,6 +42,29 @@ namespace BitcoinClub.Infrastructure.Payments
         {
             _ = _options.Value;
             return new object();
+        }
+    }
+
+    internal sealed class BreezApiClient : IBreezApiClient
+    {
+        private readonly IBreezClientFactory _factory;
+
+        public BreezApiClient(IBreezClientFactory factory)
+        {
+            _factory = factory;
+        }
+
+        public Task<BreezPaymentInitResponse> CreateInvoiceAsync(int amountSats, string description, CancellationToken cancellationToken = default)
+        {
+            _ = _factory.Create();
+            // SDK integration is intentionally deferred; tests use mocks.
+            return Task.FromResult(new BreezPaymentInitResponse(Guid.NewGuid().ToString("N"), null));
+        }
+
+        public Task<BreezPaymentStatusResponse> GetPaymentStatusAsync(string paymentId, CancellationToken cancellationToken = default)
+        {
+            _ = _factory.Create();
+            return Task.FromResult(new BreezPaymentStatusResponse(IsPaid: false, PaidAtUnixSeconds: null));
         }
     }
 }
