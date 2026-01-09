@@ -7,6 +7,7 @@ It currently provides:
 - a `Post` entity stored in PostgreSQL
 - an Admin UI for creating and listing posts
 - an image upload implementation for storing local images under `wwwroot/uploads`
+- publisher interfaces to standardize how posts are published to external platforms
 
 ## Data model
 
@@ -32,6 +33,26 @@ Basic validation:
 - file name must not include directory segments
 - extension must be one of: `.jpg`, `.jpeg`, `.png`, `.webp`
 
+## Publishing
+
+### Publisher interface
+Publishing is standardized through:
+- `BitcoinClub.Infrastructure.Social.ISocialMediaPublisher`
+
+Each publisher exposes:
+- `Platform` (string key matching values stored in `Post.Platforms`)
+- `PublishAsync(Post)` returning a `PublishResult`
+
+### Platform publishers
+The project currently contains stubs (not implemented yet):
+- `FacebookPublisher` (`Platform = facebook`)
+- `InstagramPublisher` (`Platform = instagram`)
+- `ThreadsPublisher` (`Platform = threads`)
+- `TwitterPublisher` (`Platform = twitter`)
+- `NostrPublisher` (`Platform = nostr`)
+
+Publishers are registered in DI as `ISocialMediaPublisher` so they can be discovered as an enumerable and selected by platform.
+
 ## Admin Post Editor (MVC Area)
 Routes:
 - List posts: `GET /Admin/Posts`
@@ -54,3 +75,4 @@ Supported platforms (current UI list):
 - Platform selection is stored as strings in JSON to keep initial schema flexible while integrations are implemented.
 - `AdminUserId` is a FK to Identity users; delete behavior is `Restrict` to preserve posting history.
 - Uploaded images are stored on disk for now; this can be swapped for object storage later.
+- Publishing uses a small interface per platform to keep integrations isolated and testable.
