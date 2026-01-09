@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36429.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitcoinClub", "BitcoinClub\BitcoinClub.csproj", "{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitcoinClub.Tests", "BitcoinClub.Tests\BitcoinClub.Tests.csproj", "{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Database.md = docs\Database.md
+		docs\ProjectOverview.md = docs\ProjectOverview.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Debug|x64.Build.0 = Debug|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Debug|x86.Build.0 = Debug|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Release|x64.ActiveCfg = Release|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Release|x64.Build.0 = Release|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Release|x86.ActiveCfg = Release|Any CPU
+		{8EF673E2-8D46-44B3-9299-BFF0FB7AA68E}.Release|x86.Build.0 = Release|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Debug|x64.Build.0 = Debug|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Debug|x86.Build.0 = Debug|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Release|x64.ActiveCfg = Release|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Release|x64.Build.0 = Release|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Release|x86.ActiveCfg = Release|Any CPU
+		{44F41AE6-3C0B-1531-04E0-FAEAE84631F1}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {964F4165-AC74-4BA5-AF1C-DDD689684595}
+	EndGlobalSection
+EndGlobal
