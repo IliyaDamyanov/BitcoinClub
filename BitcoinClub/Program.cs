@@ -1,5 +1,6 @@
 using BitcoinClub.Data;
 using BitcoinClub.Infrastructure.Auth;
+using BitcoinClub.Infrastructure.Auth.Providers;
 using BitcoinClub.Infrastructure.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -28,6 +29,8 @@ namespace BitcoinClub
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, DefaultRoleUserClaimsPrincipalFactory>();
+
+            builder.Services.AddScoped<IAuthProvider, EmailPasswordAuthProvider>();
 
             builder.Services.AddControllersWithViews();
 
