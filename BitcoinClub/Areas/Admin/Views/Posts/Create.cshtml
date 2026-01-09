@@ -1,0 +1,43 @@
+@model BitcoinClub.Areas.Admin.ViewModels.PostCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Post";
+}
+
+<h1>Create post</h1>
+
+<form method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <div class="mb-3">
+        <label asp-for="TextContent" class="form-label"></label>
+        <textarea asp-for="TextContent" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="TextContent" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Platforms</label>
+        <div>
+            @foreach (var p in BitcoinClub.Areas.Admin.ViewModels.PostCreateViewModel.SupportedPlatforms)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="SelectedPlatforms" value="@p" id="platform_@p" />
+                    <label class="form-check-label" for="platform_@p">@p</label>
+                </div>
+            }
+        </div>
+        <span asp-validation-for="SelectedPlatforms" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Images</label>
+        <input class="form-control" type="file" name="Images" multiple />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a class="btn btn-secondary" asp-area="Admin" asp-controller="Posts" asp-action="Index">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

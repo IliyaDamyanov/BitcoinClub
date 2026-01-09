@@ -1,0 +1,31 @@
+@model System.Collections.Generic.List<BitcoinClub.Areas.Admin.ViewModels.PostListItemViewModel>
+
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<h1>Posts</h1>
+
+<p>
+    <a asp-area="Admin" asp-controller="Posts" asp-action="Create">Create post</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Created</th>
+        <th>Platforms</th>
+        <th>Text</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.CreatedAt.ToString("u")</td>
+            <td>@p.PlatformsCsv</td>
+            <td>@p.TextContent</td>
+        </tr>
+    }
+    </tbody>
+</table>
