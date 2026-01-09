@@ -6,6 +6,7 @@ The Social Media module manages outbound posts to external platforms (Facebook, 
 It currently provides:
 - a `Post` entity stored in PostgreSQL
 - an Admin UI for creating and listing posts
+- an image upload implementation for storing local images under `wwwroot/uploads`
 
 ## Data model
 
@@ -14,14 +15,22 @@ Fields:
 - `Id` (GUID)
 - `AdminUserId` (Identity user id of the admin who created the post)
 - `TextContent` (post body)
-- `ImagePaths` (JSON array of strings; server-side stored paths)
+- `ImagePaths` (JSON array of strings; relative paths under `uploads/`)
 - `Platforms` (JSON array of strings; selected targets)
 - `CreatedAt` (UTC timestamp)
 
 ## How it works
 - Posts are stored in the database as rows in `Posts`.
 - `ImagePaths` and `Platforms` are stored as `jsonb` in Postgres.
-- Admin UI stores uploaded images under `wwwroot/uploads/posts` and saves web paths (e.g. `/uploads/posts/<file>`).
+
+### Image uploads
+- Uploaded images are saved under: `wwwroot/uploads/posts/`
+- Only relative paths are stored in the database (example: `uploads/posts/<file>.png`).
+- The application can serve these via static files at: `/uploads/posts/<file>.png`.
+
+Basic validation:
+- file name must not include directory segments
+- extension must be one of: `.jpg`, `.jpeg`, `.png`, `.webp`
 
 ## Admin Post Editor (MVC Area)
 Routes:

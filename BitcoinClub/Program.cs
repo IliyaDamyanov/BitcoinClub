@@ -2,6 +2,7 @@ using BitcoinClub.Data;
 using BitcoinClub.Infrastructure.Auth;
 using BitcoinClub.Infrastructure.Auth.Providers;
 using BitcoinClub.Infrastructure.Database;
+using BitcoinClub.Infrastructure.Files;
 using BitcoinClub.Infrastructure.Payments;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -34,6 +35,9 @@ namespace BitcoinClub
             builder.Services.AddScoped<IAuthProvider, EmailPasswordAuthProvider>();
 
             builder.Services.AddBreezPayments(builder.Configuration);
+
+            builder.Services.AddSingleton<IUploadPathValidator, UploadPathValidator>();
+            builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 
             builder.Services.AddControllersWithViews();
 

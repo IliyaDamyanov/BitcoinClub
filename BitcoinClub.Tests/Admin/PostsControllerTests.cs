@@ -1,16 +1,14 @@
 using System;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using BitcoinClub.Areas.Admin.Controllers;
 using BitcoinClub.Areas.Admin.ViewModels;
 using BitcoinClub.Data;
-using BitcoinClub.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Moq;
 using Xunit;
 
 namespace BitcoinClub.Tests.Admin
@@ -24,10 +22,9 @@ namespace BitcoinClub.Tests.Admin
             db.Users.Add(new Microsoft.AspNetCore.Identity.IdentityUser { Id = "admin-1", UserName = "a@test.local", Email = "a@test.local" });
             await db.SaveChangesAsync();
 
-            var env = new Mock<IWebHostEnvironment>();
-            env.Setup(e => e.WebRootPath).Returns(System.IO.Path.GetTempPath());
+            var uploads = new FakeUploads();
 
-            var controller = new PostsController(db, env.Object);
+            var controller = new PostsController(db, uploads);
             controller.ControllerContext = new ControllerContext { HttpContext = CreateHttpContext("admin-1") };
 
             var vm = new PostCreateViewModel
@@ -63,6 +60,12 @@ namespace BitcoinClub.Tests.Admin
                 new Claim(ClaimTypes.NameIdentifier, userId)
             }, "Test"));
             return ctx;
+        }
+
+        private sealed class FakeUploads : BitcoinClub.Infrastructure.Files.IFileUploadService
+        {
+            public Task<System.Collections.Generic.IReadOnlyList<string>> SavePostImagesAsync(System.Collections.Generic.IEnumerable<IFormFile> files, CancellationToken cancellationToken = default)
+                => Task.FromResult<System.Collections.Generic.IReadOnlyList<string>>(new[] { "uploads/posts/a.png" });
         }
     }
 }

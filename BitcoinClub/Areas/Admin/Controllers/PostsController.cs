@@ -1,14 +1,13 @@
 using System;
-using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BitcoinClub.Areas.Admin.ViewModels;
 using BitcoinClub.Data;
 using BitcoinClub.Infrastructure.Auth;
+using BitcoinClub.Infrastructure.Files;
 using BitcoinClub.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,12 +18,12 @@ namespace BitcoinClub.Areas.Admin.Controllers
     public sealed class PostsController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly IWebHostEnvironment _env;
+        private readonly IFileUploadService _uploads;
 
-        public PostsController(ApplicationDbContext db, IWebHostEnvironment env)
+        public PostsController(ApplicationDbContext db, IFileUploadService uploads)
         {
             _db = db;
-            _env = env;
+            _uploads = uploads;
         }
 
         [HttpGet]
@@ -76,23 +75,7 @@ namespace BitcoinClub.Areas.Admin.Controllers
                 return View(model);
             }
 
-            var uploadRoot = Path.Combine(_env.WebRootPath ?? "wwwroot", "uploads", "posts");
-            Directory.CreateDirectory(uploadRoot);
-
-            var imagePaths = model.Images
-                .Where(f => f?.Length > 0)
-                .Select(async f =>
-                {
-                    var ext = Path.GetExtension(f.FileName);
-                    var name = $"{Guid.NewGuid():N}{ext}";
-                    var absPath = Path.Combine(uploadRoot, name);
-                    await using var stream = System.IO.File.Create(absPath);
-                    await f.CopyToAsync(stream);
-                    return $"/uploads/posts/{name}";
-                })
-                .ToArray();
-
-            var savedPaths = await Task.WhenAll(imagePaths);
+            var savedPaths = await _uploads.SavePostImagesAsync(model.Images);
 
             var post = new Post
             {
