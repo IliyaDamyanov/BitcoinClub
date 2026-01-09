@@ -131,6 +131,38 @@ namespace BitcoinClub.Data.Migrations
                     b.ToTable("Posts");
                 });
 
+            modelBuilder.Entity("BitcoinClub.Models.PostPublishResult", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Error")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Platform")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("PostId")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ProviderPostId")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("Success")
+                        .HasColumnType("boolean");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId", "Platform");
+
+                    b.ToTable("PostPublishResults");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -370,6 +402,17 @@ namespace BitcoinClub.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("AdminUser");
+                });
+
+            modelBuilder.Entity("BitcoinClub.Models.PostPublishResult", b =>
+                {
+                    b.HasOne("BitcoinClub.Models.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

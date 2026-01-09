@@ -46,6 +46,8 @@ namespace BitcoinClub
             builder.Services.AddSingleton<ISocialMediaPublisher, TwitterPublisher>();
             builder.Services.AddSingleton<ISocialMediaPublisher, NostrPublisher>();
 
+            builder.Services.AddScoped<ISocialMediaPublishManager, SocialMediaPublishManager>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

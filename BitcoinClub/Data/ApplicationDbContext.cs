@@ -17,6 +17,8 @@ namespace BitcoinClub.Data
 
         public DbSet<Post> Posts => Set<Post>();
 
+        public DbSet<PostPublishResult> PostPublishResults => Set<PostPublishResult>();
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -30,6 +32,17 @@ namespace BitcoinClub.Data
                     .WithMany()
                     .HasForeignKey(p => p.AdminUserId)
                     .OnDelete(DeleteBehavior.Restrict);
+            });
+
+            builder.Entity<PostPublishResult>(b =>
+            {
+                b.Property(p => p.Platform).IsRequired();
+                b.HasOne(p => p.Post)
+                    .WithMany()
+                    .HasForeignKey(p => p.PostId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                b.HasIndex(p => new { p.PostId, p.Platform });
             });
         }
     }

@@ -8,6 +8,7 @@ It currently provides:
 - an Admin UI for creating and listing posts
 - an image upload implementation for storing local images under `wwwroot/uploads`
 - publisher interfaces to standardize how posts are published to external platforms
+- a publish manager orchestrator that publishes a post to all selected platforms and stores per-platform results
 
 ## Data model
 
@@ -19,6 +20,18 @@ Fields:
 - `ImagePaths` (JSON array of strings; relative paths under `uploads/`)
 - `Platforms` (JSON array of strings; selected targets)
 - `CreatedAt` (UTC timestamp)
+
+### `PostPublishResult`
+Stores the result of attempting to publish a specific `Post` to a specific platform.
+
+Fields:
+- `Id` (GUID)
+- `PostId` (FK to `Posts`)
+- `Platform` (string key)
+- `Success` (bool)
+- `ProviderPostId` (string?)
+- `Error` (string?)
+- `CreatedAt` (UTC timestamp for the last attempt)
 
 ## How it works
 - Posts are stored in the database as rows in `Posts`.
@@ -53,6 +66,17 @@ The project currently contains stubs (not implemented yet):
 
 Publishers are registered in DI as `ISocialMediaPublisher` so they can be discovered as an enumerable and selected by platform.
 
+### Publish manager
+The orchestrator service is:
+- `ISocialMediaPublishManager`
+
+Behavior:
+- accepts a `Post`
+- iterates through `Post.Platforms`
+- selects the matching `ISocialMediaPublisher` by `Platform`
+- calls `PublishAsync` for each platform
+- writes/updates a `PostPublishResult` row per `(PostId, Platform)`
+
 ## Admin Post Editor (MVC Area)
 Routes:
 - List posts: `GET /Admin/Posts`
@@ -76,3 +100,4 @@ Supported platforms (current UI list):
 - `AdminUserId` is a FK to Identity users; delete behavior is `Restrict` to preserve posting history.
 - Uploaded images are stored on disk for now; this can be swapped for object storage later.
 - Publishing uses a small interface per platform to keep integrations isolated and testable.
+- Publishing results are stored in a separate table to keep a per-platform audit trail.
