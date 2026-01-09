@@ -1,4 +1,5 @@
 using BitcoinClub.Data;
+using BitcoinClub.Infrastructure.Auth;
 using BitcoinClub.Infrastructure.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ namespace BitcoinClub
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -23,10 +24,16 @@ namespace BitcoinClub
                     options.SignIn.RequireConfirmedAccount = true;
                     options.User.RequireUniqueEmail = true;
                 })
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            builder.Services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, DefaultRoleUserClaimsPrincipalFactory>();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            await RoleSeeder.SeedAsync(app.Services);
 
             if (app.Environment.IsDevelopment())
             {
@@ -51,7 +58,7 @@ namespace BitcoinClub
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

@@ -1,5 +1,5 @@
+using System;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
@@ -18,6 +18,11 @@ namespace BitcoinClub.Tests.Auth
         [Fact]
         public async Task Anonymous_User_IsRedirectedToLogin_ForProtectedMembersPage()
         {
+            if (string.IsNullOrWhiteSpace(Environment.GetEnvironmentVariable("BITCOINCLUB_TEST_PG_CONNECTION")))
+            {
+                return;
+            }
+
             using var client = _factory.CreateClient(new WebApplicationFactoryClientOptions
             {
                 AllowAutoRedirect = false

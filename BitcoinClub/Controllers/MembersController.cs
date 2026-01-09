@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Authorization;
+using BitcoinClub.Infrastructure.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitcoinClub.Controllers
 {
-    [Authorize]
+    [RequireRole(RoleNames.Member)]
     public class MembersController : Controller
     {
         public IActionResult Index()

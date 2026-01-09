@@ -15,11 +15,13 @@ The application reads the connection string named `DefaultConnection` from `Bitc
 
 Format:
 
-- `Host=localhost;Port=5432;Database=bitcoinclub;Username=bitcoinclub;Password=...;`
+- `Host=localhost;Port=5432;Database=bitcoinclubdb;Username=iliyadamyanov;Password=...;`
 
 Recommended optional settings:
 
 - `Include Error Detail=true;` (development only)
+
+For local development, prefer storing credentials outside source control (for example in `appsettings.Development.json` or user secrets) and keep `appsettings.json` free of real passwords.
 
 ### Program startup
 At startup, `Program.cs` configures `ApplicationDbContext` using `UseNpgsql(connectionString)`.

@@ -17,10 +17,29 @@ Identity UI provides Razor Pages endpoints under the `Identity` area:
 
 `Views/Shared/_LoginPartial.cshtml` renders links for login/register or logout/manage depending on the current authentication state.
 
+## Roles
+### Roles
+The application uses two roles:
+
+- `member`
+- `admin`
+
+Role name constants are defined in `BitcoinClub.Infrastructure.Auth.RoleNames`.
+
+### Role seeding
+On application startup, roles are ensured to exist via `BitcoinClub.Infrastructure.Auth.RoleSeeder`.
+
+This requires Identity role services to be enabled (configured with `.AddRoles<IdentityRole>()`).
+
+### Default role assignment
+New users are assigned the `member` role by default during claims principal creation.
+
+This is implemented by `BitcoinClub.Infrastructure.Auth.DefaultRoleUserClaimsPrincipalFactory`.
+
 ## Protected pages
 Example protected endpoint:
 
-- `GET /Members` requires an authenticated user (controller protected with `[Authorize]`).
+- `GET /Members` requires the `member` role.
 
 ## Database
 Identity tables are created via EF Core migrations in PostgreSQL.
