@@ -1,0 +1,46 @@
+@model BitcoinClub.ViewModels.PaymentInitiateViewModel
+
+@{
+    ViewData["Title"] = "Initiate Payment";
+}
+
+<h1>Initiate payment</h1>
+
+<form method="post">
+    <div>
+        <label asp-for="AmountSats"></label>
+        <input asp-for="AmountSats" />
+        <span asp-validation-for="AmountSats"></span>
+    </div>
+    <div>
+        <label asp-for="Description"></label>
+        <input asp-for="Description" />
+        <span asp-validation-for="Description"></span>
+    </div>
+
+    <button type="submit">Create invoice</button>
+</form>
+
+@if (!string.IsNullOrWhiteSpace(Model.PaymentId))
+{
+    <hr />
+    <h2>Invoice created</h2>
+
+    <dl>
+        <dt>Payment Id</dt>
+        <dd>@Model.PaymentId</dd>
+        <dt>Payment request (BOLT11)</dt>
+        <dd><pre>@Model.PaymentRequest</pre></dd>
+    </dl>
+
+    <form asp-controller="Payments" asp-action="Verify" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="subscriptionId" value="@Model.SubscriptionId" />
+        <input type="hidden" name="paymentRecordId" value="@Model.PaymentRecordId" />
+        <button type="submit">I have paid - verify</button>
+    </form>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

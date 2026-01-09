@@ -1,0 +1,19 @@
+@model BitcoinClub.ViewModels.PaymentStatusViewModel
+
+@{
+    ViewData["Title"] = "Payment Status";
+}
+
+<h1>Subscription status</h1>
+
+<dl>
+    <dt>Expiration</dt>
+    <dd>@Model.ExpirationDate.ToString("u")</dd>
+
+    <dt>Last payment</dt>
+    <dd>@(Model.LastPaymentDate?.ToString("u") ?? "-")</dd>
+</dl>
+
+<p>
+    <a asp-controller="Payments" asp-action="Initiate">Pay membership</a>
+</p>

@@ -12,5 +12,7 @@ namespace BitcoinClub.Data
         }
 
         public DbSet<Subscription> Subscriptions => Set<Subscription>();
+
+        public DbSet<Payment> Payments => Set<Payment>();
     }
 }
