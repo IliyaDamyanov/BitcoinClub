@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BitcoinClub.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BitcoinClub.Data
@@ -9,5 +10,7 @@ namespace BitcoinClub.Data
             : base(options)
         {
         }
+
+        public DbSet<Subscription> Subscriptions => Set<Subscription>();
     }
 }

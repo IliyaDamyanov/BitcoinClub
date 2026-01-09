@@ -1,0 +1,26 @@
+# Subscriptions
+
+## What a subscription is
+A subscription represents a member’s access period to the Bitcoin Club. It records when access expires and tracks the last successful payment.
+
+## How it is stored
+Subscriptions are stored in PostgreSQL using EF Core in the `Subscriptions` table.
+
+Each subscription belongs to an ASP.NET Identity user:
+
+- `Subscription.UserId` is a foreign key to `AspNetUsers.Id`
+
+Fields:
+- `Id` (GUID)
+- `UserId` (string)
+- `ExpirationDate` (DateTime)
+- `LastPaymentDate` (DateTime?)
+- `CreatedAt` (DateTime)
+
+## How it will be used later
+Later tasks will extend subscriptions to support:
+
+- Lightning subscription payments (Breeze SDK)
+- Extending `ExpirationDate` after successful payments
+- Access control that checks subscription status before allowing member-only actions
+- Admin views for managing/inspecting subscriptions
