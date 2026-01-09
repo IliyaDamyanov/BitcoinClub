@@ -3,7 +3,7 @@
 ## Purpose
 The Admin panel provides a dedicated UI surface for administrative features (management views, reports, moderation, etc.) without mixing them into the main site layout.
 
-This task introduces an `Admin` MVC Area with its own layout and a simple navigation menu.
+The Admin area is restricted to users in the `admin` role.
 
 ## How it works
 
@@ -16,6 +16,18 @@ The Admin area is reachable under:
 
 Routing is enabled via an area route in `Program.cs`:
 - `{area:exists}/{controller=Home}/{action=Index}/{id?}`
+
+### Authorization
+All Admin controllers must be protected with:
+- `[Authorize(Roles = "admin")]`
+
+Role names are centralized in:
+- `BitcoinClub.Infrastructure.Auth.RoleNames`
+
+Expected behavior:
+- unauthenticated users: redirected to login (challenge)
+- authenticated non-admin users: `403 Forbidden`
+- authenticated admin users: `200 OK`
 
 ### Layout
 Admin pages use a dedicated layout:
@@ -37,3 +49,4 @@ The admin layout provides a basic navbar with:
 ## Architectural decisions
 - Admin UI is implemented as an MVC Area to keep routing and views clearly separated.
 - A dedicated layout minimizes the risk of mixing admin navigation with public navigation.
+- Role-based authorization is applied at the controller level to ensure all actions are protected by default.
