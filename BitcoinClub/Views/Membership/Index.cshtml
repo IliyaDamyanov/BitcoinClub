@@ -1,0 +1,18 @@
+@model BitcoinClub.ViewModels.MembershipDashboardViewModel
+
+@{
+    ViewData["Title"] = "Membership";
+}
+
+<h1>Membership</h1>
+
+<dl>
+    <dt>Expiration date</dt>
+    <dd id="subscription-expiration">@Model.ExpirationDate.ToString("u")</dd>
+
+    <dt>Last payment date</dt>
+    <dd id="subscription-last-payment">@(Model.LastPaymentDate.HasValue ? Model.LastPaymentDate.Value.ToString("u") : "-")</dd>
+</dl>
+
+<h2>Payment history</h2>
+<div id="payment-history-placeholder">Coming soon.</div>
