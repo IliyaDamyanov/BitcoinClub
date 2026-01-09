@@ -1,8 +1,26 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model BitcoinClub.ViewModels.LandingPageViewModel
+
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="py-4">
+        <h1 class="display-5">@Model.ClubName</h1>
+        <p class="lead">@Model.Description</p>
+
+        <hr />
+
+        <h2>Mission</h2>
+        <p>@Model.Mission</p>
+
+        <h2>Contact</h2>
+        <ul>
+            <li>Email: <a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></li>
+            @if (!string.IsNullOrWhiteSpace(Model.ContactTelegram))
+            {
+                <li>Telegram: @Model.ContactTelegram</li>
+            }
+        </ul>
+    </div>
 </div>

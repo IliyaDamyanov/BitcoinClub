@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using BitcoinClub.Models;
+using BitcoinClub.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitcoinClub.Controllers
@@ -15,7 +16,8 @@ namespace BitcoinClub.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var vm = new LandingPageViewModel();
+            return View(vm);
         }
 
         public IActionResult Privacy()
