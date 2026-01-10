@@ -1,0 +1,19 @@
+.bc-lang-button {
+  color: rgba(255, 255, 255, 0.65);
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 6px;
+  width: fit-content;
+}
+
+@media (min-width: 600px) {
+  .bc-lang-button {
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .bc-lang-button {
+    margin-top: 10px;
+  }
+}

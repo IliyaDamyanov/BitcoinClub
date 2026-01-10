@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+    Version 2.0
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="ClubName" xml:space="preserve"><value>Bitcoin Club Bulgaria</value></data>
+  <data name="HomeLabel" xml:space="preserve"><value>Home</value></data>
+  <data name="EventsLabel" xml:space="preserve"><value>Events</value></data>
+  <data name="InfoLabel" xml:space="preserve"><value>Info</value></data>
+  <data name="UsefulLinksLabel" xml:space="preserve"><value>Links</value></data>
+  <data name="MembershipAndSupportLabel" xml:space="preserve"><value>Membership &amp; Support</value></data>
+
+  <data name="GoalsTitle" xml:space="preserve"><value>Goals</value></data>
+  <data name="Goals_1" xml:space="preserve"><value>Promotion and education in the field of cryptocurrencies with a main focus on Bitcoin;</value></data>
+  <data name="Goals_2" xml:space="preserve"><value>Creating a community of users, developers and enthusiasts of cryptocurrencies with a main focus on Bitcoin;</value></data>
+  <data name="Goals_3" xml:space="preserve"><value>Providing information and advice on the legal and regulatory framework of cryptocurrencies and Bitcoin;</value></data>
+  <data name="Goals_4" xml:space="preserve"><value>Uniting the interests of its members and supporting their development, qualification and knowledge;</value></data>
+  <data name="Goals_5" xml:space="preserve"><value>Stimulating dialogue and discussions, as well as creating an authoritative source of quality information;</value></data>
+  <data name="Goals_6" xml:space="preserve"><value>Uniting and attracting new members with similar interests;</value></data>
+  <data name="Goals_7" xml:space="preserve"><value>Promoting cooperation and contacts between members and the community;</value></data>
+  <data name="Goals_8" xml:space="preserve"><value>Supporting and stimulating the adoption of Bitcoin and other cryptocurrencies as a technological solution.</value></data>
+
+  <data name="MeansTitle" xml:space="preserve"><value>Means</value></data>
+  <data name="Means_1" xml:space="preserve"><value>Organizing meetings, conferences, seminars, webinars, educational courses, presentations and other similar events;</value></data>
+  <data name="Means_2" xml:space="preserve"><value>Creating and distributing advertising materials in the media (press, television, Internet) with information about the Association's activities for fundraising and new members;</value></data>
+  <data name="Means_3" xml:space="preserve"><value>Issuing information and educational materials on the topic of cryptocurrencies and Bitcoin;</value></data>
+  <data name="Means_4" xml:space="preserve"><value>Conducting research and analysis in the field of cryptocurrencies and Bitcoin;</value></data>
+  <data name="Means_5" xml:space="preserve"><value>Implementing and maintaining information exchange and relations with similar associations with similar interests in the country and abroad;</value></data>
+  <data name="Means_6" xml:space="preserve"><value>Other activity, when the same is not prohibited by Law and related to the goals and means of the Association.</value></data>
+
+  <data name="CalendarTitle" xml:space="preserve"><value>Calendar</value></data>
+
+  <data name="AssociationTitle" xml:space="preserve"><value>Association details</value></data>
+  <data name="AssociationLocationLabel" xml:space="preserve"><value>See on map</value></data>
+
+  <data name="OfficialWebsiteLabel" xml:space="preserve"><value>Official website</value></data>
+  <data name="SocialMediaTitle" xml:space="preserve"><value>Social media</value></data>
+
+  <data name="MembershipDetails" xml:space="preserve"><value>If you would like to become a member, contact us at the email address below.</value></data>
+  <data name="SupportDetails" xml:space="preserve"><value>If you would like to support the club, please reach out and we will provide the available options.</value></data>
+
+  <data name="ContactsTitle" xml:space="preserve"><value>Contacts</value></data>
+  <data name="UsefulLinksTitle" xml:space="preserve"><value>Useful links</value></data>
+</root>

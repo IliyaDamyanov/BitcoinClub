@@ -1,6 +1,8 @@
 using System.Diagnostics;
+using System.Globalization;
 using BitcoinClub.Models;
-using BitcoinClub.ViewModels;
+using BitcoinClub.Services.Landing;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BitcoinClub.Controllers
@@ -8,21 +10,29 @@ namespace BitcoinClub.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ILandingPageContentService _landingPageContentService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ILandingPageContentService landingPageContentService)
         {
             _logger = logger;
+            _landingPageContentService = landingPageContentService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index([FromQuery] string? lang)
         {
-            var vm = new LandingPageViewModel();
+            // Keep the existing query-string toggle, but map it to real cultures for resx localization.
+            var culture = string.Equals(lang, "EN", StringComparison.OrdinalIgnoreCase) ? "en" : "bg";
+
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+
+            CultureInfo.CurrentCulture = new CultureInfo(culture);
+            CultureInfo.CurrentUICulture = new CultureInfo(culture);
+
+            var vm = _landingPageContentService.Get(lang);
             return View(vm);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

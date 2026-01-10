@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+    Version 2.0
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <data name="ClubName" xml:space="preserve"><value>Bitcoin Club Bulgaria</value></data>
+  <data name="HomeLabel" xml:space="preserve"><value>Начало</value></data>
+  <data name="EventsLabel" xml:space="preserve"><value>Събития</value></data>
+  <data name="InfoLabel" xml:space="preserve"><value>Информация</value></data>
+  <data name="UsefulLinksLabel" xml:space="preserve"><value>Линкове</value></data>
+  <data name="MembershipAndSupportLabel" xml:space="preserve"><value>Членство и подкрепа</value></data>
+
+  <data name="GoalsTitle" xml:space="preserve"><value>Цели</value></data>
+  <data name="Goals_1" xml:space="preserve"><value>Популяризиране и просветителска дейност в областта на криптовалутите с основен фокус върху Bitcoin;</value></data>
+  <data name="Goals_2" xml:space="preserve"><value>Създаване на общност от потребители, разработчици и ентусиасти на криптовалути с основен фокус върху Bitcoin;</value></data>
+  <data name="Goals_3" xml:space="preserve"><value>Предоставяне на информация и съвети относно правната и регулаторната рамка на криптовалутите и Bitcoin;</value></data>
+  <data name="Goals_4" xml:space="preserve"><value>Обединяване интересите на своите членове и подпомагане на тяхното развитие, квалификация и знания;</value></data>
+  <data name="Goals_5" xml:space="preserve"><value>Стимулиране на диалог и дискусии, както и създаване на авторитетен източник на качествена информация;</value></data>
+  <data name="Goals_6" xml:space="preserve"><value>Обединяване и привличане на нови членове с подобни интереси;</value></data>
+  <data name="Goals_7" xml:space="preserve"><value>Насърчаване на сътрудничеството и контактите между членовете и общността;</value></data>
+  <data name="Goals_8" xml:space="preserve"><value>Подкрепа и стимулиране на приемането на Bitcoin и други криптовалути като технологично решение.</value></data>
+
+  <data name="MeansTitle" xml:space="preserve"><value>Средства</value></data>
+  <data name="Means_1" xml:space="preserve"><value>Организиране на срещи, конференции, семинари, уебинари, образователни курсове, презентации и други подобни събития;</value></data>
+  <data name="Means_2" xml:space="preserve"><value>Създаване и разпространение на рекламни материали в медиите (преса, телевизия, интернет) с информация за дейността на Сдружението с цел набиране на средства и нови членове;</value></data>
+  <data name="Means_3" xml:space="preserve"><value>Издаване на информационни и образователни материали по темата за криптовалутите и Bitcoin;</value></data>
+  <data name="Means_4" xml:space="preserve"><value>Провеждане на изследвания и анализи в областта на криптовалутите и Bitcoin;</value></data>
+  <data name="Means_5" xml:space="preserve"><value>Осъществяване и поддържане на информационен обмен и отношения със сродни сдружения със сходни интереси в страната и чужбина;</value></data>
+  <data name="Means_6" xml:space="preserve"><value>Друга дейност, когато същата не е забранена от закона и е свързана с целите и средствата на Сдружението.</value></data>
+
+  <data name="CalendarTitle" xml:space="preserve"><value>Календар</value></data>
+
+  <data name="AssociationTitle" xml:space="preserve"><value>Данни за сдружението</value></data>
+  <data name="AssociationLocationLabel" xml:space="preserve"><value>Виж на картата</value></data>
+
+  <data name="OfficialWebsiteLabel" xml:space="preserve"><value>Официален сайт</value></data>
+  <data name="SocialMediaTitle" xml:space="preserve"><value>Социални мрежи</value></data>
+
+  <data name="MembershipDetails" xml:space="preserve"><value>Ако желаете да станете член на Bitcoin Club, свържете се с нас на имейла по-долу за повече информация.</value></data>
+  <data name="SupportDetails" xml:space="preserve"><value>Ако желаете да подкрепите клуба, пишете ни и ще ви изпратим наличните възможности.</value></data>
+
+  <data name="ContactsTitle" xml:space="preserve"><value>Контакти</value></data>
+  <data name="UsefulLinksTitle" xml:space="preserve"><value>Полезни линкове</value></data>
+</root>

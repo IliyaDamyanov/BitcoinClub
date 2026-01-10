@@ -1,4 +1,7 @@
 using BitcoinClub.Controllers;
+using BitcoinClub.Resources;
+using BitcoinClub.Services.Landing;
+using BitcoinClub.Tests.TestDoubles;
 using BitcoinClub.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -11,9 +14,16 @@ namespace BitcoinClub.Tests.Landing
         [Fact]
         public void Index_ReturnsView_WithLandingPageViewModel()
         {
-            var controller = new HomeController(NullLogger<HomeController>.Instance);
+            var localizer = new StubStringLocalizer<LandingPageStrings>(new Dictionary<string, string>
+            {
+                ["ClubName"] = "Club"
+            });
 
-            var result = controller.Index();
+            var controller = new HomeController(
+                NullLogger<HomeController>.Instance,
+                new LandingPageContentService(localizer));
+
+            var result = controller.Index(null);
 
             var view = Assert.IsType<ViewResult>(result);
             Assert.IsType<LandingPageViewModel>(view.Model);

@@ -5,8 +5,11 @@ using BitcoinClub.Infrastructure.Database;
 using BitcoinClub.Infrastructure.Files;
 using BitcoinClub.Infrastructure.Payments;
 using BitcoinClub.Infrastructure.Social;
+using BitcoinClub.Services.Landing;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace BitcoinClub
 {
@@ -48,11 +51,24 @@ namespace BitcoinClub
 
             builder.Services.AddScoped<ISocialMediaPublishManager, SocialMediaPublishManager>();
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<ILandingPageContentService, LandingPageContentService>();
+
+            builder.Services.AddLocalization();
+
+            builder.Services.AddControllersWithViews()
+                .AddViewLocalization();
 
             var app = builder.Build();
 
             await RoleSeeder.SeedAsync(app.Services);
+
+            var supportedCultures = new[] { new CultureInfo("bg"), new CultureInfo("en") };
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("bg"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
 
             if (app.Environment.IsDevelopment())
             {

@@ -1,34 +1,28 @@
-# Public Landing Page
+# Landing page (Home)
 
 ## Purpose
-The landing page is the public entry point for the Bitcoin Club site. It explains what the club is, what it does, and how to contact the organizers.
-
-It also embeds a public events calendar so visitors can quickly see upcoming meetups.
+Provide a single-page landing experience for the Bitcoin Club website (navbar + anchored sections) with a BG/EN language toggle.
 
 ## How it works
-- `HomeController.Index` returns a `LandingPageViewModel`.
-- `Views/Home/Index.cshtml` renders the landing page using the view model values.
+- `HomeController.Index` reads an optional `lang` query string (`BG` or `EN`) and maps it to a request culture (`bg` / `en`).
+- Landing page UI labels (navbar items, section titles, etc.) are stored in shared resource files:
+  - `BitcoinClub/Resources/LandingPageStrings.resx` (BG/default)
+  - `BitcoinClub/Resources/LandingPageStrings.en.resx` (EN)
+- `LandingPageContentService` uses `IStringLocalizer<LandingPageStrings>` to read the localized strings and populate the `LandingPageViewModel`.
+- `Views/Home/Index.cshtml` renders:
+  - a dark Bootstrap navbar with anchor links (`#home`, `#calendar`, `#info`, `#links`)
+  - a hero section with an image and goals list
+  - a “means” section
+  - a Google Calendar iframe for events
+  - association info, social links, membership/support, contacts
+  - useful links
+- `wwwroot/css/landing.css` provides the minimal styling for the language button.
 
-## Content
-The page currently displays:
-- Club name
-- Description
-- Mission
-- Events calendar (embedded Google Calendar iframe)
-- Contact information (email, optional Telegram)
-
-## Google Calendar embed
-- The calendar is rendered via a responsive `<iframe>` using Bootstrap’s `ratio` utility.
-- The iframe URL is currently a placeholder (`calendar.google.com/calendar/embed?mode=AGENDA`).
-  - Replace it with your public calendar embed URL.
-
-## How to customize
-Edit defaults in:
-- `ViewModels/LandingPageViewModel.cs`
-
-If you later want to make this content editable via the admin panel, the same fields can be moved into a database-backed settings table.
+## How to use
+- Open `/` for BG.
+- Open `/?lang=EN` for English.
+- Use the language button in the navbar to toggle.
 
 ## Architectural decisions
-- Content is provided by a small view model to keep the view simple and testable.
-- Defaults live in code for now to avoid introducing a settings UI or configuration requirements in this task.
-- The calendar embed is a simple iframe to avoid introducing API keys or OAuth flows.
+- Kept the existing query-string language toggle, but mapped it to cultures so `.resx` resources can be reused across pages.
+- Localizable UI labels are moved to resource files to enable reuse on other pages.
