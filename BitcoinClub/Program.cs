@@ -53,7 +53,8 @@ namespace BitcoinClub
 
             builder.Services.AddScoped<ILandingPageContentService, LandingPageContentService>();
 
-            builder.Services.AddLocalization();
+            // Set resources path so view and controller localization looks in the Resources/ folder
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 
             builder.Services.AddControllersWithViews()
                 .AddViewLocalization();

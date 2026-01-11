@@ -1,0 +1,71 @@
+@using BitcoinClub.Resources
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Localization
+@using System.Globalization
+@inject IViewLocalizer ViewLocalizer
+@inject IStringLocalizerFactory LocalizerFactory
+
+@model BitcoinClub.Controllers.AccountController.RegisterViewModel
+@{
+    var assemblyName = typeof(Program).Assembly.GetName().Name!;
+    var L = LocalizerFactory.Create("Views.Account.Register", assemblyName);
+    ViewData["Title"] = L["Register_Title"];
+    var currentLang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+    var toggleLang = string.Equals(currentLang, "en", System.StringComparison.OrdinalIgnoreCase) ? "BG" : "EN";
+}
+
+<div class="bc-auth-page">
+    <div class="bc-auth-card">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="bc-auth-title">@L["Register_Title"]</h1>
+                <p class="bc-auth-subtitle">@L["Register_Subtitle"]</p>
+            </div>
+            <div>
+                <a class="btn btn-sm btn-outline-light bc-lang-button"
+                   asp-action="SetLanguage"
+                   asp-controller="Account"
+                   asp-route-lang="@toggleLang"
+                   asp-route-returnUrl="@(Model.ReturnUrl ?? Url.Action("Register", "Account"))">
+                    @toggleLang
+                </a>
+            </div>
+        </div>
+
+        <form asp-action="Register" asp-controller="Account" method="post" class="bc-auth-form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+            <input type="hidden" asp-for="ReturnUrl" />
+
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label bc-auth-label">@L["Register_EmailLabel"]</label>
+                <input asp-for="Email" class="form-control bc-auth-input" autocomplete="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label bc-auth-label">@L["Register_PasswordLabel"]</label>
+                <input asp-for="Password" class="form-control bc-auth-input" autocomplete="new-password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+                <div class="form-text bc-auth-hint">@L["Register_PasswordHint"]</div>
+            </div>
+
+            <div class="mb-4">
+                <label asp-for="ConfirmPassword" class="form-label bc-auth-label">@L["Register_ConfirmPasswordLabel"]</label>
+                <input asp-for="ConfirmPassword" class="form-control bc-auth-input" autocomplete="new-password" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary bc-auth-button">@L["Register_Submit"]</button>
+
+            <div class="mt-3 text-center">
+                <a asp-area="Identity" asp-page="/Account/Login">@L["Register_LoginLink"]</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

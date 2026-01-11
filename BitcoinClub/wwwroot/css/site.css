@@ -39,3 +39,63 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Auth pages (custom MVC auth views) */
+.bc-auth-page {
+  display: flex;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.bc-auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.bc-auth-title {
+  margin-bottom: 4px;
+}
+
+.bc-auth-subtitle {
+  margin-bottom: 20px;
+  color: #adb5bd;
+}
+
+.bc-auth-label {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.bc-auth-input {
+  height: 38px;
+  font-size: 0.95rem;
+}
+
+.bc-auth-button {
+  width: 100%;
+  padding: 10px 12px;
+}
+
+.bc-auth-hint {
+  color: #adb5bd;
+}
+
+/* Auth language button */
+.bc-lang-button {
+  min-width: 48px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .bc-lang-button {
+    min-width: 40px;
+    height: 32px;
+    padding: 0 6px;
+    font-size: 0.85rem;
+  }
+}
