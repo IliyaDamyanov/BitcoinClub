@@ -16,17 +16,20 @@ public sealed class AccountController : Controller
     private readonly IUserStore<IdentityUser> _userStore;
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly IEmailSender _emailSender;
+    private readonly ILogger<AccountController> _logger;
 
     public AccountController(
         UserManager<IdentityUser> userManager,
         IUserStore<IdentityUser> userStore,
         SignInManager<IdentityUser> signInManager,
-        IEmailSender emailSender)
+        IEmailSender emailSender,
+        ILogger<AccountController> logger)
     {
         _userManager = userManager;
         _userStore = userStore;
         _signInManager = signInManager;
         _emailSender = emailSender;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -53,6 +56,7 @@ public sealed class AccountController : Controller
         var result = await _userManager.CreateAsync(user, model.Password);
         if (result.Succeeded)
         {
+            _logger.LogInformation("New user registered: {Email}", model.Email);
             var userId = await _userManager.GetUserIdAsync(user);
             var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
             code = WebEncoders.Base64UrlEncode(System.Text.Encoding.UTF8.GetBytes(code));
@@ -78,6 +82,7 @@ public sealed class AccountController : Controller
             return LocalRedirect(model.ReturnUrl);
         }
 
+        _logger.LogWarning("Registration failed for {Email}: {Errors}", model.Email, string.Join("; ", result.Errors.Select(e => e.Description)));
         foreach (var error in result.Errors)
         {
             ModelState.AddModelError(string.Empty, error.Description);

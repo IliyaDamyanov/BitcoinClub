@@ -10,6 +10,8 @@ using BitcoinClub.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
 
 namespace BitcoinClub.Tests.Payments
@@ -31,7 +33,7 @@ namespace BitcoinClub.Tests.Payments
             await db.SaveChangesAsync();
 
             var payments = new FakePaymentService();
-            var controller = new PaymentsController(db, payments);
+            var controller = new PaymentsController(db, payments, NullLogger<PaymentsController>.Instance);
             controller.ControllerContext = new ControllerContext
             {
                 HttpContext = CreateHttpContext(userId)

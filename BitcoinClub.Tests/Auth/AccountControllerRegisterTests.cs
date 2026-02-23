@@ -2,6 +2,7 @@ using BitcoinClub.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
 
@@ -17,7 +18,8 @@ public sealed class AccountControllerRegisterTests
         var signInManager = MockSignInManager(userManager.Object);
         var emailSender = new Mock<IEmailSender>();
 
-        var sut = new AccountController(userManager.Object, userStore.Object, signInManager.Object, emailSender.Object);
+        var logger = new Mock<ILogger<AccountController>>();
+        var sut = new AccountController(userManager.Object, userStore.Object, signInManager.Object, emailSender.Object, logger.Object);
         sut.ModelState.AddModelError("Email", "Required");
 
         var model = new AccountController.RegisterViewModel

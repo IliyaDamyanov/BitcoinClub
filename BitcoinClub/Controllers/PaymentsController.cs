@@ -16,11 +16,13 @@ namespace BitcoinClub.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly IBreezePaymentService _payments;
+        private readonly ILogger<PaymentsController> _logger;
 
-        public PaymentsController(ApplicationDbContext db, IBreezePaymentService payments)
+        public PaymentsController(ApplicationDbContext db, IBreezePaymentService payments, ILogger<PaymentsController> logger)
         {
             _db = db;
             _payments = payments;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -73,6 +75,7 @@ namespace BitcoinClub.Controllers
                 return View(model);
             }
 
+            _logger.LogInformation("Initiating payment for user {UserId}, amount {AmountSats} sats", userId, model.AmountSats);
             var init = await _payments.InitiateMembershipPaymentAsync(userId, model.AmountSats, model.Description);
 
             var payment = new Payment
@@ -120,14 +123,17 @@ namespace BitcoinClub.Controllers
                 return NotFound();
             }
 
+            _logger.LogInformation("Verifying payment {PaymentId} for subscription {SubscriptionId}", payment.ProviderPaymentId, subscriptionId);
             var verify = await _payments.VerifyPaymentAsync(subscriptionId, payment.ProviderPaymentId);
             if (!verify.IsPaid)
             {
+                _logger.LogInformation("Payment {PaymentId} not yet paid, marking pending", payment.ProviderPaymentId);
                 payment.Status = "pending";
                 await _db.SaveChangesAsync();
                 return RedirectToAction(nameof(Initiate));
             }
 
+            _logger.LogInformation("Payment {PaymentId} confirmed paid at {PaidAt}", payment.ProviderPaymentId, verify.PaidAt);
             payment.Status = "paid";
             payment.PaidAt = verify.PaidAt?.UtcDateTime;
             await _db.SaveChangesAsync();
