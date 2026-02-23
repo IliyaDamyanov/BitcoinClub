@@ -37,11 +37,20 @@ namespace BitcoinClub
                 var builder = WebApplication.CreateBuilder(args);
                 builder.Host.UseSerilog();
 
+                var useSqlite = builder.Configuration.GetValue<bool>("UseSqlite");
                 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-                ConnectionStringValidator.ValidatePostgresConnectionString(connectionString);
 
-                builder.Services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseNpgsql(connectionString));
+                if (useSqlite)
+                {
+                    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                        options.UseSqlite(connectionString));
+                }
+                else
+                {
+                    ConnectionStringValidator.ValidatePostgresConnectionString(connectionString);
+                    builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                        options.UseNpgsql(connectionString));
+                }
                 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options =>

@@ -26,8 +26,11 @@ namespace BitcoinClub.Data
             builder.Entity<Post>(b =>
             {
                 b.Property(p => p.TextContent).IsRequired();
-                b.Property(p => p.ImagePaths).HasColumnType("jsonb");
-                b.Property(p => p.Platforms).HasColumnType("jsonb");
+                if (Database.ProviderName != "Microsoft.EntityFrameworkCore.Sqlite")
+                {
+                    b.Property(p => p.ImagePaths).HasColumnType("jsonb");
+                    b.Property(p => p.Platforms).HasColumnType("jsonb");
+                }
                 b.HasOne(p => p.AdminUser)
                     .WithMany()
                     .HasForeignKey(p => p.AdminUserId)
