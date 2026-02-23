@@ -4,7 +4,6 @@ using BitcoinClub.Infrastructure.Auth.Providers;
 using BitcoinClub.Infrastructure.Database;
 using BitcoinClub.Infrastructure.Files;
 using BitcoinClub.Infrastructure.Payments;
-using BitcoinClub.Infrastructure.Social;
 using BitcoinClub.Services.Landing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -62,14 +61,6 @@ namespace BitcoinClub
 
             builder.Services.AddSingleton<IUploadPathValidator, UploadPathValidator>();
             builder.Services.AddScoped<IFileUploadService, FileUploadService>();
-
-            builder.Services.AddSingleton<ISocialMediaPublisher, FacebookPublisher>();
-            builder.Services.AddSingleton<ISocialMediaPublisher, InstagramPublisher>();
-            builder.Services.AddSingleton<ISocialMediaPublisher, ThreadsPublisher>();
-            builder.Services.AddSingleton<ISocialMediaPublisher, TwitterPublisher>();
-            builder.Services.AddSingleton<ISocialMediaPublisher, NostrPublisher>();
-
-            builder.Services.AddScoped<ISocialMediaPublishManager, SocialMediaPublishManager>();
 
             builder.Services.AddScoped<ILandingPageContentService, LandingPageContentService>();
 
