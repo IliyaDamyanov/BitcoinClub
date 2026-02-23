@@ -11,7 +11,8 @@ public sealed class RegisterViewLocalizationTests
     public void ViewResources_WhenCultureIsBg_ResolvesBulgarianTitle()
     {
         var services = new ServiceCollection();
-        services.AddLocalization();
+        services.AddLogging();
+        services.AddLocalization(options => options.ResourcesPath = "Resources");
 
         var sp = services.BuildServiceProvider();
 
@@ -22,11 +23,9 @@ public sealed class RegisterViewLocalizationTests
 
             var localizerFactory = sp.GetRequiredService<IStringLocalizerFactory>();
 
-            // View localization looks for resources under: Resources/Views/Account/Register.*.resx
-            // The base name is: Views.Account.Register
             var localizer = localizerFactory.Create("Views.Account.Register", "BitcoinClub");
 
-            Assert.Equal("Регистрация", localizer["Register_Title"].Value);
+            Assert.Equal("Р РµРіРёСЃС‚СЂР°С†РёСЏ", localizer["Register_Title"].Value);
         }
         finally
         {

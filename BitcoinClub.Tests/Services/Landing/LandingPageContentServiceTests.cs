@@ -1,5 +1,5 @@
 using System.Globalization;
-using BitcoinClub.Resources;
+
 using BitcoinClub.Services.Landing;
 using Microsoft.Extensions.Localization;
 using Moq;

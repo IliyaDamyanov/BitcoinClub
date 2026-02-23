@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Moq;
 using Xunit;
 
@@ -37,9 +38,14 @@ public sealed class AccountControllerRegisterTests
 
     private static Mock<UserManager<IdentityUser>> MockUserManager(IUserStore<IdentityUser> store)
     {
+        var identityOptions = Options.Create(new IdentityOptions
+        {
+            SignIn = new SignInOptions { RequireConfirmedAccount = true }
+        });
+
         var mgr = new Mock<UserManager<IdentityUser>>(
             store,
-            null,
+            identityOptions,
             null,
             Array.Empty<IUserValidator<IdentityUser>>(),
             Array.Empty<IPasswordValidator<IdentityUser>>(),
@@ -49,10 +55,6 @@ public sealed class AccountControllerRegisterTests
             null);
 
         mgr.SetupGet(m => m.SupportsUserEmail).Returns(true);
-        mgr.SetupGet(m => m.Options).Returns(new IdentityOptions
-        {
-            SignIn = new SignInOptions { RequireConfirmedAccount = true }
-        });
 
         mgr.Setup(m => m.CreateAsync(It.IsAny<IdentityUser>(), It.IsAny<string>()))
             .ReturnsAsync(IdentityResult.Failed());

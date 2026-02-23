@@ -70,6 +70,7 @@
   <data name="UsefulLinksLabel" xml:space="preserve"><value>Links</value></data>
   <data name="MembershipAndSupportLabel" xml:space="preserve"><value>Membership &amp; Support</value></data>
 
+  <data name="MissionTitle" xml:space="preserve"><value>Mission</value></data>
   <data name="GoalsTitle" xml:space="preserve"><value>Goals</value></data>
   <data name="Goals_1" xml:space="preserve"><value>Promotion and education in the field of cryptocurrencies with a main focus on Bitcoin;</value></data>
   <data name="Goals_2" xml:space="preserve"><value>Creating a community of users, developers and enthusiasts of cryptocurrencies with a main focus on Bitcoin;</value></data>
@@ -88,7 +89,7 @@
   <data name="Means_5" xml:space="preserve"><value>Implementing and maintaining information exchange and relations with similar associations with similar interests in the country and abroad;</value></data>
   <data name="Means_6" xml:space="preserve"><value>Other activity, when the same is not prohibited by Law and related to the goals and means of the Association.</value></data>
 
-  <data name="CalendarTitle" xml:space="preserve"><value>Calendar</value></data>
+  <data name="CalendarTitle" xml:space="preserve"><value>Events calendar</value></data>
 
   <data name="AssociationTitle" xml:space="preserve"><value>Association details</value></data>
   <data name="AssociationLocationLabel" xml:space="preserve"><value>See on map</value></data>
@@ -99,6 +100,6 @@
   <data name="MembershipDetails" xml:space="preserve"><value>If you would like to become a member, contact us at the email address below.</value></data>
   <data name="SupportDetails" xml:space="preserve"><value>If you would like to support the club, please reach out and we will provide the available options.</value></data>
 
-  <data name="ContactsTitle" xml:space="preserve"><value>Contacts</value></data>
+  <data name="ContactsTitle" xml:space="preserve"><value>Contact</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Useful links</value></data>
 </root>

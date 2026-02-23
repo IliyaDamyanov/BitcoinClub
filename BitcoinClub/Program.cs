@@ -58,6 +58,7 @@ namespace BitcoinClub
             builder.Services.AddScoped<IAuthProvider, EmailPasswordAuthProvider>();
 
             builder.Services.AddBreezPayments(builder.Configuration);
+            builder.Services.AddScoped<IBreezePaymentService, BreezPaymentService>();
 
             builder.Services.AddSingleton<IUploadPathValidator, UploadPathValidator>();
             builder.Services.AddScoped<IFileUploadService, FileUploadService>();

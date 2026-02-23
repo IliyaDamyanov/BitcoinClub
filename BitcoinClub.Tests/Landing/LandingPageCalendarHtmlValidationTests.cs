@@ -8,7 +8,7 @@ namespace BitcoinClub.Tests.Landing
     public class LandingPageCalendarHtmlValidationTests
     {
         [Fact]
-        public async void HomePage_IncludesResponsiveGoogleCalendarIframe()
+        public async Task HomePage_IncludesResponsiveGoogleCalendarIframe()
         {
             using var factory = new WebApplicationFactory<BitcoinClub.Program>();
             using var client = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });

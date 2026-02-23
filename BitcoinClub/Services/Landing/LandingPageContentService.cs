@@ -1,4 +1,4 @@
-using BitcoinClub.Resources;
+// LandingPageStrings is in the BitcoinClub namespace
 using BitcoinClub.ViewModels;
 using Microsoft.Extensions.Localization;
 
@@ -35,6 +35,7 @@ public sealed class LandingPageContentService : ILandingPageContentService
         => new()
         {
             ClubName = _localizer["ClubName"],
+            MissionTitle = _localizer["MissionTitle"],
             HomeLabel = _localizer["HomeLabel"],
             EventsLabel = _localizer["EventsLabel"],
             InfoLabel = _localizer["InfoLabel"],

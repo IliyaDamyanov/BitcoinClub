@@ -14,6 +14,12 @@ namespace BitcoinClub.Infrastructure.Files
                 return false;
             }
 
+            // Reject backslash explicitly (Path.GetFileName treats \ as literal on Linux)
+            if (fileName.Contains('\\'))
+            {
+                return false;
+            }
+
             var name = Path.GetFileName(fileName);
             return string.Equals(fileName, name, StringComparison.Ordinal);
         }

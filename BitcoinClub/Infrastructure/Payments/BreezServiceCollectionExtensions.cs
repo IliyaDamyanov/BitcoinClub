@@ -18,7 +18,6 @@ namespace BitcoinClub.Infrastructure.Payments
 
             // For this task we expose a minimal Breez API abstraction. A real SDK-backed implementation can replace this.
             services.AddSingleton<IBreezApiClient, BreezApiClient>();
-            services.AddScoped<IBreezePaymentService, BreezPaymentService>();
 
             return services;
         }

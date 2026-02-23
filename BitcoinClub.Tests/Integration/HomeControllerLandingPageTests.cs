@@ -1,4 +1,4 @@
-using BitcoinClub.Resources;
+
 using BitcoinClub.Services.Landing;
 using BitcoinClub.Tests.TestDoubles;
 using Microsoft.AspNetCore.Mvc;

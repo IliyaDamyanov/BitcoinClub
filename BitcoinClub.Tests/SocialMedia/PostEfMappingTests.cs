@@ -18,8 +18,15 @@ namespace BitcoinClub.Tests.SocialMedia
             var imagePaths = entity!.FindProperty("ImagePaths");
             var platforms = entity.FindProperty("Platforms");
 
-            Assert.Equal("jsonb", imagePaths!.GetColumnType());
-            Assert.Equal("jsonb", platforms!.GetColumnType());
+            Assert.NotNull(imagePaths);
+            Assert.NotNull(platforms);
+
+            // Verify the column type annotation is set to jsonb
+            var imagePathsAnnotation = imagePaths!.FindAnnotation("Relational:ColumnType");
+            var platformsAnnotation = platforms!.FindAnnotation("Relational:ColumnType");
+
+            Assert.Equal("jsonb", imagePathsAnnotation?.Value);
+            Assert.Equal("jsonb", platformsAnnotation?.Value);
         }
 
         private static ApplicationDbContext CreateInMemoryDb()

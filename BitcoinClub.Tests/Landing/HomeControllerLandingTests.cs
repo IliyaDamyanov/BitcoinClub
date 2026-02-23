@@ -1,5 +1,5 @@
 using BitcoinClub.Controllers;
-using BitcoinClub.Resources;
+
 using BitcoinClub.Services.Landing;
 using BitcoinClub.Tests.TestDoubles;
 using BitcoinClub.ViewModels;

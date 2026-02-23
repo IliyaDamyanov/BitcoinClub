@@ -40,12 +40,12 @@ public sealed class AccountController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
-        model.ReturnUrl ??= Url.Content("~");
-
         if (!ModelState.IsValid)
         {
             return View(model);
         }
+
+        model.ReturnUrl ??= Url.Content("~");
 
         var user = CreateUser();
         await _userStore.SetUserNameAsync(user, model.Email, CancellationToken.None);

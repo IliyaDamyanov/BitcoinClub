@@ -1,4 +1,4 @@
-namespace BitcoinClub.Resources;
+namespace BitcoinClub;
 
 /// <summary>
 /// Marker class used by localization to locate `LandingPageStrings*.resx`.
