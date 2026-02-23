@@ -93,7 +93,7 @@ namespace BitcoinClub.Tests.Auth
 
             public Task<IdentityResult> UpdateAsync(IdentityRole role, System.Threading.CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
             public Task<IdentityResult> DeleteAsync(IdentityRole role, System.Threading.CancellationToken cancellationToken) => Task.FromResult(IdentityResult.Success);
-            public Task<string?> GetRoleIdAsync(IdentityRole role, System.Threading.CancellationToken cancellationToken) => Task.FromResult(role.Id);
+            public Task<string> GetRoleIdAsync(IdentityRole role, System.Threading.CancellationToken cancellationToken) => Task.FromResult(role.Id);
             public Task<string?> GetRoleNameAsync(IdentityRole role, System.Threading.CancellationToken cancellationToken) => Task.FromResult(role.Name);
             public Task SetRoleNameAsync(IdentityRole role, string? roleName, System.Threading.CancellationToken cancellationToken) { role.Name = roleName; return Task.CompletedTask; }
             public Task<string?> GetNormalizedRoleNameAsync(IdentityRole role, System.Threading.CancellationToken cancellationToken) => Task.FromResult(role.NormalizedName);
@@ -162,7 +162,7 @@ namespace BitcoinClub.Tests.Auth
                 return Task.FromResult<IdentityUser?>(null);
             }
 
-            public Task<string?> GetUserIdAsync(IdentityUser user, System.Threading.CancellationToken cancellationToken) => Task.FromResult(user.Id);
+            public Task<string> GetUserIdAsync(IdentityUser user, System.Threading.CancellationToken cancellationToken) => Task.FromResult(user.Id);
             public Task<string?> GetUserNameAsync(IdentityUser user, System.Threading.CancellationToken cancellationToken) => Task.FromResult(user.UserName);
             public Task SetUserNameAsync(IdentityUser user, string? userName, System.Threading.CancellationToken cancellationToken) { user.UserName = userName; return Task.CompletedTask; }
             public Task<string?> GetNormalizedUserNameAsync(IdentityUser user, System.Threading.CancellationToken cancellationToken) => Task.FromResult(user.NormalizedUserName);

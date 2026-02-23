@@ -46,13 +46,13 @@ public sealed class AccountControllerRegisterTests
         var mgr = new Mock<UserManager<IdentityUser>>(
             store,
             identityOptions,
-            null,
+            null!,
             Array.Empty<IUserValidator<IdentityUser>>(),
             Array.Empty<IPasswordValidator<IdentityUser>>(),
-            null,
-            null,
-            null,
-            null);
+            null!,
+            null!,
+            null!,
+            null!);
 
         mgr.SetupGet(m => m.SupportsUserEmail).Returns(true);
 
@@ -71,9 +71,9 @@ public sealed class AccountControllerRegisterTests
             userManager,
             contextAccessor.Object,
             claimsFactory.Object,
-            null,
-            null,
-            null,
-            null);
+            null!,
+            null!,
+            null!,
+            null!);
     }
 }
