@@ -1,4 +1,4 @@
-using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BitcoinClub.Data;
@@ -30,13 +30,26 @@ namespace BitcoinClub.Controllers
             var subscription = await _db.Subscriptions.SingleOrDefaultAsync(s => s.UserId == userId);
             if (subscription is null)
             {
-                return NotFound();
+                return View("NoSubscription");
             }
+
+            var payments = await _db.Payments
+                .Where(p => p.UserId == userId)
+                .OrderByDescending(p => p.CreatedAt)
+                .Select(p => new PaymentHistoryItem
+                {
+                    CreatedAt = p.CreatedAt,
+                    AmountSats = p.AmountSats,
+                    Status = p.Status,
+                    PaidAt = p.PaidAt
+                })
+                .ToListAsync();
 
             var vm = new MembershipDashboardViewModel
             {
                 ExpirationDate = subscription.ExpirationDate,
-                LastPaymentDate = subscription.LastPaymentDate
+                LastPaymentDate = subscription.LastPaymentDate,
+                PaymentHistory = payments
             };
 
             return View(vm);

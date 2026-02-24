@@ -77,7 +77,8 @@ namespace BitcoinClub.Tests.Membership
             };
 
             var result = await controller.Index();
-            Assert.IsType<NotFoundResult>(result);
+            var view = Assert.IsType<ViewResult>(result);
+            Assert.Equal("NoSubscription", view.ViewName);
         }
     }
 }
