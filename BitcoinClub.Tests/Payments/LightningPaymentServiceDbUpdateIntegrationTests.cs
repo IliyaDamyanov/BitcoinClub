@@ -9,13 +9,13 @@ using Xunit;
 
 namespace BitcoinClub.Tests.Payments
 {
-    public class BreezPaymentServiceDbUpdateIntegrationTests
+    public class LightningPaymentServiceDbUpdateIntegrationTests
     {
         [Fact]
         public async Task VerifyPaymentAsync_Paid_UpdatesLastPaymentDate_AndExtendsExpiration()
         {
             var now = DateTimeOffset.UtcNow;
-            var breez = new PaidBreezApiClient(now.ToUnixTimeSeconds());
+            var lightning = new PaidLightningApiClient(now.ToUnixTimeSeconds());
 
             var db = CreateInMemoryDb();
             var sub = new Subscription
@@ -28,7 +28,7 @@ namespace BitcoinClub.Tests.Payments
             db.Subscriptions.Add(sub);
             await db.SaveChangesAsync();
 
-            var sut = new BreezPaymentService(breez, db);
+            var sut = new LightningPaymentService(lightning, db);
 
             var res = await sut.VerifyPaymentAsync(sub.Id, paymentId: "pay-1");
 
@@ -50,20 +50,20 @@ namespace BitcoinClub.Tests.Payments
             return new ApplicationDbContext(opts);
         }
 
-        private sealed class PaidBreezApiClient : IBreezApiClient
+        private sealed class PaidLightningApiClient : ILightningApiClient
         {
             private readonly long _paidAt;
 
-            public PaidBreezApiClient(long paidAt)
+            public PaidLightningApiClient(long paidAt)
             {
                 _paidAt = paidAt;
             }
 
-            public Task<BreezPaymentInitResponse> CreateInvoiceAsync(int amountSats, string description, CancellationToken cancellationToken = default)
-                => Task.FromResult(new BreezPaymentInitResponse("invoice-1", "bolt11"));
+            public Task<LightningInvoiceResponse> CreateInvoiceAsync(int amountSats, string description, CancellationToken cancellationToken = default)
+                => Task.FromResult(new LightningInvoiceResponse("invoice-1", "bolt11"));
 
-            public Task<BreezPaymentStatusResponse> GetPaymentStatusAsync(string paymentId, CancellationToken cancellationToken = default)
-                => Task.FromResult(new BreezPaymentStatusResponse(IsPaid: true, PaidAtUnixSeconds: _paidAt));
+            public Task<LightningPaymentStatusResponse> GetPaymentStatusAsync(string paymentHash, CancellationToken cancellationToken = default)
+                => Task.FromResult(new LightningPaymentStatusResponse(IsPaid: true, PaidAtUnixSeconds: _paidAt));
         }
     }
 }

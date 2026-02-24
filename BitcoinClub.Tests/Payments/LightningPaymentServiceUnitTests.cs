@@ -8,17 +8,17 @@ using Xunit;
 
 namespace BitcoinClub.Tests.Payments
 {
-    public class BreezPaymentServiceUnitTests
+    public class LightningPaymentServiceUnitTests
     {
         [Fact]
         public async Task InitiateMembershipPaymentAsync_ValidInput_CreatesSubscription_AndReturnsInvoiceData()
         {
-            var breez = new FakeBreezApiClient(
-                createInvoice: () => new BreezPaymentInitResponse("p1", "bolt11"),
-                getStatus: _ => new BreezPaymentStatusResponse(false, null));
+            var lightning = new FakeLightningApiClient(
+                createInvoice: () => new LightningInvoiceResponse("p1", "bolt11"),
+                getStatus: _ => new LightningPaymentStatusResponse(false, null));
 
             var db = CreateInMemoryDb();
-            var sut = new BreezPaymentService(breez, db);
+            var sut = new LightningPaymentService(lightning, db);
 
             var res = await sut.InitiateMembershipPaymentAsync("user-1", 1000, "Membership");
 
@@ -35,12 +35,12 @@ namespace BitcoinClub.Tests.Payments
         [InlineData(-1)]
         public async Task InitiateMembershipPaymentAsync_InvalidAmount_Throws(int amount)
         {
-            var breez = new FakeBreezApiClient(
-                createInvoice: () => new BreezPaymentInitResponse("p1", "bolt11"),
-                getStatus: _ => new BreezPaymentStatusResponse(false, null));
+            var lightning = new FakeLightningApiClient(
+                createInvoice: () => new LightningInvoiceResponse("p1", "bolt11"),
+                getStatus: _ => new LightningPaymentStatusResponse(false, null));
 
             var db = CreateInMemoryDb();
-            var sut = new BreezPaymentService(breez, db);
+            var sut = new LightningPaymentService(lightning, db);
 
             await Assert.ThrowsAsync<ArgumentOutOfRangeException>(() =>
                 sut.InitiateMembershipPaymentAsync("user-1", amount, "Membership"));
@@ -55,22 +55,22 @@ namespace BitcoinClub.Tests.Payments
             return new ApplicationDbContext(opts);
         }
 
-        private sealed class FakeBreezApiClient : IBreezApiClient
+        private sealed class FakeLightningApiClient : ILightningApiClient
         {
-            private readonly Func<BreezPaymentInitResponse> _createInvoice;
-            private readonly Func<string, BreezPaymentStatusResponse> _getStatus;
+            private readonly Func<LightningInvoiceResponse> _createInvoice;
+            private readonly Func<string, LightningPaymentStatusResponse> _getStatus;
 
-            public FakeBreezApiClient(Func<BreezPaymentInitResponse> createInvoice, Func<string, BreezPaymentStatusResponse> getStatus)
+            public FakeLightningApiClient(Func<LightningInvoiceResponse> createInvoice, Func<string, LightningPaymentStatusResponse> getStatus)
             {
                 _createInvoice = createInvoice;
                 _getStatus = getStatus;
             }
 
-            public Task<BreezPaymentInitResponse> CreateInvoiceAsync(int amountSats, string description, CancellationToken cancellationToken = default)
+            public Task<LightningInvoiceResponse> CreateInvoiceAsync(int amountSats, string description, CancellationToken cancellationToken = default)
                 => Task.FromResult(_createInvoice());
 
-            public Task<BreezPaymentStatusResponse> GetPaymentStatusAsync(string paymentId, CancellationToken cancellationToken = default)
-                => Task.FromResult(_getStatus(paymentId));
+            public Task<LightningPaymentStatusResponse> GetPaymentStatusAsync(string paymentHash, CancellationToken cancellationToken = default)
+                => Task.FromResult(_getStatus(paymentHash));
         }
     }
 }

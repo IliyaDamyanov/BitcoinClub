@@ -83,7 +83,7 @@ namespace BitcoinClub.Controllers
                 Id = Guid.NewGuid(),
                 UserId = userId,
                 SubscriptionId = init.SubscriptionId,
-                Provider = "breez",
+                Provider = "lnbits",
                 ProviderPaymentId = init.PaymentId,
                 AmountSats = init.AmountSats,
                 PaymentRequest = init.PaymentRequest,

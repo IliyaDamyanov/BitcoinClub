@@ -9,12 +9,12 @@ using Xunit;
 
 namespace BitcoinClub.Tests.Payments
 {
-    public class BreezPaymentServiceMockBreezApiTests
+    public class LightningPaymentServiceMockApiTests
     {
         [Fact]
         public async Task VerifyPaymentAsync_NotPaid_DoesNotUpdateSubscription()
         {
-            var mock = new RecordingBreezApiClient(isPaid: false);
+            var mock = new RecordingLightningApiClient(isPaid: false);
             var db = CreateInMemoryDb();
             var sub = new Subscription
             {
@@ -26,14 +26,14 @@ namespace BitcoinClub.Tests.Payments
             db.Subscriptions.Add(sub);
             await db.SaveChangesAsync();
 
-            var sut = new BreezPaymentService(mock, db);
+            var sut = new LightningPaymentService(mock, db);
 
             var res = await sut.VerifyPaymentAsync(sub.Id, paymentId: "pay-1");
 
             Assert.False(res.IsPaid);
             Assert.Null(res.PaidAt);
             Assert.Null(res.NewExpirationDate);
-            Assert.Equal("pay-1", mock.LastPaymentId);
+            Assert.Equal("pay-1", mock.LastPaymentHash);
 
             var reloaded = await db.Subscriptions.SingleAsync(s => s.Id == sub.Id);
             Assert.Null(reloaded.LastPaymentDate);
@@ -49,24 +49,24 @@ namespace BitcoinClub.Tests.Payments
             return new ApplicationDbContext(opts);
         }
 
-        private sealed class RecordingBreezApiClient : IBreezApiClient
+        private sealed class RecordingLightningApiClient : ILightningApiClient
         {
             private readonly bool _isPaid;
 
-            public RecordingBreezApiClient(bool isPaid)
+            public RecordingLightningApiClient(bool isPaid)
             {
                 _isPaid = isPaid;
             }
 
-            public string? LastPaymentId { get; private set; }
+            public string? LastPaymentHash { get; private set; }
 
-            public Task<BreezPaymentInitResponse> CreateInvoiceAsync(int amountSats, string description, CancellationToken cancellationToken = default)
-                => Task.FromResult(new BreezPaymentInitResponse("invoice-1", "bolt11"));
+            public Task<LightningInvoiceResponse> CreateInvoiceAsync(int amountSats, string description, CancellationToken cancellationToken = default)
+                => Task.FromResult(new LightningInvoiceResponse("invoice-1", "bolt11"));
 
-            public Task<BreezPaymentStatusResponse> GetPaymentStatusAsync(string paymentId, CancellationToken cancellationToken = default)
+            public Task<LightningPaymentStatusResponse> GetPaymentStatusAsync(string paymentHash, CancellationToken cancellationToken = default)
             {
-                LastPaymentId = paymentId;
-                return Task.FromResult(new BreezPaymentStatusResponse(_isPaid, PaidAtUnixSeconds: null));
+                LastPaymentHash = paymentHash;
+                return Task.FromResult(new LightningPaymentStatusResponse(_isPaid, PaidAtUnixSeconds: null));
             }
         }
     }
