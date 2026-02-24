@@ -1,4 +1,4 @@
-﻿@model BitcoinClub.ViewModels.LandingPageViewModel
+@model BitcoinClub.ViewModels.LandingPageViewModel
 
 @{
     ViewData["Title"] = Model.ClubName;
@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
 }
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg bc-navbar sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="#home">@Model.ClubName</a>
+        <a class="navbar-brand" href="#home">₿ @Model.ClubName</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,6 +20,7 @@
                 <li class="nav-item"><a class="nav-link" href="#calendar">@Model.EventsLabel</a></li>
                 <li class="nav-item"><a class="nav-link" href="#info">@Model.InfoLabel</a></li>
                 <li class="nav-item"><a class="nav-link" href="#links">@Model.UsefulLinksLabel</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Membership" asp-action="Index">Membership</a></li>
             </ul>
 
             <div class="d-flex align-items-center">
@@ -33,99 +34,122 @@
     </div>
 </nav>
 
-<div class="container mt-4">
-    <div class="row" id="home">
-        <div class="col-12 col-md-5">
-            <img src="@Model.HeroImageRelativePath" class="img-fluid" alt="Bitcoin Club" />
+@* Hero Section *@
+<section class="bc-hero" id="home">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-5 text-center text-md-start mb-4 mb-md-0">
+                <img src="@Model.HeroImageRelativePath" class="bc-hero-img img-fluid" alt="Bitcoin Club" />
+            </div>
+            <div class="col-12 col-md-7">
+                <h1>@Model.MissionTitle <span class="bc-highlight">Bitcoin Club</span></h1>
+                <ul class="bc-goals mt-3">
+                    @foreach (var goal in Model.Goals)
+                    {
+                        <li>@goal</li>
+                    }
+                </ul>
+                <a href="@Url.Action("Initiate", "Payments")" class="bc-cta mt-3">
+                    ⚡ @Model.MembershipAndSupportLabel
+                </a>
+            </div>
         </div>
-        <div class="col-12 col-md-7">
-            <div class="card bg-dark text-light border-0">
-                <div class="card-body">
-                    <h4 class="card-title">@Model.MissionTitle</h4>
-                    <h5 class="card-title">@Model.GoalsTitle:</h5>
-                    <p class="card-text">
-                        @foreach (var goal in Model.Goals)
-                        {
-                            @goal
-                            <br />
-                        }
+    </div>
+</section>
+
+@* Means Section *@
+<section class="bc-section">
+    <div class="container">
+        <div class="bc-card">
+            <h5>@Model.MeansTitle</h5>
+            <ul class="bc-goals">
+                @foreach (var means in Model.Means)
+                {
+                    <li>@means</li>
+                }
+            </ul>
+        </div>
+    </div>
+</section>
+
+@* Calendar Section *@
+<section class="bc-section" id="calendar">
+    <div class="container">
+        <h2 class="bc-section-title">@Model.CalendarTitle</h2>
+        <div class="bc-calendar-wrap">
+            <div class="ratio ratio-16x9">
+                <iframe
+                    src="@Model.CalendarEmbedUrl"
+                    style="border: 0;"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* Info Section *@
+<section class="bc-section" id="info">
+    <div class="container">
+        <h2 class="bc-section-title">@Model.InfoLabel</h2>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="bc-card h-100">
+                    <h5>@Model.AssociationTitle</h5>
+                    <p>ЕИК/ПИК: <strong>@Model.AssociationEik</strong></p>
+                    <p>
+                        @Model.AssociationAddressLine —
+                        <a href="@Model.AssociationLocationUrl" target="_blank" rel="noopener noreferrer" style="color: var(--btc-accent);">
+                            📍 @Model.AssociationLocationLabel
+                        </a>
+                    </p>
+                    <h5 class="mt-3">@Model.OfficialWebsiteLabel</h5>
+                    <p>
+                        <a href="@Model.OfficialWebsiteUrl" target="_blank" rel="noopener noreferrer" style="color: var(--btc-accent);">
+                            @Model.OfficialWebsiteUrl
+                        </a>
                     </p>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="col-md-6">
+                <div class="bc-card h-100">
+                    <h5>@Model.ContactsTitle</h5>
+                    <p>📧 @Model.ContactEmail</p>
+                    <p>📞 @Model.ContactPhone</p>
 
-    <div class="row" style="margin-top: 48px;">
-        <div class="card bg-dark text-light">
-            <div class="card-body">
-                <h5 class="card-title">@Model.MeansTitle</h5>
-                <p class="card-text">
-                    @foreach (var means in Model.Means)
-                    {
-                        @means
-                        <br />
-                    }
-                </p>
+                    <h5 class="mt-3">@Model.MembershipAndSupportLabel</h5>
+                    <p>@Model.MembershipDetails</p>
+                    <p>@Model.SupportDetails</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row" style="margin-top: 48px;" id="calendar">
-        <h4>@Model.CalendarTitle</h4>
-        <div class="ratio ratio-16x9">
-            <iframe
-                src="@Model.CalendarEmbedUrl"
-                style="border: 0;"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="mt-4">
+            <h5 style="color: var(--btc-accent);">@Model.SocialMediaTitle</h5>
+            <ul class="bc-social-links mt-3">
+                @foreach (var link in Model.SocialLinks)
+                {
+                    <li>
+                        <a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Name</a>
+                    </li>
+                }
+            </ul>
         </div>
     </div>
+</section>
 
-    <div class="row" style="margin-top: 48px;">
-        <h4 id="info">@Model.InfoLabel</h4>
-
-        <h5>@Model.AssociationTitle</h5>
-        <p>1. ЕИК/ПИК: @Model.AssociationEik</p>
-        <p>
-            2. Седалище и адрес на управление: @Model.AssociationAddressLine -
-            <a href="@Model.AssociationLocationUrl" target="_blank" rel="noopener noreferrer">@Model.AssociationLocationLabel</a>
-        </p>
-
-        <h5>@Model.OfficialWebsiteLabel</h5>
-        <p>
-            <a href="@Model.OfficialWebsiteUrl" target="_blank" rel="noopener noreferrer">@Model.OfficialWebsiteUrl</a>
-        </p>
-
-        <h5>@Model.SocialMediaTitle</h5>
-        <ul>
-            @foreach (var link in Model.SocialLinks)
-            {
-                <li>
-                    @link.Name: <a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Url</a>
-                </li>
-            }
-        </ul>
-
-        <h5>@Model.MembershipAndSupportLabel</h5>
-        <p>@Model.MembershipDetails</p>
-        <p>@Model.SupportDetails</p>
-
-        <h5>@Model.ContactsTitle</h5>
-        <p>
-            @Model.ContactEmail
-        </p>
-        <p>Телефон: @Model.ContactPhone</p>
-    </div>
-
-    <div class="row" style="margin-top: 24px;">
-        <h4 id="links">@Model.UsefulLinksTitle</h4>
-        <ul>
+@* Useful Links *@
+<section class="bc-section" id="links">
+    <div class="container">
+        <h2 class="bc-section-title">@Model.UsefulLinksTitle</h2>
+        <ul class="bc-links-list">
             @foreach (var link in Model.UsefulLinks)
             {
                 <li>
-                    @link.Label: <a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Url</a>
+                    @link.Label — <a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Url</a>
                 </li>
             }
         </ul>
     </div>
-</div>
+</section>

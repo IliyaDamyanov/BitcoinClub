@@ -1,9 +1,53 @@
+/* Landing Page Styles — Bitcoin Club */
+
+:root {
+  --btc-orange: #f7931a;
+  --btc-dark: #1a1a2e;
+  --btc-darker: #0f0f1a;
+  --btc-accent: #e2b659;
+  --btc-text: #e8e8e8;
+  --btc-muted: #8a8a9a;
+}
+
+body {
+  background-color: var(--btc-darker);
+  color: var(--btc-text);
+}
+
+/* Navbar */
+.bc-navbar {
+  background: rgba(15, 15, 26, 0.95) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(247, 147, 26, 0.2);
+}
+
+.bc-navbar .navbar-brand {
+  font-weight: 700;
+  color: var(--btc-orange) !important;
+  font-size: 1.4rem;
+}
+
+.bc-navbar .nav-link {
+  color: var(--btc-text) !important;
+  transition: color 0.2s;
+}
+
+.bc-navbar .nav-link:hover {
+  color: var(--btc-orange) !important;
+}
+
 .bc-lang-button {
   color: rgba(255, 255, 255, 0.65);
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 6px;
   width: fit-content;
+  transition: all 0.2s;
+}
+
+.bc-lang-button:hover {
+  border-color: var(--btc-orange);
+  color: var(--btc-orange);
 }
 
 @media (min-width: 600px) {
@@ -15,5 +59,182 @@
 @media (max-width: 600px) {
   .bc-lang-button {
     margin-top: 10px;
+  }
+}
+
+/* Hero Section */
+.bc-hero {
+  padding: 4rem 0 3rem;
+  position: relative;
+}
+
+.bc-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.bc-hero h1 .bc-highlight {
+  color: var(--btc-orange);
+}
+
+.bc-hero .bc-subtitle {
+  font-size: 1.15rem;
+  color: var(--btc-muted);
+  line-height: 1.7;
+}
+
+.bc-hero-img {
+  max-width: 280px;
+  filter: drop-shadow(0 0 30px rgba(247, 147, 26, 0.3));
+}
+
+/* Sections */
+.bc-section {
+  padding: 3rem 0;
+}
+
+.bc-section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--btc-orange);
+  display: inline-block;
+}
+
+/* Cards */
+.bc-card {
+  background: var(--btc-dark);
+  border: 1px solid rgba(247, 147, 26, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: border-color 0.3s;
+}
+
+.bc-card:hover {
+  border-color: rgba(247, 147, 26, 0.4);
+}
+
+.bc-card h5 {
+  color: var(--btc-accent);
+  font-weight: 600;
+}
+
+/* Goal list */
+.bc-goals {
+  list-style: none;
+  padding: 0;
+}
+
+.bc-goals li {
+  padding: 0.5rem 0 0.5rem 1.8rem;
+  position: relative;
+  line-height: 1.6;
+}
+
+.bc-goals li::before {
+  content: '₿';
+  position: absolute;
+  left: 0;
+  color: var(--btc-orange);
+  font-weight: bold;
+}
+
+/* CTA Button */
+.bc-cta {
+  background: linear-gradient(135deg, var(--btc-orange), #e68a00);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bc-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(247, 147, 26, 0.4);
+  color: #fff;
+}
+
+/* Calendar */
+.bc-calendar-wrap {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(247, 147, 26, 0.15);
+}
+
+/* Social links */
+.bc-social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+}
+
+.bc-social-links a {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--btc-dark);
+  border: 1px solid rgba(247, 147, 26, 0.2);
+  border-radius: 8px;
+  color: var(--btc-text);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.bc-social-links a:hover {
+  border-color: var(--btc-orange);
+  color: var(--btc-orange);
+}
+
+/* Useful links */
+.bc-links-list {
+  list-style: none;
+  padding: 0;
+}
+
+.bc-links-list li {
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bc-links-list a {
+  color: var(--btc-accent);
+  text-decoration: none;
+}
+
+.bc-links-list a:hover {
+  color: var(--btc-orange);
+  text-decoration: underline;
+}
+
+/* Footer */
+.bc-footer {
+  background: var(--btc-darker);
+  border-top: 1px solid rgba(247, 147, 26, 0.15);
+  padding: 2rem 0;
+  color: var(--btc-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bc-hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .bc-hero-img {
+    max-width: 200px;
+    margin-bottom: 2rem;
+  }
+
+  .bc-section {
+    padding: 2rem 0;
   }
 }
