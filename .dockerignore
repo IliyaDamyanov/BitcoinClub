@@ -1,0 +1,17 @@
+**/.git
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/logs
+**/*.db
+**/node_modules
+**/.idea
+*.md
+!README.md
+docker-compose*.yml
+Dockerfile
+.dockerignore
+.gitignore
+BitcoinClub.Tests/
+BitcoinClub.Import/

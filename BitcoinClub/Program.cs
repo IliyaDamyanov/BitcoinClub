@@ -122,6 +122,8 @@ namespace BitcoinClub
                 pattern: "{controller=Home}/{action=Index}/{id?}");
             app.MapRazorPages();
 
+            app.MapGet("/health", () => Results.Ok(new { status = "healthy", timestamp = DateTime.UtcNow }));
+
                 await app.RunAsync();
             }
             catch (Exception ex)
