@@ -13,7 +13,7 @@ namespace BitcoinClub.Infrastructure.Payments
 
             services.AddHttpClient<ILightningApiClient, LNbitsApiClient>();
 
-            services.AddScoped<IBreezePaymentService, LightningPaymentService>();
+            services.AddScoped<IPaymentService, LightningPaymentService>();
 
             return services;
         }

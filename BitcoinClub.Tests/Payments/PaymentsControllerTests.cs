@@ -74,7 +74,7 @@ namespace BitcoinClub.Tests.Payments
             return ctx;
         }
 
-        private sealed class FakePaymentService : IBreezePaymentService
+        private sealed class FakePaymentService : IPaymentService
         {
             public Task<PaymentInitiationResult> InitiateMembershipPaymentAsync(string userId, int amountSats, string description, CancellationToken cancellationToken = default)
                 => Task.FromResult(new PaymentInitiationResult(Guid.NewGuid(), "prov-1", "bolt11", amountSats));

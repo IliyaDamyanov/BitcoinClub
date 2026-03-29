@@ -15,10 +15,10 @@ namespace BitcoinClub.Controllers
     public sealed class PaymentsController : Controller
     {
         private readonly ApplicationDbContext _db;
-        private readonly IBreezePaymentService _payments;
+        private readonly IPaymentService _payments;
         private readonly ILogger<PaymentsController> _logger;
 
-        public PaymentsController(ApplicationDbContext db, IBreezePaymentService payments, ILogger<PaymentsController> logger)
+        public PaymentsController(ApplicationDbContext db, IPaymentService payments, ILogger<PaymentsController> logger)
         {
             _db = db;
             _payments = payments;

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BitcoinClub.Infrastructure.Payments
 {
-    public sealed class LightningPaymentService : IBreezePaymentService
+    public sealed class LightningPaymentService : IPaymentService
     {
         private readonly ILightningApiClient _lightning;
         private readonly ApplicationDbContext _db;

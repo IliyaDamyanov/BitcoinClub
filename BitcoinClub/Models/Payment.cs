@@ -15,7 +15,7 @@ namespace BitcoinClub.Models
 
         public Subscription? Subscription { get; set; }
 
-        public string Provider { get; set; } = "breez";
+        public string Provider { get; set; } = "lnbits";
 
         public string ProviderPaymentId { get; set; } = string.Empty;
 

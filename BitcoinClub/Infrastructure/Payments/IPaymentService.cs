@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace BitcoinClub.Infrastructure.Payments
 {
-    public interface IBreezePaymentService
+    public interface IPaymentService
     {
         Task<PaymentInitiationResult> InitiateMembershipPaymentAsync(
             string userId,
