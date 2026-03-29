@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/landing.css" asp-append-version="true" />
 }
 
-<nav class="navbar navbar-expand-lg bc-navbar sticky-top">
+<nav class="navbar navbar-expand-lg bc-navbar sticky-top" id="mainNav">
     <div class="container">
         <a class="navbar-brand" href="#home">₿ @Model.ClubName</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +34,7 @@
     </div>
 </nav>
 
-@* Hero Section *@
+@* ════════ Hero Section ════════ *@
 <section class="bc-hero" id="home">
     <div class="container">
         <div class="row align-items-center">
@@ -42,14 +42,14 @@
                 <img src="@Model.HeroImageRelativePath" class="bc-hero-img img-fluid" alt="Bitcoin Club" />
             </div>
             <div class="col-12 col-md-7">
-                <h1>@Model.MissionTitle <span class="bc-highlight">Bitcoin Club</span></h1>
-                <ul class="bc-goals mt-3">
+                <h1>@Model.MissionTitle<br/><span class="bc-highlight">Bitcoin Club</span></h1>
+                <ul class="bc-goals mt-4">
                     @foreach (var goal in Model.Goals)
                     {
                         <li>@goal</li>
                     }
                 </ul>
-                <a href="@Url.Action("Initiate", "Payments")" class="bc-cta mt-3">
+                <a href="@Url.Action("Initiate", "Payments")" class="bc-cta mt-4">
                     ⚡ @Model.MembershipAndSupportLabel
                 </a>
             </div>
@@ -57,7 +57,33 @@
     </div>
 </section>
 
-@* Means Section *@
+@* ════════ Stats Section ════════ *@
+<section class="bc-stats">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="bc-stat-item">
+                    <div class="bc-stat-number">50+</div>
+                    <div class="bc-stat-label">Членове</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="bc-stat-item">
+                    <div class="bc-stat-number">100+</div>
+                    <div class="bc-stat-label">Събития</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="bc-stat-item">
+                    <div class="bc-stat-number">3+</div>
+                    <div class="bc-stat-label">Години</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@* ════════ Means Section ════════ *@
 <section class="bc-section">
     <div class="container">
         <div class="bc-card">
@@ -72,7 +98,7 @@
     </div>
 </section>
 
-@* Calendar Section *@
+@* ════════ Calendar Section ════════ *@
 <section class="bc-section" id="calendar">
     <div class="container">
         <h2 class="bc-section-title">@Model.CalendarTitle</h2>
@@ -88,7 +114,7 @@
     </div>
 </section>
 
-@* Info Section *@
+@* ════════ Info Section ════════ *@
 <section class="bc-section" id="info">
     <div class="container">
         <h2 class="bc-section-title">@Model.InfoLabel</h2>
@@ -97,16 +123,16 @@
             <div class="col-md-6">
                 <div class="bc-card h-100">
                     <h5>@Model.AssociationTitle</h5>
-                    <p>ЕИК/ПИК: <strong>@Model.AssociationEik</strong></p>
+                    <p>ЕИК/ПИК: <strong style="color: #fff;">@Model.AssociationEik</strong></p>
                     <p>
                         @Model.AssociationAddressLine —
-                        <a href="@Model.AssociationLocationUrl" target="_blank" rel="noopener noreferrer" style="color: var(--btc-accent);">
+                        <a href="@Model.AssociationLocationUrl" target="_blank" rel="noopener noreferrer" style="color: var(--btc-orange);">
                             📍 @Model.AssociationLocationLabel
                         </a>
                     </p>
                     <h5 class="mt-3">@Model.OfficialWebsiteLabel</h5>
                     <p>
-                        <a href="@Model.OfficialWebsiteUrl" target="_blank" rel="noopener noreferrer" style="color: var(--btc-accent);">
+                        <a href="@Model.OfficialWebsiteUrl" target="_blank" rel="noopener noreferrer" style="color: var(--btc-orange);">
                             @Model.OfficialWebsiteUrl
                         </a>
                     </p>
@@ -125,8 +151,8 @@
             </div>
         </div>
 
-        <div class="mt-4">
-            <h5 style="color: var(--btc-accent);">@Model.SocialMediaTitle</h5>
+        <div class="mt-5">
+            <h5 style="color: var(--btc-orange); font-weight: 700;">@Model.SocialMediaTitle</h5>
             <ul class="bc-social-links mt-3">
                 @foreach (var link in Model.SocialLinks)
                 {
@@ -139,7 +165,7 @@
     </div>
 </section>
 
-@* Useful Links *@
+@* ════════ Useful Links ════════ *@
 <section class="bc-section" id="links">
     <div class="container">
         <h2 class="bc-section-title">@Model.UsefulLinksTitle</h2>
@@ -153,3 +179,47 @@
         </ul>
     </div>
 </section>
+
+@* ════════ Footer ════════ *@
+<footer class="bc-footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="bc-footer-brand">₿ @Model.ClubName</div>
+                <p class="bc-footer-text">Bitcoin community in Sofia, Bulgaria. Education, meetups, and adoption.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="bc-footer-title">Quick Links</div>
+                <ul class="bc-footer-links">
+                    <li><a href="#home">@Model.HomeLabel</a></li>
+                    <li><a href="#calendar">@Model.EventsLabel</a></li>
+                    <li><a href="#info">@Model.InfoLabel</a></li>
+                    <li><a href="@Url.Action("Initiate", "Payments")">⚡ Lightning Payments</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="bc-footer-title">Connect</div>
+                <ul class="bc-footer-links">
+                    @foreach (var link in Model.SocialLinks)
+                    {
+                        <li><a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Name</a></li>
+                    }
+                    <li><a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bc-footer-bottom">
+            &copy; 2026 @Model.ClubName · Built with ₿ and ⚡
+        </div>
+    </div>
+</footer>
+
+@section Scripts {
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+}

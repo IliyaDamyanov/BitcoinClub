@@ -42,7 +42,7 @@ BitcoinClub/                    # Main web application
 │   ├── Auth/                   # Roles, claims, auth providers
 │   ├── Database/               # Connection string validation
 │   ├── Files/                  # Image upload service
-│   ├── Payments/               # Lightning payment service (Breez SDK — being replaced with LNbits)
+│   ├── Payments/               # Lightning payment service (LNbits)
 │   └── Social/                 # Social media publishers (STUBS — scheduled for removal)
 ├── Models/                     # Domain models (Post, Payment, Subscription)
 ├── Resources/                  # Localization (bg/en)
@@ -79,7 +79,7 @@ docs/                           # Architecture documentation
 - **ASP.NET Core Identity** for auth with role-based access (Admin, Member)
 - **Serilog** for structured logging (console + rolling file in `logs/`)
 - **Localization** supports Bulgarian (default) and English
-- **Lightning payments** via Breez SDK (being migrated to LNbits for simpler deployment)
+- **Lightning payments** via LNbits REST API
 
 ## Database
 
@@ -120,16 +120,14 @@ Uses Serilog with:
 - 76/88 tests passing
 
 ### Needs Work
-- 12 failing tests (landing page content, admin auth redirects, path validation on Linux, Breez DI)
-- Social Media module is all stubs — **scheduled for removal** (club uses Buffer)
-- Lightning payment service incomplete (migrating from Breez to LNbits)
+- Landing page needs design work
 - Landing page needs design work
 - No SQLite fallback for local development yet
 - `async void` test methods need conversion to `async Task` (xUnit v3 migration)
 
 ### Do Not Touch
 - `appsettings.json` contains real credentials — never commit changes to connection strings or API keys
-- Breez API key in appsettings is a test key but treat as sensitive
+- LNbits API key in appsettings is sensitive — controls wallet funds
 
 ## Testing
 

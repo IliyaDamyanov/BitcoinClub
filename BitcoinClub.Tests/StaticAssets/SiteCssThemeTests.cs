@@ -19,11 +19,11 @@ public class SiteCssThemeTests
         var css = File.ReadAllText(cssPath);
 
         Assert.Contains("html, body", css);
-        Assert.Contains("background-color: #000", css);
+        Assert.Contains("background-color: #050508", css);
     }
 
     [Fact]
-    public void SiteCss_SetsDarkBackgroundOnMainContainer()
+    public void SiteCss_SetsInterFontFamily()
     {
         var cssPath = Path.GetFullPath(Path.Combine(
             AppContext.BaseDirectory,
@@ -35,7 +35,7 @@ public class SiteCssThemeTests
 
         var css = File.ReadAllText(cssPath);
 
-        Assert.Contains("body > .container", css);
-        Assert.Contains("background-color: #212529", css);
+        Assert.Contains("Inter", css);
+        Assert.Contains("font-family", css);
     }
 }
