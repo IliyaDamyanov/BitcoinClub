@@ -105,4 +105,15 @@
   <data name="StatEventsLabel" xml:space="preserve"><value>Събития</value></data>
   <data name="StatYearsLabel" xml:space="preserve"><value>Години</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Полезни линкове</value></data>
+
+  <data name="AssociationAddressLine" xml:space="preserve"><value>гр. София, п.к. 1111</value></data>
+
+  <data name="UsefulLink_PlamenAndonov" xml:space="preserve"><value>YouTube канал на Пламен Андонов</value></data>
+  <data name="UsefulLink_BGCrypto" xml:space="preserve"><value>YouTube канал на BG Crypto Network</value></data>
+  <data name="UsefulLink_Discord" xml:space="preserve"><value>Дискорд сървър на Bitcoin Club</value></data>
+  <data name="UsefulLink_Telegram" xml:space="preserve"><value>Телеграм група Bitcoiners Bulgaria</value></data>
+  <data name="UsefulLink_BlindSpot" xml:space="preserve"><value>Крипто новини и ресурси – Blind Spot BG</value></data>
+  <data name="UsefulLink_StudyBitcoin" xml:space="preserve"><value>Образователен сайт за Bitcoin</value></data>
+  <data name="UsefulLink_BitcoinReady" xml:space="preserve"><value>Bitcoin Ready – ресурси за начинаещи</value></data>
+  <data name="UsefulLink_BTCMap" xml:space="preserve"><value>BTC Map – магазини приемащи Bitcoin</value></data>
 </root>

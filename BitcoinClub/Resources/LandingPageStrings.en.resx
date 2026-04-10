@@ -105,4 +105,15 @@
   <data name="StatEventsLabel" xml:space="preserve"><value>Events</value></data>
   <data name="StatYearsLabel" xml:space="preserve"><value>Years</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Useful links</value></data>
+
+  <data name="AssociationAddressLine" xml:space="preserve"><value>Sofia, p.c. 1111</value></data>
+
+  <data name="UsefulLink_PlamenAndonov" xml:space="preserve"><value>Plamen Andonov's YouTube Channel</value></data>
+  <data name="UsefulLink_BGCrypto" xml:space="preserve"><value>BG Crypto Network on YouTube</value></data>
+  <data name="UsefulLink_Discord" xml:space="preserve"><value>Bitcoin Club Discord Server</value></data>
+  <data name="UsefulLink_Telegram" xml:space="preserve"><value>Bitcoiners Bulgaria Telegram Group</value></data>
+  <data name="UsefulLink_BlindSpot" xml:space="preserve"><value>Crypto news and resources – Blind Spot BG</value></data>
+  <data name="UsefulLink_StudyBitcoin" xml:space="preserve"><value>Study Bitcoin – educational site</value></data>
+  <data name="UsefulLink_BitcoinReady" xml:space="preserve"><value>Bitcoin Ready – resources for beginners</value></data>
+  <data name="UsefulLink_BTCMap" xml:space="preserve"><value>BTC Map – Bitcoin-accepting stores</value></data>
 </root>

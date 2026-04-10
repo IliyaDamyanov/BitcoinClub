@@ -494,40 +494,94 @@ body {
 }
 
 /* ═══════════════════════════════════════
-   USEFUL LINKS
+   USEFUL LINKS — ICON CARDS
    ═══════════════════════════════════════ */
 
-.bc-links-list {
-  list-style: none;
-  padding: 0;
-}
-
-.bc-links-list li {
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--btc-card-border);
-  border-radius: 12px;
-  margin-bottom: 0.75rem;
+.bc-link-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
   background: var(--btc-card);
-  transition: all var(--transition);
-  font-size: 0.95rem;
-  color: var(--btc-text-secondary);
-}
-
-.bc-links-list li:hover {
-  border-color: rgba(247, 147, 26, 0.15);
-  background: var(--btc-card-hover);
-  transform: translateX(4px);
-}
-
-.bc-links-list a {
-  color: var(--btc-orange);
+  border: 1px solid var(--btc-card-border);
+  border-radius: var(--radius);
   text-decoration: none;
-  font-weight: 500;
-  transition: color var(--transition);
+  color: var(--btc-text);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition);
 }
 
-.bc-links-list a:hover {
-  color: var(--btc-orange-light);
+.bc-link-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.bc-link-card:hover {
+  border-color: rgba(247, 147, 26, 0.25);
+  background: var(--btc-card-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  color: var(--btc-text);
+}
+
+.bc-link-card:hover::before {
+  opacity: 1;
+}
+
+.bc-link-card-icon {
+  font-size: 1.6rem;
+  color: var(--btc-orange);
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform var(--transition);
+}
+
+.bc-link-card:hover .bc-link-card-icon {
+  transform: scale(1.1);
+}
+
+.bc-link-card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.bc-link-card-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--btc-text);
+  line-height: 1.4;
+}
+
+.bc-link-card-host {
+  font-size: 0.75rem;
+  color: var(--btc-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bc-link-card-arrow {
+  font-size: 0.9rem;
+  color: var(--btc-muted);
+  flex-shrink: 0;
+  opacity: 0;
+  transition: all var(--transition);
+}
+
+.bc-link-card:hover .bc-link-card-arrow {
+  opacity: 1;
+  color: var(--btc-orange);
+  transform: translate(2px, -2px);
 }
 
 /* ═══════════════════════════════════════

@@ -14,6 +14,18 @@
         "nostr"     => "bi-lightning-charge",
         _           => "bi-link-45deg"
     };
+
+    string LinkIcon(string url) => url switch
+    {
+        var u when u.Contains("youtube")      => "bi-youtube",
+        var u when u.Contains("discord")      => "bi-discord",
+        var u when u.Contains("t.me")         => "bi-telegram",
+        var u when u.Contains("btcmap")       => "bi-map",
+        var u when u.Contains("studybitcoin") => "bi-book",
+        var u when u.Contains("bitcoinready") => "bi-lightning-charge",
+        var u when u.Contains("blindspot")    => "bi-newspaper",
+        _                                     => "bi-link-45deg"
+    };
 }
 
 @section Styles {
@@ -189,14 +201,21 @@
 <section class="bc-section" id="links">
     <div class="container">
         <h2 class="bc-section-title">@Model.UsefulLinksTitle</h2>
-        <ul class="bc-links-list">
+        <div class="row g-3">
             @foreach (var link in Model.UsefulLinks)
             {
-                <li>
-                    @link.Label — <a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Url</a>
-                </li>
+                <div class="col-md-6 col-lg-4">
+                    <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="bc-link-card">
+                        <i class="bi @LinkIcon(link.Url) bc-link-card-icon"></i>
+                        <div class="bc-link-card-body">
+                            <span class="bc-link-card-label">@link.Label</span>
+                            <span class="bc-link-card-host">@(new Uri(link.Url).Host)</span>
+                        </div>
+                        <i class="bi bi-arrow-up-right bc-link-card-arrow"></i>
+                    </a>
+                </div>
             }
-        </ul>
+        </div>
     </div>
 </section>
 

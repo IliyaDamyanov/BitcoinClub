@@ -68,6 +68,7 @@ public sealed class LandingPageContentService : ILandingPageContentService
             StatYearsLabel = _localizer["StatYearsLabel"],
             CalendarTitle = _localizer["CalendarTitle"],
             AssociationTitle = _localizer["AssociationTitle"],
+            AssociationAddressLine = _localizer["AssociationAddressLine"],
             AssociationLocationLabel = _localizer["AssociationLocationLabel"],
             OfficialWebsiteLabel = _localizer["OfficialWebsiteLabel"],
             SocialMediaTitle = _localizer["SocialMediaTitle"],
@@ -75,5 +76,16 @@ public sealed class LandingPageContentService : ILandingPageContentService
             SupportDetails = _localizer["SupportDetails"],
             ContactsTitle = _localizer["ContactsTitle"],
             UsefulLinksTitle = _localizer["UsefulLinksTitle"],
+            UsefulLinks =
+            [
+                (_localizer["UsefulLink_PlamenAndonov"], "https://www.youtube.com/PlamenAndonov"),
+                (_localizer["UsefulLink_BGCrypto"],      "https://www.youtube.com/@bgcryptonetwork"),
+                (_localizer["UsefulLink_Discord"],       "https://discord.com/channels/798854534537543701/1163216416674168952"),
+                (_localizer["UsefulLink_Telegram"],      "https://t.me/+YqOiz2O6xZc4YTM0"),
+                (_localizer["UsefulLink_BlindSpot"],     "https://www.blindspotbg.com/bg"),
+                (_localizer["UsefulLink_StudyBitcoin"],  "https://studybitcoin.ic.bike"),
+                (_localizer["UsefulLink_BitcoinReady"],  "https://bitcoinready.bg/"),
+                (_localizer["UsefulLink_BTCMap"],        "https://btcmap.org/"),
+            ],
         };
 }
