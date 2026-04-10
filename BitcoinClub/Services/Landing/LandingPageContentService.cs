@@ -83,7 +83,7 @@ public sealed class LandingPageContentService : ILandingPageContentService
                 (_localizer["UsefulLink_Discord"],       "https://discord.com/channels/798854534537543701/1163216416674168952"),
                 (_localizer["UsefulLink_Telegram"],      "https://t.me/+YqOiz2O6xZc4YTM0"),
                 (_localizer["UsefulLink_BlindSpot"],     "https://www.blindspotbg.com/bg"),
-                (_localizer["UsefulLink_StudyBitcoin"],  "https://studybitcoin.ic.bike"),
+                (_localizer["UsefulLink_LearnMeBitcoin"], "https://learnmeabitcoin.com"),
                 (_localizer["UsefulLink_BitcoinReady"],  "https://bitcoinready.bg/"),
                 (_localizer["UsefulLink_BTCMap"],        "https://btcmap.org/"),
             ],

@@ -113,7 +113,7 @@
   <data name="UsefulLink_Discord" xml:space="preserve"><value>Bitcoin Club Discord Server</value></data>
   <data name="UsefulLink_Telegram" xml:space="preserve"><value>Bitcoiners Bulgaria Telegram Group</value></data>
   <data name="UsefulLink_BlindSpot" xml:space="preserve"><value>Crypto news and resources – Blind Spot BG</value></data>
-  <data name="UsefulLink_StudyBitcoin" xml:space="preserve"><value>Study Bitcoin – educational site</value></data>
+  <data name="UsefulLink_LearnMeBitcoin" xml:space="preserve"><value>Learn Me a Bitcoin – educational site</value></data>
   <data name="UsefulLink_BitcoinReady" xml:space="preserve"><value>Bitcoin Ready – resources for beginners</value></data>
   <data name="UsefulLink_BTCMap" xml:space="preserve"><value>BTC Map – Bitcoin-accepting stores</value></data>
 </root>
