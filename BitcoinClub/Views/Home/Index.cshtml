@@ -64,19 +64,19 @@
             <div class="col-4">
                 <div class="bc-stat-item">
                     <div class="bc-stat-number">50+</div>
-                    <div class="bc-stat-label">Членове</div>
+                    <div class="bc-stat-label">@Model.StatMembersLabel</div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="bc-stat-item">
                     <div class="bc-stat-number">100+</div>
-                    <div class="bc-stat-label">Събития</div>
+                    <div class="bc-stat-label">@Model.StatEventsLabel</div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="bc-stat-item">
                     <div class="bc-stat-number">3+</div>
-                    <div class="bc-stat-label">Години</div>
+                    <div class="bc-stat-label">@Model.StatYearsLabel</div>
                 </div>
             </div>
         </div>
@@ -86,14 +86,20 @@
 @* ════════ Means Section ════════ *@
 <section class="bc-section">
     <div class="container">
-        <div class="bc-card">
-            <h5>@Model.MeansTitle</h5>
-            <ul class="bc-goals">
-                @foreach (var means in Model.Means)
-                {
-                    <li>@means</li>
-                }
-            </ul>
+        <h2 class="bc-section-title">@Model.MeansTitle</h2>
+        @{
+            var meansIcons = new[] { "bi-calendar-event", "bi-megaphone", "bi-book", "bi-graph-up-arrow", "bi-people", "bi-plus-circle" };
+        }
+        <div class="row g-4">
+            @for (int i = 0; i < Model.Means.Length; i++)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="bc-means-card">
+                        <i class="bi @meansIcons[i] bc-means-icon"></i>
+                        <p class="bc-means-text">@Model.Means[i]</p>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </section>

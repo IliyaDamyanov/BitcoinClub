@@ -101,5 +101,8 @@
   <data name="SupportDetails" xml:space="preserve"><value>If you would like to support the club, please reach out and we will provide the available options.</value></data>
 
   <data name="ContactsTitle" xml:space="preserve"><value>Contacts</value></data>
+  <data name="StatMembersLabel" xml:space="preserve"><value>Members</value></data>
+  <data name="StatEventsLabel" xml:space="preserve"><value>Events</value></data>
+  <data name="StatYearsLabel" xml:space="preserve"><value>Years</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Useful links</value></data>
 </root>

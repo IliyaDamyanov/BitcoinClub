@@ -96,6 +96,10 @@ namespace BitcoinClub.ViewModels
             ("����� � ��������, �������� �������", "https://btcmap.org/"),
         ];
 
+        public string StatMembersLabel { get; set; } = "Members";
+        public string StatEventsLabel { get; set; } = "Events";
+        public string StatYearsLabel { get; set; } = "Years";
+
         public string ChangeLanguageButtonText { get; set; } = "EN";
 
         public string HeroImageRelativePath { get; set; } = "/img/btclogo.png";

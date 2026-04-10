@@ -391,6 +391,63 @@ body {
 }
 
 /* ═══════════════════════════════════════
+   MEANS GRID CARDS
+   ═══════════════════════════════════════ */
+
+.bc-means-card {
+  background: var(--btc-card);
+  border: 1px solid var(--btc-card-border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.bc-means-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0), rgba(247, 147, 26, 0.1), rgba(247, 147, 26, 0));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.bc-means-card:hover {
+  background: var(--btc-card-hover);
+  border-color: rgba(247, 147, 26, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+}
+
+.bc-means-card:hover::before {
+  opacity: 1;
+}
+
+.bc-means-icon {
+  font-size: 1.75rem;
+  color: var(--btc-orange);
+  line-height: 1;
+}
+
+.bc-means-text {
+  color: var(--btc-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════
    CALENDAR
    ═══════════════════════════════════════ */
 

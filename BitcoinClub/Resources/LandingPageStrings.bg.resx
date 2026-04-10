@@ -101,5 +101,8 @@
   <data name="SupportDetails" xml:space="preserve"><value>Ако желаете да подкрепите клуба, пишете ни и ще ви изпратим наличните възможности.</value></data>
 
   <data name="ContactsTitle" xml:space="preserve"><value>Контакти</value></data>
+  <data name="StatMembersLabel" xml:space="preserve"><value>Членове</value></data>
+  <data name="StatEventsLabel" xml:space="preserve"><value>Събития</value></data>
+  <data name="StatYearsLabel" xml:space="preserve"><value>Години</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Полезни линкове</value></data>
 </root>
