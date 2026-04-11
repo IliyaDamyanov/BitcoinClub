@@ -91,3 +91,57 @@ html {
 .bc-auth-hint {
   color: #71717a;
 }
+
+.bc-auth-forgot {
+  font-size: 0.82rem;
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.bc-auth-forgot:hover {
+  color: #f7931a;
+}
+
+.bc-auth-check {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.bc-auth-check:checked {
+  background-color: #f7931a;
+  border-color: #f7931a;
+}
+
+.bc-auth-check:focus {
+  border-color: rgba(247, 147, 26, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(247, 147, 26, 0.15);
+}
+
+.bc-auth-check-label {
+  color: #a1a1aa;
+  font-size: 0.9rem;
+}
+
+.bc-auth-back-link {
+  font-size: 0.88rem;
+  color: #a1a1aa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.bc-auth-back-link:hover {
+  color: #f7931a;
+}
+
+.bc-auth-confirmation {
+  padding: 1rem 0;
+}
+
+.bc-auth-confirmation-icon {
+  font-size: 3rem;
+  color: #f7931a;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  line-height: 1;
+}
