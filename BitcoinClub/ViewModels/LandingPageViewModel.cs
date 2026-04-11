@@ -11,7 +11,11 @@ namespace BitcoinClub.ViewModels
         public string EventsLabel { get; set; } = "";
         public string InfoLabel { get; set; } = "";
         public string UsefulLinksLabel { get; set; } = "";
+        public string MembershipLabel { get; set; } = "";
         public string MembershipAndSupportLabel { get; set; } = "";
+        public string RegisterLabel { get; set; } = "";
+        public string LoginLabel { get; set; } = "";
+        public string LogoutLabel { get; set; } = "";
         public string MissionTitle { get; set; } = "";
         public string GoalsTitle { get; set; } = "";
         public string[] Goals { get; set; } = [];

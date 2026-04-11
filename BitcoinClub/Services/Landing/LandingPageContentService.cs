@@ -40,7 +40,11 @@ public sealed class LandingPageContentService : ILandingPageContentService
             EventsLabel = _localizer["EventsLabel"],
             InfoLabel = _localizer["InfoLabel"],
             UsefulLinksLabel = _localizer["UsefulLinksLabel"],
+            MembershipLabel = _localizer["MembershipLabel"],
             MembershipAndSupportLabel = _localizer["MembershipAndSupportLabel"],
+            RegisterLabel = _localizer["RegisterLabel"],
+            LoginLabel = _localizer["LoginLabel"],
+            LogoutLabel = _localizer["LogoutLabel"],
             GoalsTitle = _localizer["GoalsTitle"],
             Goals =
             [

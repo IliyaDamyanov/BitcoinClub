@@ -68,7 +68,11 @@
   <data name="EventsLabel" xml:space="preserve"><value>Events</value></data>
   <data name="InfoLabel" xml:space="preserve"><value>Info</value></data>
   <data name="UsefulLinksLabel" xml:space="preserve"><value>Links</value></data>
+  <data name="MembershipLabel" xml:space="preserve"><value>Membership</value></data>
   <data name="MembershipAndSupportLabel" xml:space="preserve"><value>Membership &amp; Support</value></data>
+  <data name="RegisterLabel" xml:space="preserve"><value>Register</value></data>
+  <data name="LoginLabel" xml:space="preserve"><value>Login</value></data>
+  <data name="LogoutLabel" xml:space="preserve"><value>Logout</value></data>
 
   <data name="MissionTitle" xml:space="preserve"><value>Mission</value></data>
   <data name="GoalsTitle" xml:space="preserve"><value>Goals</value></data>

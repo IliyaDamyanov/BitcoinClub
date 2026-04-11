@@ -68,7 +68,11 @@
   <data name="EventsLabel" xml:space="preserve"><value>Събития</value></data>
   <data name="InfoLabel" xml:space="preserve"><value>Информация</value></data>
   <data name="UsefulLinksLabel" xml:space="preserve"><value>Линкове</value></data>
+  <data name="MembershipLabel" xml:space="preserve"><value>Членство</value></data>
   <data name="MembershipAndSupportLabel" xml:space="preserve"><value>Членство и подкрепа</value></data>
+  <data name="RegisterLabel" xml:space="preserve"><value>Регистрация</value></data>
+  <data name="LoginLabel" xml:space="preserve"><value>Вход</value></data>
+  <data name="LogoutLabel" xml:space="preserve"><value>Изход</value></data>
 
   <data name="MissionTitle" xml:space="preserve"><value>Мисия</value></data>
   <data name="GoalsTitle" xml:space="preserve"><value>Цели</value></data>
