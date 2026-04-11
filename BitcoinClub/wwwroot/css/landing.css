@@ -158,18 +158,42 @@ body {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 900;
   color: #fff;
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.bc-hero h1 .bc-title-top {
+  display: block;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 40px rgba(255,255,255,0.15);
 }
 
 .bc-hero h1 .bc-highlight {
-  background: var(--btc-gradient);
+  display: block;
+  background: linear-gradient(135deg, #ffa940 0%, #f7931a 40%, #e8820a 70%, #ffa940 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: shimmer 3s ease-in-out infinite;
+  filter: drop-shadow(0 2px 24px rgba(247, 147, 26, 0.5));
+  position: relative;
+}
+
+.bc-hero h1 .bc-highlight::before {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: var(--btc-gradient);
+  border-radius: 2px;
+  margin-bottom: 0.45rem;
+  opacity: 0.85;
 }
 
 @keyframes shimmer {

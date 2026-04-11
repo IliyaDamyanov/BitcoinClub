@@ -66,7 +66,10 @@
                 <img src="@Model.HeroImageRelativePath" class="bc-hero-img img-fluid" alt="Bitcoin Club" />
             </div>
             <div class="col-12 col-md-7">
-                <h1>@Model.MissionTitle<br/><span class="bc-highlight">Bitcoin Club</span></h1>
+                <h1>
+                    <span class="bc-title-top">@Model.MissionTitle</span>
+                    <span class="bc-highlight">Bitcoin Club</span>
+                </h1>
                 <ul class="bc-goals mt-4">
                     @foreach (var goal in Model.Goals)
                     {
