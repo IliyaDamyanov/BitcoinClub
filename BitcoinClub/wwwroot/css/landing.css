@@ -194,23 +194,46 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .bc-goals li {
-  padding: 0.65rem 0 0.65rem 2rem;
+  padding: 0.75rem 1rem;
   position: relative;
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--btc-text-secondary);
   font-size: 0.95rem;
+  background: var(--btc-card);
+  border: 1px solid var(--btc-card-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  transition: all var(--transition);
 }
 
 .bc-goals li::before {
   content: '₿';
-  position: absolute;
-  left: 0;
   color: var(--btc-orange);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+
+.bc-goals li:hover {
+  background: var(--btc-card-hover);
+  border-color: rgba(247, 147, 26, 0.15);
+  color: var(--btc-text);
+  transform: translateX(4px);
+}
+
+.bc-goals li:hover::before {
+  opacity: 1;
 }
 
 /* CTA Button */
