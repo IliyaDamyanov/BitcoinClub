@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(dotnet build:*)",
-      "Bash(git -C e:/Projects/BitcoinClub diff --stat HEAD)"
-    ]
-  }
-}
