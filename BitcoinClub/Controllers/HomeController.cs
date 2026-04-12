@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using System.Globalization;
 using BitcoinClub.Models;
 using BitcoinClub.Services.Events;
 using BitcoinClub.Services.Landing;
@@ -23,21 +22,24 @@ namespace BitcoinClub.Controllers
 
         public async Task<IActionResult> Index([FromQuery] string? lang)
         {
-            // Keep the existing query-string toggle, but map it to real cultures for resx localization.
-            var culture = string.Equals(lang, "EN", StringComparison.OrdinalIgnoreCase) ? "en" : "bg";
-
-            if (HttpContext != null)
+            // When a lang toggle is clicked, persist the choice as a cookie and redirect
+            // to the clean URL. This ensures the UseRequestLocalization middleware reads
+            // the correct cookie on the next request and sets CultureInfo.CurrentUICulture
+            // for the entire pipeline—including IStringLocalizer calls in partial views.
+            if (!string.IsNullOrEmpty(lang))
             {
-                Response.Cookies.Append(
-                    CookieRequestCultureProvider.DefaultCookieName,
-                    CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                    new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+                var culture = string.Equals(lang, "EN", StringComparison.OrdinalIgnoreCase) ? "en" : "bg";
+                if (HttpContext != null)
+                {
+                    Response.Cookies.Append(
+                        CookieRequestCultureProvider.DefaultCookieName,
+                        CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                        new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+                }
+                return RedirectToAction(nameof(Index));
             }
 
-            CultureInfo.CurrentCulture = new CultureInfo(culture);
-            CultureInfo.CurrentUICulture = new CultureInfo(culture);
-
-            var vm = _landingPageContentService.Get(lang);
+            var vm = _landingPageContentService.Get();
             vm.UpcomingEvents = (await _eventsService.GetUpcomingAsync()).ToArray();
             return View(vm);
         }

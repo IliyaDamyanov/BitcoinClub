@@ -1,4 +1,5 @@
 // LandingPageStrings is in the BitcoinClub namespace
+using System.Globalization;
 using BitcoinClub.ViewModels;
 using Microsoft.Extensions.Localization;
 
@@ -13,23 +14,19 @@ public sealed class LandingPageContentService : ILandingPageContentService
         _localizer = localizer;
     }
 
-    public LandingPageViewModel Get(string? lang)
+    public LandingPageViewModel Get()
     {
-        var normalized = NormalizeLanguage(lang);
+        // CultureInfo.CurrentUICulture is set by UseRequestLocalization middleware
+        // from the culture cookie before the controller runs.
+        var normalized = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName
+            .Equals("en", StringComparison.OrdinalIgnoreCase) ? "EN" : "BG";
 
-        // The app sets RequestCulture via the query string in HomeController.
-        // The localizer resolves values based on CultureInfo.CurrentUICulture.
         var vm = CreateLocalized();
-
-        // Keep the existing UI behavior: show the OTHER language on the button.
         vm.Lang = normalized;
         vm.ChangeLanguageButtonText = normalized == "EN" ? "BG" : "EN";
 
         return vm;
     }
-
-    private static string NormalizeLanguage(string? lang)
-        => string.Equals(lang, "EN", StringComparison.OrdinalIgnoreCase) ? "EN" : "BG";
 
     private LandingPageViewModel CreateLocalized()
         => new()

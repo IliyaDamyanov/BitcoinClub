@@ -10,7 +10,7 @@ namespace BitcoinClub.Tests.Integration;
 public sealed class HomeControllerLandingPageTests
 {
     [Fact]
-    public async Task Index_WhenLangIsEn_ReturnsViewWithEnModel()
+    public async Task Index_WhenLangIsEn_RedirectsToCleanUrl()
     {
         var localizer = new StubStringLocalizer<LandingPageStrings>(new Dictionary<string, string>
         {
@@ -22,10 +22,11 @@ public sealed class HomeControllerLandingPageTests
             new LandingPageContentService(localizer),
             new StubEventsService());
 
+        // Switching language now persists via cookie + redirect so that the middleware
+        // sets CultureInfo.CurrentUICulture for the whole pipeline on the next request.
         var result = await controller.Index("EN");
 
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsType<BitcoinClub.ViewModels.LandingPageViewModel>(viewResult.Model);
-        Assert.Equal("EN", model.Lang);
+        var redirect = Assert.IsType<RedirectToActionResult>(result);
+        Assert.Equal(nameof(BitcoinClub.Controllers.HomeController.Index), redirect.ActionName);
     }
 }
