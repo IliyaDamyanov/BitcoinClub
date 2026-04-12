@@ -113,7 +113,7 @@
 @* ════════ Means Section ════════ *@
 <section class="bc-section">
     <div class="container">
-        <h2 class="bc-section-title">@Model.MeansTitle</h2>
+        <h2 class="bc-section-title"><i class="bi bi-lightning-charge me-2"></i>@Model.MeansTitle</h2>
         @{
             var meansIcons = new[] { "bi-calendar-event", "bi-megaphone", "bi-book", "bi-graph-up-arrow", "bi-people", "bi-plus-circle" };
         }
@@ -196,7 +196,7 @@
 @* ════════ Info Section ════════ *@
 <section class="bc-section" id="info">
     <div class="container">
-        <h2 class="bc-section-title">@Model.InfoLabel</h2>
+        <h2 class="bc-section-title"><i class="bi bi-info-circle me-2"></i>@Model.InfoLabel</h2>
 
         <div class="row g-4">
             <div class="col-md-6">
@@ -249,7 +249,7 @@
 @* ════════ Useful Links ════════ *@
 <section class="bc-section" id="links">
     <div class="container">
-        <h2 class="bc-section-title">@Model.UsefulLinksTitle</h2>
+        <h2 class="bc-section-title"><i class="bi bi-bookmark-star me-2"></i>@Model.UsefulLinksTitle</h2>
         <div class="row g-3">
             @foreach (var link in Model.UsefulLinks)
             {
