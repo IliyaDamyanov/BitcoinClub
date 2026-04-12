@@ -55,5 +55,8 @@ namespace BitcoinClub.ViewModels
 
         // Set by LandingPageContentService — labels come from .resx, URLs are hardcoded.
         public (string Label, string Url)[] UsefulLinks { get; set; } = [];
+
+        // Populated by HomeController from IEventsService.
+        public EventViewModel[] UpcomingEvents { get; set; } = [];
     }
 }

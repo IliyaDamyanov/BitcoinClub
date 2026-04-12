@@ -25,7 +25,8 @@ public class SmokeTests
 
         var controller = new HomeController(
             NullLogger<HomeController>.Instance,
-            new LandingPageContentService(localizer));
+            new LandingPageContentService(localizer),
+            new StubEventsService());
 
         Assert.NotNull(controller);
     }

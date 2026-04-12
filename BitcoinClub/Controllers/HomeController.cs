@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using BitcoinClub.Models;
+using BitcoinClub.Services.Events;
 using BitcoinClub.Services.Landing;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +12,16 @@ namespace BitcoinClub.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ILandingPageContentService _landingPageContentService;
+        private readonly IEventsService _eventsService;
 
-        public HomeController(ILogger<HomeController> logger, ILandingPageContentService landingPageContentService)
+        public HomeController(ILogger<HomeController> logger, ILandingPageContentService landingPageContentService, IEventsService eventsService)
         {
             _logger = logger;
             _landingPageContentService = landingPageContentService;
+            _eventsService = eventsService;
         }
 
-        public IActionResult Index([FromQuery] string? lang)
+        public async Task<IActionResult> Index([FromQuery] string? lang)
         {
             // Keep the existing query-string toggle, but map it to real cultures for resx localization.
             var culture = string.Equals(lang, "EN", StringComparison.OrdinalIgnoreCase) ? "en" : "bg";
@@ -35,6 +38,7 @@ namespace BitcoinClub.Controllers
             CultureInfo.CurrentUICulture = new CultureInfo(culture);
 
             var vm = _landingPageContentService.Get(lang);
+            vm.UpcomingEvents = (await _eventsService.GetUpcomingAsync()).ToArray();
             return View(vm);
         }
 

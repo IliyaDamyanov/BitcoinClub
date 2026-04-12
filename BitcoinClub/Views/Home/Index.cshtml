@@ -131,18 +131,64 @@
     </div>
 </section>
 
-@* ════════ Calendar Section ════════ *@
-<section class="bc-section" id="calendar">
+@* ════════ Events Section ════════ *@
+<section class="bc-section bc-section--calendar" id="calendar">
     <div class="container">
-        <h2 class="bc-section-title">@Model.CalendarTitle</h2>
-        <div class="bc-calendar-wrap">
-            <div class="ratio ratio-16x9">
-                <iframe
-                    src="@Model.CalendarEmbedUrl"
-                    style="border: 0;"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h2 class="bc-section-title">
+            <i class="bi bi-calendar3 me-2"></i>@Model.CalendarTitle
+        </h2>
+
+        @if (Model.UpcomingEvents.Length > 0)
+        {
+            <div class="row g-3">
+                @foreach (var evt in Model.UpcomingEvents)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="bc-event-card">
+                            <div class="bc-event-date">
+                                <span class="bc-event-month">@evt.Start.ToString("MMM").ToUpper()</span>
+                                <span class="bc-event-day">@evt.Start.Day</span>
+                            </div>
+                            <div class="bc-event-body">
+                                <div class="bc-event-title">@evt.Title</div>
+                                <div class="bc-event-meta">
+                                    @if (evt.IsAllDay)
+                                    {
+                                        <i class="bi bi-calendar"></i>
+                                        <span>@evt.Start.ToString("ddd, dd MMM")</span>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-clock"></i>
+                                        <span>@evt.Start.ToString("ddd, dd MMM · HH:mm")</span>
+                                    }
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(evt.Location))
+                                {
+                                    <div class="bc-event-location">
+                                        <i class="bi bi-geo-alt me-1"></i>@evt.Location
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
+        }
+        else
+        {
+            <div class="bc-event-empty">
+                <i class="bi bi-calendar-x bc-event-empty-icon"></i>
+                <p>@(Model.Lang == "BG" ? "Няма предстоящи събития." : "No upcoming events scheduled.")</p>
+            </div>
+        }
+
+        <div class="mt-4">
+            <a href="@Model.CalendarEmbedUrl" target="_blank" rel="noopener noreferrer" class="bc-calendar-link">
+                <i class="bi bi-calendar3 me-1"></i>
+                @(Model.Lang == "BG" ? "Виж пълния календар" : "View full calendar")
+                <i class="bi bi-arrow-right ms-1"></i>
+            </a>
         </div>
     </div>
 </section>
@@ -257,11 +303,5 @@
 </footer>
 
 @section Scripts {
-    <script>
-        // Navbar scroll effect
-        const nav = document.getElementById('mainNav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
+    <script src="~/js/landing.js" asp-append-version="true"></script>
 }

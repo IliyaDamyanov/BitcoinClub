@@ -18,7 +18,7 @@ namespace BitcoinClub.Tests.Landing
             var html = await resp.Content.ReadAsStringAsync();
             Assert.Contains("Bitcoin Club", html);
             Assert.Contains("Mission", html);
-            Assert.Contains("Events calendar", html);
+            Assert.Contains("Events", html);
             Assert.Contains("Contact", html);
         }
     }

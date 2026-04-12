@@ -12,7 +12,7 @@ namespace BitcoinClub.Tests.Landing
     public class HomeControllerLandingTests
     {
         [Fact]
-        public void Index_ReturnsView_WithLandingPageViewModel()
+        public async Task Index_ReturnsView_WithLandingPageViewModel()
         {
             var localizer = new StubStringLocalizer<LandingPageStrings>(new Dictionary<string, string>
             {
@@ -21,9 +21,10 @@ namespace BitcoinClub.Tests.Landing
 
             var controller = new HomeController(
                 NullLogger<HomeController>.Instance,
-                new LandingPageContentService(localizer));
+                new LandingPageContentService(localizer),
+                new StubEventsService());
 
-            var result = controller.Index(null);
+            var result = await controller.Index(null);
 
             var view = Assert.IsType<ViewResult>(result);
             Assert.IsType<LandingPageViewModel>(view.Model);

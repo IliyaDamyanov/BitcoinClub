@@ -10,7 +10,7 @@ namespace BitcoinClub.Tests.Integration;
 public sealed class HomeControllerLandingPageTests
 {
     [Fact]
-    public void Index_WhenLangIsEn_ReturnsViewWithEnModel()
+    public async Task Index_WhenLangIsEn_ReturnsViewWithEnModel()
     {
         var localizer = new StubStringLocalizer<LandingPageStrings>(new Dictionary<string, string>
         {
@@ -19,9 +19,10 @@ public sealed class HomeControllerLandingPageTests
 
         var controller = new BitcoinClub.Controllers.HomeController(
             NullLogger<BitcoinClub.Controllers.HomeController>.Instance,
-            new LandingPageContentService(localizer));
+            new LandingPageContentService(localizer),
+            new StubEventsService());
 
-        var result = controller.Index("EN");
+        var result = await controller.Index("EN");
 
         var viewResult = Assert.IsType<ViewResult>(result);
         var model = Assert.IsType<BitcoinClub.ViewModels.LandingPageViewModel>(viewResult.Model);

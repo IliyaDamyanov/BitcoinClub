@@ -496,14 +496,136 @@ body {
 }
 
 /* ═══════════════════════════════════════
-   CALENDAR
+   EVENTS
    ═══════════════════════════════════════ */
 
-.bc-calendar-wrap {
-  border-radius: var(--radius);
-  overflow: hidden;
+.bc-section--calendar {
+  background: radial-gradient(ellipse at 50% 60%, rgba(247, 147, 26, 0.04) 0%, transparent 65%);
+}
+
+.bc-event-card {
+  display: flex;
+  gap: 1.1rem;
+  align-items: flex-start;
+  background: var(--btc-card);
   border: 1px solid var(--btc-card-border);
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  height: 100%;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.bc-event-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(247, 147, 26, 0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--transition);
+  pointer-events: none;
+}
+
+.bc-event-card:hover {
+  background: var(--btc-card-hover);
+  border-color: rgba(247, 147, 26, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.bc-event-card:hover::before {
+  opacity: 1;
+}
+
+.bc-event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(247, 147, 26, 0.08);
+  border: 1px solid rgba(247, 147, 26, 0.18);
+  border-radius: 10px;
+  padding: 0.5rem 0.65rem;
+  min-width: 50px;
+  flex-shrink: 0;
+  gap: 0.05rem;
+}
+
+.bc-event-month {
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--btc-orange);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1;
+}
+
+.bc-event-day {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.bc-event-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.bc-event-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.bc-event-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--btc-muted);
+}
+
+.bc-event-location {
+  font-size: 0.75rem;
+  color: var(--btc-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bc-event-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--btc-muted);
+}
+
+.bc-event-empty-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.35;
+}
+
+.bc-calendar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--btc-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.bc-calendar-link:hover {
+  color: var(--btc-orange);
 }
 
 /* ═══════════════════════════════════════
