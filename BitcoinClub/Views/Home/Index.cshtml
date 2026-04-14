@@ -220,8 +220,8 @@
             <div class="col-md-6">
                 <div class="bc-card h-100">
                     <h5>@Model.ContactsTitle</h5>
-                    <p><i class="bi bi-envelope"></i> @Model.ContactEmail</p>
-                    <p><i class="bi bi-telephone"></i> @Model.ContactPhone</p>
+                    <p><i class="bi bi-envelope"></i> <a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></p>
+                    <p><i class="bi bi-telephone"></i> <a href="tel:@(Model.ContactPhone.Replace(" ", ""))">@Model.ContactPhone</a></p>
 
                     <h5 class="mt-3">@Model.MembershipAndSupportLabel</h5>
                     <p>@Model.MembershipDetails</p>
