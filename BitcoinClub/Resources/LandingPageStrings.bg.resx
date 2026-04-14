@@ -93,20 +93,20 @@
   <data name="Means_5" xml:space="preserve"><value>Осъществяване и поддържане на информационен обмен и отношения със сродни сдружения със сходни интереси в страната и чужбина;</value></data>
   <data name="Means_6" xml:space="preserve"><value>Друга дейност, когато същата не е забранена от закона и е свързана с целите и средствата на Сдружението.</value></data>
 
-  <data name="CalendarTitle" xml:space="preserve"><value>Събития</value></data>
+  <data name="CalendarTitle" xml:space="preserve"><value>Предстоящи събития</value></data>
 
   <data name="AssociationTitle" xml:space="preserve"><value>Данни за сдружението</value></data>
   <data name="AssociationLocationLabel" xml:space="preserve"><value>Виж на картата</value></data>
 
   <data name="OfficialWebsiteLabel" xml:space="preserve"><value>Официален сайт</value></data>
-  <data name="SocialMediaTitle" xml:space="preserve"><value>Социални мрежи</value></data>
+  <data name="SocialMediaTitle" xml:space="preserve"><value>Последвайте ни</value></data>
 
-  <data name="MembershipDetails" xml:space="preserve"><value>Ако желаете да станете член на Bitcoin Club, свържете се с нас на имейла по-долу за повече информация.</value></data>
-  <data name="SupportDetails" xml:space="preserve"><value>Ако желаете да подкрепите клуба, пишете ни и ще ви изпратим наличните възможности.</value></data>
+  <data name="MembershipDetails" xml:space="preserve"><value>Ако желаете да станете член на Bitcoin Club, моля свържете се с нас на посочения по-горе имейл адрес за допълнителна информация.</value></data>
+  <data name="SupportDetails" xml:space="preserve"><value>Ако желаете да подкрепите дейността на клуба, моля пишете ни, за да Ви изпратим информация относно наличните възможности за подкрепа.</value></data>
 
   <data name="ContactsTitle" xml:space="preserve"><value>Контакти</value></data>
   <data name="StatMembersLabel" xml:space="preserve"><value>Членове</value></data>
-  <data name="StatEventsLabel" xml:space="preserve"><value>Събития</value></data>
+  <data name="StatEventsLabel" xml:space="preserve"><value>Организирани събития</value></data>
   <data name="StatYearsLabel" xml:space="preserve"><value>Години</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Полезни линкове</value></data>
 

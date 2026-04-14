@@ -226,22 +226,20 @@
                     <h5 class="mt-3">@Model.MembershipAndSupportLabel</h5>
                     <p>@Model.MembershipDetails</p>
                     <p>@Model.SupportDetails</p>
+
+                    <h5 class="mt-3">@Model.SocialMediaTitle</h5>
+                    <ul class="bc-social-links mt-2">
+                        @foreach (var link in Model.SocialLinks)
+                        {
+                            <li>
+                                <a href="@link.Url" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi @SocialIcon(link.Name)"></i> @link.Name
+                                </a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
-        </div>
-
-        <div class="mt-5">
-            <h5 style="color: var(--btc-orange); font-weight: 700;">@Model.SocialMediaTitle</h5>
-            <ul class="bc-social-links mt-3">
-                @foreach (var link in Model.SocialLinks)
-                {
-                    <li>
-                        <a href="@link.Url" target="_blank" rel="noopener noreferrer">
-                            <i class="bi @SocialIcon(link.Name)"></i> @link.Name
-                        </a>
-                    </li>
-                }
-            </ul>
         </div>
     </div>
 </section>

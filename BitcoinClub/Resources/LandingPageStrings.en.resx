@@ -93,16 +93,16 @@
   <data name="Means_5" xml:space="preserve"><value>Implementing and maintaining information exchange and relations with similar associations with similar interests in the country and abroad;</value></data>
   <data name="Means_6" xml:space="preserve"><value>Other activity, when the same is not prohibited by Law and related to the goals and means of the Association.</value></data>
 
-  <data name="CalendarTitle" xml:space="preserve"><value>Events</value></data>
+  <data name="CalendarTitle" xml:space="preserve"><value>Upcoming Events</value></data>
 
   <data name="AssociationTitle" xml:space="preserve"><value>Association details</value></data>
   <data name="AssociationLocationLabel" xml:space="preserve"><value>See on map</value></data>
 
   <data name="OfficialWebsiteLabel" xml:space="preserve"><value>Official website</value></data>
-  <data name="SocialMediaTitle" xml:space="preserve"><value>Social media</value></data>
+  <data name="SocialMediaTitle" xml:space="preserve"><value>Follow Us</value></data>
 
-  <data name="MembershipDetails" xml:space="preserve"><value>If you would like to become a member, contact us at the email address below.</value></data>
-  <data name="SupportDetails" xml:space="preserve"><value>If you would like to support the club, please reach out and we will provide the available options.</value></data>
+  <data name="MembershipDetails" xml:space="preserve"><value>If you would like to become a member of Bitcoin Club, please contact us at the email address provided above for additional information.</value></data>
+  <data name="SupportDetails" xml:space="preserve"><value>If you would like to support the activities of the club, please write to us and we will send you information regarding the available support options.</value></data>
 
   <data name="ContactsTitle" xml:space="preserve"><value>Contact</value></data>
   <data name="StatMembersLabel" xml:space="preserve"><value>Members</value></data>
