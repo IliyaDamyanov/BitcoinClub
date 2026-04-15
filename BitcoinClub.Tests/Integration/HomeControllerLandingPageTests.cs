@@ -1,5 +1,6 @@
 
 using BitcoinClub.Services.Landing;
+using BitcoinClub.Tests.Services.CalendarEvents.Helpers;
 using BitcoinClub.Tests.TestDoubles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -20,7 +21,7 @@ public sealed class HomeControllerLandingPageTests
         var controller = new BitcoinClub.Controllers.HomeController(
             NullLogger<BitcoinClub.Controllers.HomeController>.Instance,
             new LandingPageContentService(localizer),
-            new StubEventsService());
+            new StubCalendarEventsService());
 
         // Switching language now persists via cookie + redirect so that the middleware
         // sets CultureInfo.CurrentUICulture for the whole pipeline on the next request.

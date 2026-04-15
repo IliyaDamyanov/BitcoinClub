@@ -1,6 +1,7 @@
 using BitcoinClub.Controllers;
 
 using BitcoinClub.Services.Landing;
+using BitcoinClub.Tests.Services.CalendarEvents.Helpers;
 using BitcoinClub.Tests.TestDoubles;
 using Microsoft.Extensions.Logging.Abstractions;
 using Xunit;
@@ -26,7 +27,7 @@ public class SmokeTests
         var controller = new HomeController(
             NullLogger<HomeController>.Instance,
             new LandingPageContentService(localizer),
-            new StubEventsService());
+            new StubCalendarEventsService());
 
         Assert.NotNull(controller);
     }

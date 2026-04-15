@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using BitcoinClub.Models;
-using BitcoinClub.Services.Events;
+using BitcoinClub.Services.CalendarEvents;
 using BitcoinClub.Services.Landing;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,13 +11,13 @@ namespace BitcoinClub.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ILandingPageContentService _landingPageContentService;
-        private readonly IEventsService _eventsService;
+        private readonly ICalendarEventsService _calendarEventsService;
 
-        public HomeController(ILogger<HomeController> logger, ILandingPageContentService landingPageContentService, IEventsService eventsService)
+        public HomeController(ILogger<HomeController> logger, ILandingPageContentService landingPageContentService, ICalendarEventsService calendarEventsService)
         {
             _logger = logger;
             _landingPageContentService = landingPageContentService;
-            _eventsService = eventsService;
+            _calendarEventsService = calendarEventsService;
         }
 
         public async Task<IActionResult> Index([FromQuery] string? lang)
@@ -40,7 +40,7 @@ namespace BitcoinClub.Controllers
             }
 
             var vm = _landingPageContentService.Get();
-            vm.UpcomingEvents = (await _eventsService.GetUpcomingAsync()).ToArray();
+            vm.UpcomingEvents = (await _calendarEventsService.GetUpcomingAsync()).ToArray();
             return View(vm);
         }
 

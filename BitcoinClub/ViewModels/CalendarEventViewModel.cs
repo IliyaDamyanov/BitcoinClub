@@ -2,9 +2,9 @@ namespace BitcoinClub.ViewModels;
 
 /// <summary>
 /// Represents a single calendar event displayed on the landing page.
-/// Populated by <see cref="BitcoinClub.Services.Events.IEventsService"/> from the club's iCal feed.
+/// Populated by <see cref="BitcoinClub.Services.CalendarEvents.ICalendarEventsService"/> from the club's iCal feed.
 /// </summary>
-public sealed class EventViewModel
+public sealed class CalendarEventViewModel
 {
     /// <summary>The event title as defined in Google Calendar.</summary>
     public string Title { get; set; } = "";
