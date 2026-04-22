@@ -10,7 +10,8 @@ namespace BitcoinClub.Tests.Landing
         public async Task HomePage_RendersLandingContent()
         {
             using var factory = new WebApplicationFactory<BitcoinClub.Program>();
-            using var client = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
+            // Allow auto-redirect: /?lang=EN now sets the cookie and redirects to /
+            using var client = factory.CreateClient();
 
             var resp = await client.GetAsync("/?lang=EN");
             Assert.Equal(HttpStatusCode.OK, resp.StatusCode);
@@ -18,7 +19,7 @@ namespace BitcoinClub.Tests.Landing
             var html = await resp.Content.ReadAsStringAsync();
             Assert.Contains("Bitcoin Club", html);
             Assert.Contains("Mission", html);
-            Assert.Contains("Events calendar", html);
+            Assert.Contains("Events", html);
             Assert.Contains("Contact", html);
         }
     }

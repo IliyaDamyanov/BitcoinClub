@@ -1,5 +1,6 @@
 
 using BitcoinClub.Services.Landing;
+using BitcoinClub.Tests.Services.CalendarEvents.Helpers;
 using BitcoinClub.Tests.TestDoubles;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -10,7 +11,7 @@ namespace BitcoinClub.Tests.Integration;
 public sealed class HomeControllerLandingPageTests
 {
     [Fact]
-    public void Index_WhenLangIsEn_ReturnsViewWithEnModel()
+    public async Task Index_WhenLangIsEn_RedirectsToCleanUrl()
     {
         var localizer = new StubStringLocalizer<LandingPageStrings>(new Dictionary<string, string>
         {
@@ -19,12 +20,14 @@ public sealed class HomeControllerLandingPageTests
 
         var controller = new BitcoinClub.Controllers.HomeController(
             NullLogger<BitcoinClub.Controllers.HomeController>.Instance,
-            new LandingPageContentService(localizer));
+            new LandingPageContentService(localizer),
+            new StubCalendarEventsService());
 
-        var result = controller.Index("EN");
+        // Switching language now persists via cookie + redirect so that the middleware
+        // sets CultureInfo.CurrentUICulture for the whole pipeline on the next request.
+        var result = await controller.Index("EN");
 
-        var viewResult = Assert.IsType<ViewResult>(result);
-        var model = Assert.IsType<BitcoinClub.ViewModels.LandingPageViewModel>(viewResult.Model);
-        Assert.Equal("EN", model.Lang);
+        var redirect = Assert.IsType<RedirectToActionResult>(result);
+        Assert.Equal(nameof(BitcoinClub.Controllers.HomeController.Index), redirect.ActionName);
     }
 }

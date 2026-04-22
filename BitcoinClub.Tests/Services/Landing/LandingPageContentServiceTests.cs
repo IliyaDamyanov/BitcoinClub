@@ -26,29 +26,28 @@ public sealed class LandingPageContentServiceTests
     }
 
     [Fact]
-    public void Get_WhenLangIsNull_ReturnsBgAndShowsEnToggle()
+    public void Get_WhenUICultureIsBg_ReturnsBgAndShowsEnToggle()
     {
         var sut = CreateSut(new()
         {
-            ["ClubName"] = "Клуб",
-            ["Goals_1"] = "Цел 1",
-            ["Means_1"] = "Средство 1",
-            ["MembershipDetails"] = "М",
-            ["SupportDetails"] = "П",
+            ["ClubName"] = "пїЅпїЅпїЅпїЅ",
+            ["Goals_1"] = "пїЅпїЅпїЅ 1",
+            ["Means_1"] = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1",
+            ["MembershipDetails"] = "пїЅ",
+            ["SupportDetails"] = "пїЅ",
         });
 
-        var vm = sut.Get(null);
+        CultureInfo.CurrentUICulture = new CultureInfo("bg");
+        var vm = sut.Get();
 
         Assert.Equal("BG", vm.Lang);
         Assert.Equal("EN", vm.ChangeLanguageButtonText);
-        Assert.Equal("Клуб", vm.ClubName);
-        Assert.Contains("Цел 1", vm.Goals);
+        Assert.Equal("пїЅпїЅпїЅпїЅ", vm.ClubName);
+        Assert.Contains("пїЅпїЅпїЅ 1", vm.Goals);
     }
 
-    [Theory]
-    [InlineData("EN")]
-    [InlineData("en")]
-    public void Get_WhenLangIsEn_ReturnsEnAndShowsBgToggle(string lang)
+    [Fact]
+    public void Get_WhenUICultureIsEn_ReturnsEnAndShowsBgToggle()
     {
         var sut = CreateSut(new()
         {
@@ -59,7 +58,8 @@ public sealed class LandingPageContentServiceTests
             ["SupportDetails"] = "S",
         });
 
-        var vm = sut.Get(lang);
+        CultureInfo.CurrentUICulture = new CultureInfo("en");
+        var vm = sut.Get();
 
         Assert.Equal("EN", vm.Lang);
         Assert.Equal("BG", vm.ChangeLanguageButtonText);
