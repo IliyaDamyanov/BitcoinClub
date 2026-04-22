@@ -68,28 +68,32 @@
   <data name="EventsLabel" xml:space="preserve"><value>Events</value></data>
   <data name="InfoLabel" xml:space="preserve"><value>Info</value></data>
   <data name="UsefulLinksLabel" xml:space="preserve"><value>Links</value></data>
+  <data name="MembershipLabel" xml:space="preserve"><value>Membership</value></data>
   <data name="MembershipAndSupportLabel" xml:space="preserve"><value>Membership &amp; Support</value></data>
+  <data name="RegisterLabel" xml:space="preserve"><value>Register</value></data>
+  <data name="LoginLabel" xml:space="preserve"><value>Login</value></data>
+  <data name="LogoutLabel" xml:space="preserve"><value>Logout</value></data>
 
   <data name="MissionTitle" xml:space="preserve"><value>Mission</value></data>
   <data name="GoalsTitle" xml:space="preserve"><value>Goals</value></data>
-  <data name="Goals_1" xml:space="preserve"><value>Promotion and education in the field of cryptocurrencies with a main focus on Bitcoin;</value></data>
-  <data name="Goals_2" xml:space="preserve"><value>Creating a community of users, developers and enthusiasts of cryptocurrencies with a main focus on Bitcoin;</value></data>
-  <data name="Goals_3" xml:space="preserve"><value>Providing information and advice on the legal and regulatory framework of cryptocurrencies and Bitcoin;</value></data>
-  <data name="Goals_4" xml:space="preserve"><value>Uniting the interests of its members and supporting their development, qualification and knowledge;</value></data>
-  <data name="Goals_5" xml:space="preserve"><value>Stimulating dialogue and discussions, as well as creating an authoritative source of quality information;</value></data>
-  <data name="Goals_6" xml:space="preserve"><value>Uniting and attracting new members with similar interests;</value></data>
-  <data name="Goals_7" xml:space="preserve"><value>Promoting cooperation and contacts between members and the community;</value></data>
-  <data name="Goals_8" xml:space="preserve"><value>Supporting and stimulating the adoption of Bitcoin and other cryptocurrencies as a technological solution.</value></data>
+  <data name="Goals_1" xml:space="preserve"><value>Promotion and education in the field of cryptocurrencies with a main focus on Bitcoin</value></data>
+  <data name="Goals_2" xml:space="preserve"><value>Creating a community of users, developers and enthusiasts of cryptocurrencies with a main focus on Bitcoin</value></data>
+  <data name="Goals_3" xml:space="preserve"><value>Providing information and advice on the legal and regulatory framework of cryptocurrencies and Bitcoin</value></data>
+  <data name="Goals_4" xml:space="preserve"><value>Uniting the interests of its members and supporting their development, qualification and knowledge</value></data>
+  <data name="Goals_5" xml:space="preserve"><value>Stimulating dialogue and discussions, as well as creating an authoritative source of quality information</value></data>
+  <data name="Goals_6" xml:space="preserve"><value>Uniting and attracting new members with similar interests</value></data>
+  <data name="Goals_7" xml:space="preserve"><value>Promoting cooperation and contacts between members and the community</value></data>
+  <data name="Goals_8" xml:space="preserve"><value>Supporting and stimulating the adoption of Bitcoin and other cryptocurrencies as a technological solution</value></data>
 
   <data name="MeansTitle" xml:space="preserve"><value>Means</value></data>
-  <data name="Means_1" xml:space="preserve"><value>Organizing meetings, conferences, seminars, webinars, educational courses, presentations and other similar events;</value></data>
-  <data name="Means_2" xml:space="preserve"><value>Creating and distributing advertising materials in the media (press, television, Internet) with information about the Association's activities for fundraising and new members;</value></data>
-  <data name="Means_3" xml:space="preserve"><value>Issuing information and educational materials on the topic of cryptocurrencies and Bitcoin;</value></data>
-  <data name="Means_4" xml:space="preserve"><value>Conducting research and analysis in the field of cryptocurrencies and Bitcoin;</value></data>
-  <data name="Means_5" xml:space="preserve"><value>Implementing and maintaining information exchange and relations with similar associations with similar interests in the country and abroad;</value></data>
-  <data name="Means_6" xml:space="preserve"><value>Other activity, when the same is not prohibited by Law and related to the goals and means of the Association.</value></data>
+  <data name="Means_1" xml:space="preserve"><value>Organizing meetings, conferences, seminars, webinars, educational courses, presentations and other similar events</value></data>
+  <data name="Means_2" xml:space="preserve"><value>Creating and distributing advertising materials in the media (press, television, Internet) with information about the Association's activities for fundraising and new members</value></data>
+  <data name="Means_3" xml:space="preserve"><value>Issuing information and educational materials on the topic of cryptocurrencies and Bitcoin</value></data>
+  <data name="Means_4" xml:space="preserve"><value>Conducting research and analysis in the field of cryptocurrencies and Bitcoin</value></data>
+  <data name="Means_5" xml:space="preserve"><value>Implementing and maintaining information exchange and relations with similar associations with similar interests in the country and abroad</value></data>
+  <data name="Means_6" xml:space="preserve"><value>Other activity, when the same is not prohibited by Law and related to the goals and means of the Association</value></data>
 
-  <data name="CalendarTitle" xml:space="preserve"><value>Calendar</value></data>
+  <data name="CalendarTitle" xml:space="preserve"><value>Upcoming Events</value></data>
 
   <data name="AssociationTitle" xml:space="preserve"><value>Association details</value></data>
   <data name="AssociationLocationLabel" xml:space="preserve"><value>See on map</value></data>
@@ -101,5 +105,8 @@
   <data name="SupportDetails" xml:space="preserve"><value>If you would like to support the club, please reach out and we will provide the available options.</value></data>
 
   <data name="ContactsTitle" xml:space="preserve"><value>Contacts</value></data>
+  <data name="StatMembersLabel" xml:space="preserve"><value>Members</value></data>
+  <data name="StatEventsLabel" xml:space="preserve"><value>Organized Events</value></data>
+  <data name="StatYearsLabel" xml:space="preserve"><value>Years</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Useful links</value></data>
 </root>

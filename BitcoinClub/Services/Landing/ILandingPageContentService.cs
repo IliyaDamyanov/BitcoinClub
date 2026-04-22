@@ -4,5 +4,5 @@ namespace BitcoinClub.Services.Landing;
 
 public interface ILandingPageContentService
 {
-    LandingPageViewModel Get(string? lang);
+    LandingPageViewModel Get();
 }

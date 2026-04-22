@@ -4,6 +4,7 @@ using BitcoinClub.Infrastructure.Auth.Providers;
 using BitcoinClub.Infrastructure.Database;
 using BitcoinClub.Infrastructure.Files;
 using BitcoinClub.Infrastructure.Payments;
+using BitcoinClub.Services.CalendarEvents;
 using BitcoinClub.Services.Landing;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
@@ -71,6 +72,10 @@ namespace BitcoinClub
             builder.Services.AddScoped<IFileUploadService, FileUploadService>();
 
             builder.Services.AddScoped<ILandingPageContentService, LandingPageContentService>();
+
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSingleton(TimeProvider.System);
+            builder.Services.AddHttpClient<ICalendarEventsService, CalendarEventsService>();
 
             // Set resources path so view and controller localization looks in the Resources/ folder
             builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");

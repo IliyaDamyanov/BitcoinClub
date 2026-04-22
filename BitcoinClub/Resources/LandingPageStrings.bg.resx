@@ -68,38 +68,56 @@
   <data name="EventsLabel" xml:space="preserve"><value>Събития</value></data>
   <data name="InfoLabel" xml:space="preserve"><value>Информация</value></data>
   <data name="UsefulLinksLabel" xml:space="preserve"><value>Линкове</value></data>
+  <data name="MembershipLabel" xml:space="preserve"><value>Членство</value></data>
   <data name="MembershipAndSupportLabel" xml:space="preserve"><value>Членство и подкрепа</value></data>
+  <data name="RegisterLabel" xml:space="preserve"><value>Регистрация</value></data>
+  <data name="LoginLabel" xml:space="preserve"><value>Вход</value></data>
+  <data name="LogoutLabel" xml:space="preserve"><value>Изход</value></data>
 
   <data name="MissionTitle" xml:space="preserve"><value>Мисия</value></data>
   <data name="GoalsTitle" xml:space="preserve"><value>Цели</value></data>
-  <data name="Goals_1" xml:space="preserve"><value>Популяризиране и просветителска дейност в областта на криптовалутите с основен фокус върху Bitcoin;</value></data>
-  <data name="Goals_2" xml:space="preserve"><value>Създаване на общност от потребители, разработчици и ентусиасти на криптовалути с основен фокус върху Bitcoin;</value></data>
-  <data name="Goals_3" xml:space="preserve"><value>Предоставяне на информация и съвети относно правната и регулаторната рамка на криптовалутите и Bitcoin;</value></data>
-  <data name="Goals_4" xml:space="preserve"><value>Обединяване интересите на своите членове и подпомагане на тяхното развитие, квалификация и знания;</value></data>
-  <data name="Goals_5" xml:space="preserve"><value>Стимулиране на диалог и дискусии, както и създаване на авторитетен източник на качествена информация;</value></data>
-  <data name="Goals_6" xml:space="preserve"><value>Обединяване и привличане на нови членове с подобни интереси;</value></data>
-  <data name="Goals_7" xml:space="preserve"><value>Насърчаване на сътрудничеството и контактите между членовете и общността;</value></data>
-  <data name="Goals_8" xml:space="preserve"><value>Подкрепа и стимулиране на приемането на Bitcoin и други криптовалути като технологично решение.</value></data>
+  <data name="Goals_1" xml:space="preserve"><value>Популяризиране и просветителска дейност в областта на криптовалутите с основен фокус върху Bitcoin</value></data>
+  <data name="Goals_2" xml:space="preserve"><value>Създаване на общност от потребители, разработчици и ентусиасти на криптовалути с основен фокус върху Bitcoin</value></data>
+  <data name="Goals_3" xml:space="preserve"><value>Предоставяне на информация и съвети относно правната и регулаторната рамка на криптовалутите и Bitcoin</value></data>
+  <data name="Goals_4" xml:space="preserve"><value>Обединяване интересите на своите членове и подпомагане на тяхното развитие, квалификация и знания</value></data>
+  <data name="Goals_5" xml:space="preserve"><value>Стимулиране на диалог и дискусии, както и създаване на авторитетен източник на качествена информация</value></data>
+  <data name="Goals_6" xml:space="preserve"><value>Обединяване и привличане на нови членове с подобни интереси</value></data>
+  <data name="Goals_7" xml:space="preserve"><value>Насърчаване на сътрудничеството и контактите между членовете и общността</value></data>
+  <data name="Goals_8" xml:space="preserve"><value>Подкрепа и стимулиране на приемането на Bitcoin и други криптовалути като технологично решение</value></data>
 
   <data name="MeansTitle" xml:space="preserve"><value>Средства</value></data>
-  <data name="Means_1" xml:space="preserve"><value>Организиране на срещи, конференции, семинари, уебинари, образователни курсове, презентации и други подобни събития;</value></data>
-  <data name="Means_2" xml:space="preserve"><value>Създаване и разпространение на рекламни материали в медиите (преса, телевизия, интернет) с информация за дейността на Сдружението с цел набиране на средства и нови членове;</value></data>
-  <data name="Means_3" xml:space="preserve"><value>Издаване на информационни и образователни материали по темата за криптовалутите и Bitcoin;</value></data>
-  <data name="Means_4" xml:space="preserve"><value>Провеждане на изследвания и анализи в областта на криптовалутите и Bitcoin;</value></data>
-  <data name="Means_5" xml:space="preserve"><value>Осъществяване и поддържане на информационен обмен и отношения със сродни сдружения със сходни интереси в страната и чужбина;</value></data>
-  <data name="Means_6" xml:space="preserve"><value>Друга дейност, когато същата не е забранена от закона и е свързана с целите и средствата на Сдружението.</value></data>
+  <data name="Means_1" xml:space="preserve"><value>Организиране на срещи, конференции, семинари, уебинари, образователни курсове, презентации и други подобни събития</value></data>
+  <data name="Means_2" xml:space="preserve"><value>Създаване и разпространение на рекламни материали в медиите (преса, телевизия, интернет) с информация за дейността на Сдружението с цел набиране на средства и нови членове</value></data>
+  <data name="Means_3" xml:space="preserve"><value>Издаване на информационни и образователни материали по темата за криптовалутите и Bitcoin</value></data>
+  <data name="Means_4" xml:space="preserve"><value>Провеждане на изследвания и анализи в областта на криптовалутите и Bitcoin</value></data>
+  <data name="Means_5" xml:space="preserve"><value>Осъществяване и поддържане на информационен обмен и отношения със сродни сдружения със сходни интереси в страната и чужбина</value></data>
+  <data name="Means_6" xml:space="preserve"><value>Друга дейност, когато същата не е забранена от закона и е свързана с целите и средствата на Сдружението</value></data>
 
-  <data name="CalendarTitle" xml:space="preserve"><value>Календар</value></data>
+  <data name="CalendarTitle" xml:space="preserve"><value>Предстоящи събития</value></data>
 
   <data name="AssociationTitle" xml:space="preserve"><value>Данни за сдружението</value></data>
   <data name="AssociationLocationLabel" xml:space="preserve"><value>Виж на картата</value></data>
 
   <data name="OfficialWebsiteLabel" xml:space="preserve"><value>Официален сайт</value></data>
-  <data name="SocialMediaTitle" xml:space="preserve"><value>Социални мрежи</value></data>
+  <data name="SocialMediaTitle" xml:space="preserve"><value>Последвайте ни</value></data>
 
-  <data name="MembershipDetails" xml:space="preserve"><value>Ако желаете да станете член на Bitcoin Club, свържете се с нас на имейла по-долу за повече информация.</value></data>
-  <data name="SupportDetails" xml:space="preserve"><value>Ако желаете да подкрепите клуба, пишете ни и ще ви изпратим наличните възможности.</value></data>
+  <data name="MembershipDetails" xml:space="preserve"><value>Ако желаете да станете член на Bitcoin Club, моля свържете се с нас на посочения по-горе имейл адрес за допълнителна информация.</value></data>
+  <data name="SupportDetails" xml:space="preserve"><value>Ако желаете да подкрепите дейността на клуба, моля пишете ни, за да Ви изпратим информация относно наличните възможности за подкрепа.</value></data>
 
   <data name="ContactsTitle" xml:space="preserve"><value>Контакти</value></data>
+  <data name="StatMembersLabel" xml:space="preserve"><value>Членове</value></data>
+  <data name="StatEventsLabel" xml:space="preserve"><value>Организирани събития</value></data>
+  <data name="StatYearsLabel" xml:space="preserve"><value>Години</value></data>
   <data name="UsefulLinksTitle" xml:space="preserve"><value>Полезни линкове</value></data>
+
+  <data name="AssociationAddressLine" xml:space="preserve"><value>гр. София, п.к. 1111</value></data>
+
+  <data name="UsefulLink_PlamenAndonov" xml:space="preserve"><value>YouTube канал на Пламен Андонов</value></data>
+  <data name="UsefulLink_BGCrypto" xml:space="preserve"><value>YouTube канал на BG Crypto Network</value></data>
+  <data name="UsefulLink_Discord" xml:space="preserve"><value>Дискорд сървър на Bitcoin Club</value></data>
+  <data name="UsefulLink_Telegram" xml:space="preserve"><value>Телеграм група Bitcoiners Bulgaria</value></data>
+  <data name="UsefulLink_BlindSpot" xml:space="preserve"><value>Крипто новини и ресурси – Blind Spot BG</value></data>
+  <data name="UsefulLink_LearnMeBitcoin" xml:space="preserve"><value>Learn Me a Bitcoin – образователен сайт</value></data>
+  <data name="UsefulLink_BitcoinReady" xml:space="preserve"><value>Bitcoin Ready – ресурси за начинаещи</value></data>
+  <data name="UsefulLink_BTCMap" xml:space="preserve"><value>BTC Map – магазини приемащи Bitcoin</value></data>
 </root>

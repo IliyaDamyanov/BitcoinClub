@@ -2,6 +2,30 @@
 
 @{
     ViewData["Title"] = Model.ClubName;
+
+    string SocialIcon(string name) => name.ToLowerInvariant() switch
+    {
+        "facebook"  => "bi-facebook",
+        "instagram" => "bi-instagram",
+        "twitter"   => "bi-twitter-x",
+        "youtube"   => "bi-youtube",
+        "discord"   => "bi-discord",
+        "telegram"  => "bi-telegram",
+        "nostr"     => "bi-lightning-charge",
+        _           => "bi-link-45deg"
+    };
+
+    string LinkIcon(string url) => url switch
+    {
+        var u when u.Contains("youtube")      => "bi-youtube",
+        var u when u.Contains("discord")      => "bi-discord",
+        var u when u.Contains("t.me")         => "bi-telegram",
+        var u when u.Contains("btcmap")       => "bi-map",
+        var u when u.Contains("learnmeabitcoin") => "bi-book",
+        var u when u.Contains("bitcoinready") => "bi-lightning-charge",
+        var u when u.Contains("blindspot")    => "bi-newspaper",
+        _                                     => "bi-link-45deg"
+    };
 }
 
 @section Styles {
@@ -10,7 +34,7 @@
 
 <nav class="navbar navbar-expand-lg bc-navbar sticky-top" id="mainNav">
     <div class="container">
-        <a class="navbar-brand" href="#home">₿ @Model.ClubName</a>
+        <a class="navbar-brand" href="#home">₿itcoin Club Bulgaria</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -20,7 +44,7 @@
                 <li class="nav-item"><a class="nav-link" href="#calendar">@Model.EventsLabel</a></li>
                 <li class="nav-item"><a class="nav-link" href="#info">@Model.InfoLabel</a></li>
                 <li class="nav-item"><a class="nav-link" href="#links">@Model.UsefulLinksLabel</a></li>
-                <li class="nav-item"><a class="nav-link" asp-controller="Membership" asp-action="Index">Membership</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Membership" asp-action="Index">@Model.MembershipLabel</a></li>
             </ul>
 
             <div class="d-flex align-items-center">
@@ -42,7 +66,10 @@
                 <img src="@Model.HeroImageRelativePath" class="bc-hero-img img-fluid" alt="Bitcoin Club" />
             </div>
             <div class="col-12 col-md-7">
-                <h1>@Model.MissionTitle<br/><span class="bc-highlight">Bitcoin Club</span></h1>
+                <h1>
+                    <span class="bc-title-top">@Model.MissionTitle</span>
+                    <span class="bc-highlight">Bitcoin Club</span>
+                </h1>
                 <ul class="bc-goals mt-4">
                     @foreach (var goal in Model.Goals)
                     {
@@ -64,19 +91,19 @@
             <div class="col-4">
                 <div class="bc-stat-item">
                     <div class="bc-stat-number">50+</div>
-                    <div class="bc-stat-label">Членове</div>
+                    <div class="bc-stat-label">@Model.StatMembersLabel</div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="bc-stat-item">
                     <div class="bc-stat-number">100+</div>
-                    <div class="bc-stat-label">Събития</div>
+                    <div class="bc-stat-label">@Model.StatEventsLabel</div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="bc-stat-item">
                     <div class="bc-stat-number">3+</div>
-                    <div class="bc-stat-label">Години</div>
+                    <div class="bc-stat-label">@Model.StatYearsLabel</div>
                 </div>
             </div>
         </div>
@@ -86,30 +113,82 @@
 @* ════════ Means Section ════════ *@
 <section class="bc-section">
     <div class="container">
-        <div class="bc-card">
-            <h5>@Model.MeansTitle</h5>
-            <ul class="bc-goals">
-                @foreach (var means in Model.Means)
-                {
-                    <li>@means</li>
-                }
-            </ul>
+        <h2 class="bc-section-title"><i class="bi bi-lightning-charge me-2"></i>@Model.MeansTitle</h2>
+        @{
+            var meansIcons = new[] { "bi-calendar-event", "bi-megaphone", "bi-book", "bi-graph-up-arrow", "bi-people", "bi-plus-circle" };
+        }
+        <div class="row g-4">
+            @for (int i = 0; i < Model.Means.Length; i++)
+            {
+                <div class="col-md-4 col-sm-6">
+                    <div class="bc-means-card">
+                        <i class="bi @meansIcons[i] bc-means-icon"></i>
+                        <p class="bc-means-text">@Model.Means[i]</p>
+                    </div>
+                </div>
+            }
         </div>
     </div>
 </section>
 
-@* ════════ Calendar Section ════════ *@
-<section class="bc-section" id="calendar">
+@* ════════ Events Section ════════ *@
+<section class="bc-section bc-section--calendar" id="calendar">
     <div class="container">
-        <h2 class="bc-section-title">@Model.CalendarTitle</h2>
-        <div class="bc-calendar-wrap">
-            <div class="ratio ratio-16x9">
-                <iframe
-                    src="@Model.CalendarEmbedUrl"
-                    style="border: 0;"
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <h2 class="bc-section-title">
+            <i class="bi bi-calendar3 me-2"></i>@Model.CalendarTitle
+        </h2>
+
+        @if (Model.UpcomingEvents.Length > 0)
+        {
+            <div class="row g-3">
+                @foreach (var evt in Model.UpcomingEvents)
+                {
+                    <div class="col-md-6 col-lg-4">
+                        <div class="bc-event-card">
+                            <div class="bc-event-date">
+                                <span class="bc-event-month">@evt.Start.ToString("MMM").ToUpper()</span>
+                                <span class="bc-event-day">@evt.Start.Day</span>
+                            </div>
+                            <div class="bc-event-body">
+                                <div class="bc-event-title">@evt.Title</div>
+                                <div class="bc-event-meta">
+                                    @if (evt.IsAllDay)
+                                    {
+                                        <i class="bi bi-calendar"></i>
+                                        <span>@evt.Start.ToString("ddd, dd MMM")</span>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-clock"></i>
+                                        <span>@evt.Start.ToString("ddd, dd MMM · HH:mm")</span>
+                                    }
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(evt.Location))
+                                {
+                                    <div class="bc-event-location">
+                                        <i class="bi bi-geo-alt me-1"></i>@evt.Location
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
+        }
+        else
+        {
+            <div class="bc-event-empty">
+                <i class="bi bi-calendar-x bc-event-empty-icon"></i>
+                <p>@(Model.Lang == "BG" ? "Няма предстоящи събития." : "No upcoming events scheduled.")</p>
+            </div>
+        }
+
+        <div class="mt-4">
+            <a href="@Model.CalendarEmbedUrl" target="_blank" rel="noopener noreferrer" class="bc-calendar-link">
+                <i class="bi bi-calendar3 me-1"></i>
+                @(Model.Lang == "BG" ? "Виж пълния календар" : "View full calendar")
+                <i class="bi bi-arrow-right ms-1"></i>
+            </a>
         </div>
     </div>
 </section>
@@ -117,7 +196,7 @@
 @* ════════ Info Section ════════ *@
 <section class="bc-section" id="info">
     <div class="container">
-        <h2 class="bc-section-title">@Model.InfoLabel</h2>
+        <h2 class="bc-section-title"><i class="bi bi-info-circle me-2"></i>@Model.InfoLabel</h2>
 
         <div class="row g-4">
             <div class="col-md-6">
@@ -127,7 +206,7 @@
                     <p>
                         @Model.AssociationAddressLine —
                         <a href="@Model.AssociationLocationUrl" target="_blank" rel="noopener noreferrer" style="color: var(--btc-orange);">
-                            📍 @Model.AssociationLocationLabel
+                            <i class="bi bi-geo-alt-fill"></i> @Model.AssociationLocationLabel
                         </a>
                     </p>
                     <h5 class="mt-3">@Model.OfficialWebsiteLabel</h5>
@@ -141,26 +220,26 @@
             <div class="col-md-6">
                 <div class="bc-card h-100">
                     <h5>@Model.ContactsTitle</h5>
-                    <p>📧 @Model.ContactEmail</p>
-                    <p>📞 @Model.ContactPhone</p>
+                    <p><i class="bi bi-envelope"></i> <a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></p>
+                    <p><i class="bi bi-telephone"></i> <a href="tel:@(Model.ContactPhone.Replace(" ", ""))">@Model.ContactPhone</a></p>
 
                     <h5 class="mt-3">@Model.MembershipAndSupportLabel</h5>
                     <p>@Model.MembershipDetails</p>
                     <p>@Model.SupportDetails</p>
+
+                    <h5 class="mt-3">@Model.SocialMediaTitle</h5>
+                    <ul class="bc-social-links mt-2">
+                        @foreach (var link in Model.SocialLinks)
+                        {
+                            <li>
+                                <a href="@link.Url" target="_blank" rel="noopener noreferrer">
+                                    <i class="bi @SocialIcon(link.Name)"></i> @link.Name
+                                </a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
-        </div>
-
-        <div class="mt-5">
-            <h5 style="color: var(--btc-orange); font-weight: 700;">@Model.SocialMediaTitle</h5>
-            <ul class="bc-social-links mt-3">
-                @foreach (var link in Model.SocialLinks)
-                {
-                    <li>
-                        <a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Name</a>
-                    </li>
-                }
-            </ul>
         </div>
     </div>
 </section>
@@ -168,15 +247,22 @@
 @* ════════ Useful Links ════════ *@
 <section class="bc-section" id="links">
     <div class="container">
-        <h2 class="bc-section-title">@Model.UsefulLinksTitle</h2>
-        <ul class="bc-links-list">
+        <h2 class="bc-section-title"><i class="bi bi-bookmark-star me-2"></i>@Model.UsefulLinksTitle</h2>
+        <div class="row g-3">
             @foreach (var link in Model.UsefulLinks)
             {
-                <li>
-                    @link.Label — <a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Url</a>
-                </li>
+                <div class="col-md-6 col-lg-4">
+                    <a href="@link.Url" target="_blank" rel="noopener noreferrer" class="bc-link-card">
+                        <i class="bi @LinkIcon(link.Url) bc-link-card-icon"></i>
+                        <div class="bc-link-card-body">
+                            <span class="bc-link-card-label">@link.Label</span>
+                            <span class="bc-link-card-host">@(new Uri(link.Url).Host)</span>
+                        </div>
+                        <i class="bi bi-arrow-up-right bc-link-card-arrow"></i>
+                    </a>
+                </div>
             }
-        </ul>
+        </div>
     </div>
 </section>
 
@@ -185,7 +271,7 @@
     <div class="container">
         <div class="row g-4">
             <div class="col-md-4">
-                <div class="bc-footer-brand">₿ @Model.ClubName</div>
+                <div class="bc-footer-brand">₿itcoin Club Bulgaria</div>
                 <p class="bc-footer-text">Bitcoin community in Sofia, Bulgaria. Education, meetups, and adoption.</p>
             </div>
             <div class="col-md-4">
@@ -202,9 +288,9 @@
                 <ul class="bc-footer-links">
                     @foreach (var link in Model.SocialLinks)
                     {
-                        <li><a href="@link.Url" target="_blank" rel="noopener noreferrer">@link.Name</a></li>
+                        <li><a href="@link.Url" target="_blank" rel="noopener noreferrer"><i class="bi @SocialIcon(link.Name)"></i> @link.Name</a></li>
                     }
-                    <li><a href="mailto:@Model.ContactEmail">@Model.ContactEmail</a></li>
+                    <li><a href="mailto:@Model.ContactEmail"><i class="bi bi-envelope"></i> @Model.ContactEmail</a></li>
                 </ul>
             </div>
         </div>
@@ -215,11 +301,5 @@
 </footer>
 
 @section Scripts {
-    <script>
-        // Navbar scroll effect
-        const nav = document.getElementById('mainNav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-        });
-    </script>
+    <script src="~/js/landing.js" asp-append-version="true"></script>
 }

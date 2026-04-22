@@ -8,7 +8,7 @@ namespace BitcoinClub.Tests.Landing
     public class LandingPageCalendarHtmlValidationTests
     {
         [Fact]
-        public async Task HomePage_IncludesResponsiveGoogleCalendarIframe()
+        public async Task HomePage_IncludesEventsSection()
         {
             using var factory = new WebApplicationFactory<BitcoinClub.Program>();
             using var client = factory.CreateClient(new WebApplicationFactoryClientOptions { AllowAutoRedirect = false });
@@ -18,10 +18,10 @@ namespace BitcoinClub.Tests.Landing
 
             var html = await resp.Content.ReadAsStringAsync();
 
-            Assert.Contains("ratio ratio-16x9", html);
-            Assert.Contains("<iframe", html);
-            Assert.Contains("calendar.google.com/calendar/embed", html, StringComparison.OrdinalIgnoreCase);
-            Assert.Contains("loading=\"lazy\"", html);
+            // The Google Calendar iframe has been replaced with a server-side iCal events section.
+            Assert.Contains("bc-section--calendar", html);
+            Assert.Contains("bc-calendar-link", html);
+            Assert.Contains("calendar.google.com", html, StringComparison.OrdinalIgnoreCase);
         }
     }
 }
