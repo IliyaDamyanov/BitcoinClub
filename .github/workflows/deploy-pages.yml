@@ -30,6 +30,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install Python dependencies
+        run: pip install python-dateutil
+
       - name: Refresh upcoming events feed
         run: python3 scripts/update_static_events.py
 
