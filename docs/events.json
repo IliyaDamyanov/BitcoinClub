@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-04-26T19:38:57.737099+00:00",
+  "events": [
+    {
+      "title": "Месечна среща на Биткойн клуба в София",
+      "start": "2026-04-30T19:00:00+03:00",
+      "end": "2026-04-30T23:30:00+03:00",
+      "location": "ул. \"Проф. Георги Павлов\" 30, Geo Milev, ул. \"Проф. Георги Павлов\" 30, 1111 Sofia, Bulgaria",
+      "allDay": false
+    },
+    {
+      "title": "Пловдив Биткойн среща",
+      "start": "2026-05-04T19:00:00+03:00",
+      "end": "2026-05-04T21:00:00+03:00",
+      "location": "Club Fargo, Дом на техника, TsentarPlovdiv Center, ul. \"Gladston\" 1, 4000 Plovdiv, Bulgaria",
+      "allDay": false
+    },
+    {
+      "title": "Месечна среща на Биткойн клуба в София",
+      "start": "2026-05-28T19:00:00+03:00",
+      "end": "2026-05-28T23:30:00+03:00",
+      "location": "ул. \"Проф. Георги Павлов\" 30, Geo Milev, ул. \"Проф. Георги Павлов\" 30, 1111 Sofia, Bulgaria",
+      "allDay": false
+    },
+    {
+      "title": "Пловдив Биткойн среща",
+      "start": "2026-06-01T19:00:00+03:00",
+      "end": "2026-06-01T21:00:00+03:00",
+      "location": "Club Fargo, Дом на техника, TsentarPlovdiv Center, ul. \"Gladston\" 1, 4000 Plovdiv, Bulgaria",
+      "allDay": false
+    },
+    {
+      "title": "Месечна среща на Биткойн клуба в София",
+      "start": "2026-06-25T19:00:00+03:00",
+      "end": "2026-06-25T23:30:00+03:00",
+      "location": "ул. \"Проф. Георги Павлов\" 30, Geo Milev, ул. \"Проф. Георги Павлов\" 30, 1111 Sofia, Bulgaria",
+      "allDay": false
+    },
+    {
+      "title": "Пловдив Биткойн среща",
+      "start": "2026-07-06T19:00:00+03:00",
+      "end": "2026-07-06T21:00:00+03:00",
+      "location": "Club Fargo, Дом на техника, TsentarPlovdiv Center, ul. \"Gladston\" 1, 4000 Plovdiv, Bulgaria",
+      "allDay": false
+    }
+  ]
+}

@@ -1007,9 +1007,14 @@ body::after {
 <section class="bc-section bc-section--calendar" id="calendar">
     <div class="container">
         <h2 class="bc-section-title"><i class="bi bi-calendar3 me-2"></i>Upcoming Events</h2>
-        <p class="bc-calendar-note">The static version embeds the club’s public calendar directly on the page.</p>
-        <div class="bc-calendar-wrap mt-4">
-            <iframe src="https://calendar.google.com/calendar/embed?src=ef1b943ddbe088897fb86e9ddac3a57f3bbc0f303c93f6608369ff1926fc97cc%40group.calendar.google.com&ctz=Europe%2FSofia" style="border:0" width="100%" height="600" frameborder="0" scrolling="no" title="Bitcoin Club Calendar"></iframe>
+        <p class="bc-calendar-note">Showing the next 6 events from the club’s public calendar feed.</p>
+        <div class="row g-3 mt-1" data-events-feed data-lang="en" data-empty-label="No upcoming events scheduled." data-error-label="Could not load events right now." data-all-day-label="All day">
+            <div class="col-12">
+                <div class="bc-event-empty">
+                    <i class="bi bi-hourglass-split bc-event-empty-icon"></i>
+                    <p>Loading upcoming events…</p>
+                </div>
+            </div>
         </div>
         <div class="mt-4">
             <a href="https://calendar.google.com/calendar/u/0?cid=ZWYxYjk0M2RkYmUwODg4OTdmYjg2ZTlkZGFjM2E1N2YzYmJjMGYzMDNjOTNmNjYwODM2OWZmMTkyNmZjOTdjY0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t" target="_blank" rel="noopener noreferrer" class="bc-calendar-link"><i class="bi bi-calendar3 me-1"></i>View full calendar<i class="bi bi-arrow-right ms-1"></i></a>
@@ -1157,6 +1162,7 @@ body::after {
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="./events-feed.js"></script>
 <script>
 const nav = document.getElementById('mainNav');
 window.addEventListener('scroll', () => {
