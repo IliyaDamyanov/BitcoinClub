@@ -3,7 +3,7 @@ name: Deploy landing page to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - feat/landing-page-static
   workflow_dispatch:
 
 permissions:
