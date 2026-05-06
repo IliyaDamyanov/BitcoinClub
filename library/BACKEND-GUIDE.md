@@ -29,6 +29,9 @@ Current provider:
 - Config section: `GlowPay`.
 - API key is sent as `X-API-Key` for payment creation.
 - Manual verification checks `GET /api/payments/{paymentId}` and treats `status = completed` as paid.
+- Glow Pay webhooks are handled by `Controllers/GlowPayWebhookController.cs` at `POST /webhooks/glow-pay`.
+- Webhook controllers read the raw request body, validate `X-Glow-Signature` with HMAC-SHA256 and `GlowPay:WebhookSecret`, then mutate local payment state only after verification.
+- Local payment completion must go through `IPaymentService.CompleteProviderPaymentAsync()` so manual verification and webhooks share the same idempotent subscription-extension path.
 
 Credential rules:
 

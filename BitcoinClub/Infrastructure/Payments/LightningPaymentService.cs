@@ -70,20 +70,81 @@ namespace BitcoinClub.Infrastructure.Payments
             if (!status.IsPaid)
                 return new PaymentVerificationResult(false, null, null);
 
-            var subscription = await _db.Subscriptions.SingleAsync(s => s.Id == subscriptionId, cancellationToken);
-
             var paidAt = status.PaidAt
                 ?? (status.PaidAtUnixSeconds is long unix
                     ? DateTimeOffset.FromUnixTimeSeconds(unix)
                     : DateTimeOffset.UtcNow);
 
-            subscription.LastPaymentDate = paidAt.UtcDateTime;
+            return await CompletePaymentAsync(subscriptionId, paymentId, paidAt, cancellationToken);
+        }
+
+        public async Task<PaymentVerificationResult> CompleteProviderPaymentAsync(
+            string provider,
+            string paymentId,
+            DateTimeOffset? paidAt,
+            CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(provider))
+                throw new ArgumentException("Provider is required.", nameof(provider));
+
+            if (string.IsNullOrWhiteSpace(paymentId))
+                throw new ArgumentException("PaymentId is required.", nameof(paymentId));
+
+            var payment = await _db.Payments
+                .Include(p => p.Subscription)
+                .SingleOrDefaultAsync(p => p.Provider == provider && p.ProviderPaymentId == paymentId, cancellationToken);
+
+            if (payment is null)
+                return new PaymentVerificationResult(false, null, null);
+
+            return await CompletePaymentAsync(payment.SubscriptionId, paymentId, paidAt, cancellationToken);
+        }
+
+        private async Task<PaymentVerificationResult> CompletePaymentAsync(
+            Guid subscriptionId,
+            string paymentId,
+            DateTimeOffset? paidAt,
+            CancellationToken cancellationToken)
+        {
+            var completedAt = paidAt ?? DateTimeOffset.UtcNow;
+
+            var payment = await _db.Payments
+                .Include(p => p.Subscription)
+                .SingleOrDefaultAsync(p => p.SubscriptionId == subscriptionId && p.ProviderPaymentId == paymentId, cancellationToken);
+
+            if (payment is not null && string.Equals(payment.Status, "paid", StringComparison.OrdinalIgnoreCase))
+            {
+                if (payment.PaidAt is null)
+                {
+                    payment.PaidAt = completedAt.UtcDateTime;
+                    await _db.SaveChangesAsync(cancellationToken);
+                }
+
+                var currentExpiration = payment.Subscription?.ExpirationDate
+                    ?? await _db.Subscriptions
+                        .Where(s => s.Id == subscriptionId)
+                        .Select(s => s.ExpirationDate)
+                        .SingleAsync(cancellationToken);
+
+                return new PaymentVerificationResult(true, completedAt, currentExpiration);
+            }
+
+            var subscription = payment?.Subscription
+                ?? await _db.Subscriptions.SingleAsync(s => s.Id == subscriptionId, cancellationToken);
+
+            if (payment is not null)
+            {
+                payment.Status = "paid";
+                payment.PaidAt = completedAt.UtcDateTime;
+            }
+
+            subscription.LastPaymentDate = completedAt.UtcDateTime;
             var baseDate = subscription.ExpirationDate > DateTime.UtcNow ? subscription.ExpirationDate : DateTime.UtcNow;
             subscription.ExpirationDate = baseDate.AddMonths(1);
 
             await _db.SaveChangesAsync(cancellationToken);
 
-            return new PaymentVerificationResult(true, paidAt, subscription.ExpirationDate);
+            return new PaymentVerificationResult(true, completedAt, subscription.ExpirationDate);
         }
     }
 }

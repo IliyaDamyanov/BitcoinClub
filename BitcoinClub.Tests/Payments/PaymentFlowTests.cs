@@ -65,6 +65,51 @@ namespace BitcoinClub.Tests.Payments
             Assert.NotNull(updatedPayment.PaidAt);
         }
 
+        [Fact]
+        public async Task CompleteProviderPaymentAsync_DuplicateCompletedEvent_DoesNotExtendSubscriptionTwice()
+        {
+            var userId = "user-1";
+            var db = CreateInMemoryDb();
+            var subscription = new Subscription
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                CreatedAt = DateTime.UtcNow,
+                ExpirationDate = DateTime.UtcNow.AddDays(-1)
+            };
+            var payment = new Payment
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                SubscriptionId = subscription.Id,
+                Subscription = subscription,
+                Provider = "glow-pay",
+                ProviderPaymentId = "pay-1",
+                AmountSats = 1000,
+                PaymentRequest = "bolt11",
+                Status = "initiated",
+                CreatedAt = DateTime.UtcNow
+            };
+            db.Subscriptions.Add(subscription);
+            db.Payments.Add(payment);
+            await db.SaveChangesAsync();
+
+            var service = new LightningPaymentService(new PaidLightningApiClient(DateTimeOffset.UtcNow.ToUnixTimeSeconds()), db);
+            var paidAt = DateTimeOffset.UtcNow;
+
+            var first = await service.CompleteProviderPaymentAsync("glow-pay", "pay-1", paidAt);
+            var expirationAfterFirst = first.NewExpirationDate;
+            var second = await service.CompleteProviderPaymentAsync("glow-pay", "pay-1", paidAt);
+
+            Assert.True(first.IsPaid);
+            Assert.True(second.IsPaid);
+            Assert.Equal(expirationAfterFirst, second.NewExpirationDate);
+
+            var updatedPayment = await db.Payments.SingleAsync(p => p.Id == payment.Id);
+            Assert.Equal("paid", updatedPayment.Status);
+            Assert.NotNull(updatedPayment.PaidAt);
+        }
+
         private static ApplicationDbContext CreateInMemoryDb()
         {
             var opts = new DbContextOptionsBuilder<ApplicationDbContext>()

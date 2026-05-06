@@ -27,7 +27,13 @@ Configure these runtime settings outside source control:
   - Used by the existing manual “I have paid - verify” button
   - Treats `status = completed` as paid
 
-## Webhook setup still required
+## Webhook setup
+
+The app consumes Glow Pay webhook events at:
+
+- `POST https://<dynamic-app-host>/webhooks/glow-pay`
+
+Configure that URL in the Glow Pay dashboard and store the generated secret as `GlowPay:WebhookSecret` outside source control.
 
 The public dashboard bundle documents these webhook events:
 
@@ -37,8 +43,12 @@ The public dashboard bundle documents these webhook events:
 
 Webhook payloads are signed with `X-Glow-Signature` using HMAC-SHA256 over the raw request body and `GlowPay:WebhookSecret`.
 
-Current app behavior does not consume Glow Pay webhooks yet.
-Set the webhook URL only after adding a raw-body webhook endpoint, or continue using manual verification.
+Implemented behavior:
+
+- `payment.completed` completes the matching local `Payment` row and extends the linked subscription.
+- Duplicate `payment.completed` events are idempotent and do not extend a subscription twice.
+- `payment.created` and `payment.expired` are accepted and logged without mutating local payment/subscription state.
+- Manual verification remains available as a fallback.
 
 ## No secrets in git
 

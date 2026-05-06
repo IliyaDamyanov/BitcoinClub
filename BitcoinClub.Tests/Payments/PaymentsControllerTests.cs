@@ -83,6 +83,9 @@ namespace BitcoinClub.Tests.Payments
 
             public Task<PaymentVerificationResult> VerifyPaymentAsync(Guid subscriptionId, string paymentId, CancellationToken cancellationToken = default)
                 => Task.FromResult(new PaymentVerificationResult(false, null, null));
+
+            public Task<PaymentVerificationResult> CompleteProviderPaymentAsync(string provider, string paymentId, DateTimeOffset? paidAt, CancellationToken cancellationToken = default)
+                => Task.FromResult(new PaymentVerificationResult(false, null, null));
         }
     }
 }
