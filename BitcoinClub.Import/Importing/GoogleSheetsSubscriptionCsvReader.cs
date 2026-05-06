@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Microsoft.VisualBasic.FileIO;
 
 namespace BitcoinClub.Importing
@@ -23,7 +24,7 @@ namespace BitcoinClub.Importing
                 var fields = parser.ReadFields() ?? Array.Empty<string>();
                 lineIndex++;
 
-                if (lineIndex <= 2)
+                if (lineIndex == 1)
                 {
                     continue;
                 }
@@ -43,9 +44,20 @@ namespace BitcoinClub.Importing
                 var discord = Get(fields, 1);
                 var email = NormalizeEmail(Get(fields, 2));
                 var position = Get(fields, 3);
+                var totalContributions = Get(fields, 4);
                 var memberSince = ParseYear(Get(fields, 5));
+                var volunteerInterests = Get(fields, 8);
+                var phone = Get(fields, 9);
+                var streetAddress = Get(fields, 10);
+                var city = Get(fields, 11);
+                var region = Get(fields, 12);
+                var postalCode = Get(fields, 13);
+                var secondaryEmail = NormalizeEmail(Get(fields, 14)) ?? string.Empty;
+                var notes = Get(fields, 15);
 
-                var (lastPayment, expiration) = ParsePayments(header, fields);
+                var payments = ParsePayments(header, fields);
+                var lastPayment = payments.Count == 0 ? (DateTime?)null : payments[^1].PaidMonth;
+                var expiration = lastPayment?.AddMonths(1);
 
                 if (string.IsNullOrWhiteSpace(fullName) && string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(discord))
                 {
@@ -57,18 +69,27 @@ namespace BitcoinClub.Importing
                     discord,
                     email,
                     position,
+                    totalContributions,
                     memberSince,
+                    volunteerInterests,
+                    phone,
+                    streetAddress,
+                    city,
+                    region,
+                    postalCode,
+                    secondaryEmail,
+                    notes,
                     expiration,
-                    lastPayment));
+                    lastPayment,
+                    payments));
             }
 
             return rows;
         }
 
-        private static (DateTime? lastPayment, DateTime? expiration) ParsePayments(string[] header, string[] fields)
+        private static IReadOnlyList<GoogleSheetsPaymentEntry> ParsePayments(string[] header, string[] fields)
         {
-            DateTime? lastPaid = null;
-            DateTime? expiration = null;
+            var payments = new List<GoogleSheetsPaymentEntry>();
 
             for (var i = 0; i < header.Length && i < fields.Length; i++)
             {
@@ -91,16 +112,15 @@ namespace BitcoinClub.Importing
 
                 if (cell.Equals("FREE", StringComparison.OrdinalIgnoreCase) || cell.StartsWith("BGN", StringComparison.OrdinalIgnoreCase))
                 {
-                    lastPaid = month;
+                    payments.Add(new GoogleSheetsPaymentEntry(
+                        month,
+                        cell,
+                        ParseBgnAmount(cell),
+                        cell.Equals("FREE", StringComparison.OrdinalIgnoreCase)));
                 }
             }
 
-            if (lastPaid.HasValue)
-            {
-                expiration = lastPaid.Value.AddMonths(1);
-            }
-
-            return (lastPaid, expiration);
+            return payments;
         }
 
         private static bool TryParseMonthYearHeader(string headerCell, out DateTime month)
@@ -109,13 +129,34 @@ namespace BitcoinClub.Importing
 
             headerCell = headerCell.Trim();
 
-            if (DateTime.TryParseExact(headerCell, "M/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var parsed))
+            var match = Regex.Match(headerCell, @"(?<month>\d{1,2})\s*/\s*(?<year>\d{4})");
+            if (match.Success
+                && int.TryParse(match.Groups["month"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedMonth)
+                && int.TryParse(match.Groups["year"].Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedYear)
+                && parsedMonth >= 1
+                && parsedMonth <= 12)
             {
-                month = new DateTime(parsed.Year, parsed.Month, 1, 0, 0, 0, DateTimeKind.Utc);
+                month = new DateTime(parsedYear, parsedMonth, 1, 0, 0, 0, DateTimeKind.Utc);
                 return true;
             }
 
             return false;
+        }
+
+        private static decimal? ParseBgnAmount(string cell)
+        {
+            var match = Regex.Match(cell, @"(?<amount>\d+(?:\.\d+)?)");
+            if (!match.Success)
+            {
+                return null;
+            }
+
+            if (decimal.TryParse(match.Groups["amount"].Value, NumberStyles.Number, CultureInfo.InvariantCulture, out var amount))
+            {
+                return amount;
+            }
+
+            return null;
         }
 
         private static DateTime? ParseYear(string raw)

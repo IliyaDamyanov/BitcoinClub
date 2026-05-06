@@ -42,3 +42,17 @@ Credential rules:
 ## Payment setup docs
 
 Operator setup notes live in `docs/glow-pay-setup.md`.
+
+## Spreadsheet import
+
+Location: `BitcoinClub.Import/`
+
+Pattern:
+
+- One-shot/repeatable imports run through the console project, not through web request paths.
+- CSV parsing and mapping live under `BitcoinClub.Import/Importing/`.
+- Spreadsheet-only member metadata is stored in `ImportedMemberProfiles` keyed by `UserId`.
+- Imported payment history uses `Payment.Provider = "spreadsheet"` with deterministic `ProviderPaymentId` values so reruns stay idempotent.
+- Import commands must print aggregate counts only; never log private member rows.
+
+Operator docs live in `docs/spreadsheet-import.md`.
