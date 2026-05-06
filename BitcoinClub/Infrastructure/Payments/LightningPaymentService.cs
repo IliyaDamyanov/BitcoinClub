@@ -46,7 +46,13 @@ namespace BitcoinClub.Infrastructure.Payments
                 await _db.SaveChangesAsync(cancellationToken);
             }
 
-            return new PaymentInitiationResult(subscription.Id, invoice.PaymentHash, invoice.PaymentRequest, amountSats);
+            return new PaymentInitiationResult(
+                subscription.Id,
+                invoice.PaymentHash,
+                invoice.PaymentRequest,
+                amountSats,
+                invoice.PaymentUrl,
+                invoice.ExpiresAt);
         }
 
         public async Task<PaymentVerificationResult> VerifyPaymentAsync(
@@ -66,9 +72,10 @@ namespace BitcoinClub.Infrastructure.Payments
 
             var subscription = await _db.Subscriptions.SingleAsync(s => s.Id == subscriptionId, cancellationToken);
 
-            var paidAt = status.PaidAtUnixSeconds is long unix
-                ? DateTimeOffset.FromUnixTimeSeconds(unix)
-                : DateTimeOffset.UtcNow;
+            var paidAt = status.PaidAt
+                ?? (status.PaidAtUnixSeconds is long unix
+                    ? DateTimeOffset.FromUnixTimeSeconds(unix)
+                    : DateTimeOffset.UtcNow);
 
             subscription.LastPaymentDate = paidAt.UtcDateTime;
             var baseDate = subscription.ExpirationDate > DateTime.UtcNow ? subscription.ExpirationDate : DateTime.UtcNow;

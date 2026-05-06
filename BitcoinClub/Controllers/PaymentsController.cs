@@ -83,7 +83,7 @@ namespace BitcoinClub.Controllers
                 Id = Guid.NewGuid(),
                 UserId = userId,
                 SubscriptionId = init.SubscriptionId,
-                Provider = "lnbits",
+                Provider = "glow-pay",
                 ProviderPaymentId = init.PaymentId,
                 AmountSats = init.AmountSats,
                 PaymentRequest = init.PaymentRequest,
@@ -98,6 +98,8 @@ namespace BitcoinClub.Controllers
             model.PaymentRecordId = payment.Id;
             model.PaymentId = init.PaymentId;
             model.PaymentRequest = init.PaymentRequest;
+            model.PaymentUrl = init.PaymentUrl;
+            model.ExpiresAt = init.ExpiresAt;
 
             return View(model);
         }
