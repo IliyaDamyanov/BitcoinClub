@@ -11,6 +11,8 @@ namespace BitcoinClub.ViewModels
 
         public bool IsActive => ExpirationDate > DateTime.UtcNow;
 
+        public int RemainingDays => Math.Max(0, (int)Math.Ceiling((ExpirationDate - DateTime.UtcNow).TotalDays));
+
         public List<PaymentHistoryItem> PaymentHistory { get; init; } = new();
     }
 
@@ -19,6 +21,8 @@ namespace BitcoinClub.ViewModels
         public DateTime CreatedAt { get; init; }
 
         public int AmountSats { get; init; }
+
+        public string Provider { get; init; } = string.Empty;
 
         public string Status { get; init; } = string.Empty;
 

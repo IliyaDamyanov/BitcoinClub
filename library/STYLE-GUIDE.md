@@ -16,6 +16,23 @@
 
 ---
 
+## Membership Views
+
+`.membership-dashboard` — authenticated member dashboard root
+`.membership-page-title` — membership page heading
+`.membership-status-card` — subscription status summary card
+`.membership-status-badge` — active/expired subscription badge
+`.membership-status-details` — subscription metadata definition list
+`.membership-status-value` — subscription metadata value
+`.membership-renewal-panel` — renewal/support call-to-action area
+`.membership-renewal-button` — link to Glow Pay initiation
+`.membership-payment-history-section` — member-scoped payment history section
+`.membership-payment-history` — payment history table
+`.membership-payment-row` — payment history table row
+`.membership-payment-status-badge` — status badge for a payment row
+`.membership-empty-state` — no-subscription page root
+`.membership-empty-card` — no-subscription prompt card
+
 ## Payment Views
 
 `.payment-page-title` — payment page heading

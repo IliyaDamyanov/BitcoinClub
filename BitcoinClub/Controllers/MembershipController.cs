@@ -40,6 +40,7 @@ namespace BitcoinClub.Controllers
                 {
                     CreatedAt = p.CreatedAt,
                     AmountSats = p.AmountSats,
+                    Provider = p.Provider,
                     Status = p.Status,
                     PaidAt = p.PaidAt
                 })
