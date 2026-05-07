@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,7 +16,14 @@ namespace BitcoinClub.Infrastructure.Payments
             CancellationToken cancellationToken = default);
     }
 
-    public sealed record LightningInvoiceResponse(string PaymentHash, string? PaymentRequest);
+    public sealed record LightningInvoiceResponse(
+        string PaymentHash,
+        string? PaymentRequest,
+        string? PaymentUrl = null,
+        DateTimeOffset? ExpiresAt = null);
 
-    public sealed record LightningPaymentStatusResponse(bool IsPaid, long? PaidAtUnixSeconds);
+    public sealed record LightningPaymentStatusResponse(
+        bool IsPaid,
+        long? PaidAtUnixSeconds,
+        DateTimeOffset? PaidAt = null);
 }

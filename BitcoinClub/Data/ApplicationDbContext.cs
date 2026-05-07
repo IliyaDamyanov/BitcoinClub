@@ -15,6 +15,8 @@ namespace BitcoinClub.Data
 
         public DbSet<Payment> Payments => Set<Payment>();
 
+        public DbSet<ImportedMemberProfile> ImportedMemberProfiles => Set<ImportedMemberProfile>();
+
         public DbSet<Post> Posts => Set<Post>();
 
         public DbSet<PostPublishResult> PostPublishResults => Set<PostPublishResult>();
@@ -46,6 +48,26 @@ namespace BitcoinClub.Data
                     .OnDelete(DeleteBehavior.Cascade);
 
                 b.HasIndex(p => new { p.PostId, p.Platform });
+            });
+
+            builder.Entity<ImportedMemberProfile>(b =>
+            {
+                b.Property(p => p.FullName).IsRequired();
+                b.Property(p => p.DiscordNickname).IsRequired();
+                b.Property(p => p.Position).IsRequired();
+                b.Property(p => p.TotalContributionsRaw).IsRequired();
+                b.Property(p => p.VolunteerInterests).IsRequired();
+                b.Property(p => p.StreetAddress).IsRequired();
+                b.Property(p => p.City).IsRequired();
+                b.Property(p => p.Region).IsRequired();
+                b.Property(p => p.PostalCode).IsRequired();
+                b.Property(p => p.SecondaryEmail).IsRequired();
+                b.Property(p => p.Notes).IsRequired();
+                b.HasOne(p => p.User)
+                    .WithMany()
+                    .HasForeignKey(p => p.UserId)
+                    .OnDelete(DeleteBehavior.Cascade);
+                b.HasIndex(p => p.UserId).IsUnique();
             });
         }
     }

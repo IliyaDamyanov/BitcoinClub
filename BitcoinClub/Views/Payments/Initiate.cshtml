@@ -4,41 +4,53 @@
     ViewData["Title"] = "Initiate Payment";
 }
 
-<h1>Initiate payment</h1>
+<h1 class="payment-page-title">Initiate payment</h1>
 
-<form method="post">
-    <div>
+<form class="payment-initiation-form" method="post">
+    <div class="payment-form-field">
         <label asp-for="AmountSats"></label>
-        <input asp-for="AmountSats" />
+        <input class="payment-amount-input" asp-for="AmountSats" />
         <span asp-validation-for="AmountSats"></span>
     </div>
-    <div>
+    <div class="payment-form-field">
         <label asp-for="Description"></label>
-        <input asp-for="Description" />
+        <input class="payment-description-input" asp-for="Description" />
         <span asp-validation-for="Description"></span>
     </div>
 
-    <button type="submit">Create invoice</button>
+    <button class="payment-create-button" type="submit">Create Glow Pay invoice</button>
 </form>
 
 @if (!string.IsNullOrWhiteSpace(Model.PaymentId))
 {
     <hr />
-    <h2>Invoice created</h2>
+    <section class="payment-invoice-panel">
+    <h2 class="payment-invoice-title">Glow Pay invoice created</h2>
 
     <dl>
         <dt>Payment Id</dt>
         <dd>@Model.PaymentId</dd>
+        @if (!string.IsNullOrWhiteSpace(Model.PaymentUrl))
+        {
+            <dt>Payment page</dt>
+            <dd><a class="payment-checkout-link" href="@Model.PaymentUrl">Open secure Glow Pay checkout</a></dd>
+        }
+        @if (Model.ExpiresAt.HasValue)
+        {
+            <dt>Expires</dt>
+            <dd>@Model.ExpiresAt.Value.ToString("u")</dd>
+        }
         <dt>Payment request (BOLT11)</dt>
         <dd><pre>@Model.PaymentRequest</pre></dd>
     </dl>
 
-    <form asp-controller="Payments" asp-action="Verify" method="post">
+    <form class="payment-verify-form" asp-controller="Payments" asp-action="Verify" method="post">
         @Html.AntiForgeryToken()
         <input type="hidden" name="subscriptionId" value="@Model.SubscriptionId" />
         <input type="hidden" name="paymentRecordId" value="@Model.PaymentRecordId" />
-        <button type="submit">I have paid - verify</button>
+        <button class="payment-verify-button" type="submit">I have paid - verify</button>
     </form>
+    </section>
 }
 
 @section Scripts {

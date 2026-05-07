@@ -20,6 +20,8 @@ namespace BitcoinClub.Tests.Membership
 
             Assert.Equal(exp, vm.ExpirationDate);
             Assert.Equal(now, vm.LastPaymentDate);
+            Assert.True(vm.IsActive);
+            Assert.True(vm.RemainingDays > 0);
         }
     }
 }

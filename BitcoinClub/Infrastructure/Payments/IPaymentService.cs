@@ -16,5 +16,11 @@ namespace BitcoinClub.Infrastructure.Payments
             Guid subscriptionId,
             string paymentId,
             CancellationToken cancellationToken = default);
+
+        Task<PaymentVerificationResult> CompleteProviderPaymentAsync(
+            string provider,
+            string paymentId,
+            DateTimeOffset? paidAt,
+            CancellationToken cancellationToken = default);
     }
 }

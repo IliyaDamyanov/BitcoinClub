@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BitcoinClub\BitcoinClub.csproj" />
+    <ProjectReference Include="..\BitcoinClub.Import\BitcoinClub.Import.csproj" />
   </ItemGroup>
 
 </Project>

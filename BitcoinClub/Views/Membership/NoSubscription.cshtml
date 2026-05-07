@@ -2,15 +2,15 @@
     ViewData["Title"] = "Membership";
 }
 
-<div class="container mt-4">
-    <h1>Membership</h1>
-    <div class="card bg-dark text-light">
-        <div class="card-body">
-            <h5 class="card-title">No Active Subscription</h5>
-            <p>You don't have a subscription yet. Start one by making a Lightning payment!</p>
-            <a asp-controller="Payments" asp-action="Initiate" class="btn btn-warning btn-lg">
+<div class="membership-empty-state container mt-4">
+    <h1 class="membership-page-title">Membership</h1>
+    <section class="membership-empty-card card bg-dark text-light">
+        <div class="membership-empty-card-body card-body">
+            <h5 class="membership-empty-title card-title">No Active Subscription</h5>
+            <p class="membership-empty-copy">You don't have a subscription yet. Start one by making a Lightning payment!</p>
+            <a asp-controller="Payments" asp-action="Initiate" class="membership-renewal-button btn btn-warning btn-lg">
                 ⚡ Subscribe with Lightning
             </a>
         </div>
-    </div>
+    </section>
 </div>

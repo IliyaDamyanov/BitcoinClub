@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using BitcoinClub.Data;
 using BitcoinClub.Importing;
@@ -27,7 +28,9 @@ namespace BitcoinClub.Import
                 return 1;
             }
 
-            var csvPath = args.Length > 0 ? args[0] : Path.Combine("TestData", "INCOMES AND EXPENSES.csv");
+            var dryRun = args.Any(arg => arg.Equals("--dry-run", StringComparison.OrdinalIgnoreCase));
+            var csvPath = args.FirstOrDefault(arg => !arg.StartsWith("--", StringComparison.OrdinalIgnoreCase))
+                ?? Path.Combine("TestData", "INCOMES AND EXPENSES.csv");
             if (!File.Exists(csvPath))
             {
                 Console.Error.WriteLine($"CSV file not found: {csvPath}");
@@ -49,11 +52,14 @@ namespace BitcoinClub.Import
                 await db.Database.MigrateAsync();
 
                 var importer = scope.ServiceProvider.GetRequiredService<SubscriptionCsvImporter>();
-                var result = await importer.ImportAsync(csvPath);
+                var result = await importer.ImportAsync(csvPath, dryRun);
 
+                Console.WriteLine($"Dry run: {dryRun}");
                 Console.WriteLine($"Rows processed: {result.RowsProcessed}");
                 Console.WriteLine($"Users upserted: {result.UsersUpserted}");
                 Console.WriteLine($"Subscriptions upserted: {result.SubscriptionsUpserted}");
+                Console.WriteLine($"Profiles upserted: {result.ProfilesUpserted}");
+                Console.WriteLine($"Payments upserted: {result.PaymentsUpserted}");
                 Console.WriteLine($"Rows skipped: {result.RowsSkipped}");
             }
 

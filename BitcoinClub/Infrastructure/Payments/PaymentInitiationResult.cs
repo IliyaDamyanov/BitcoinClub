@@ -6,5 +6,7 @@ namespace BitcoinClub.Infrastructure.Payments
         Guid SubscriptionId,
         string PaymentId,
         string? PaymentRequest,
-        int AmountSats);
+        int AmountSats,
+        string? PaymentUrl = null,
+        DateTimeOffset? ExpiresAt = null);
 }

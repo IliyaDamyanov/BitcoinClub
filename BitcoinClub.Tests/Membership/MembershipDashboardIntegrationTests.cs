@@ -85,8 +85,10 @@ namespace BitcoinClub.Tests.Membership
             Assert.Equal(HttpStatusCode.OK, resp.StatusCode);
 
             var html = await resp.Content.ReadAsStringAsync();
-            Assert.Contains(expiration.ToString("u"), html);
-            Assert.Contains(lastPayment.ToString("u"), html);
+            Assert.Contains(expiration.ToString("dd MMM yyyy HH:mm UTC"), html);
+            Assert.Contains(lastPayment.ToString("dd MMM yyyy HH:mm UTC"), html);
+            Assert.Contains("subscription-remaining-days", html);
+            Assert.Contains("Renew or support with Lightning", html);
         }
 
         private sealed class TestAuthHandler : AuthenticationHandler<AuthenticationSchemeOptions>

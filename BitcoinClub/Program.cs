@@ -66,7 +66,7 @@ namespace BitcoinClub
 
             builder.Services.AddScoped<IAuthProvider, EmailPasswordAuthProvider>();
 
-            builder.Services.AddLNbitsPayments(builder.Configuration);
+            builder.Services.AddGlowPayPayments(builder.Configuration);
 
             builder.Services.AddSingleton<IUploadPathValidator, UploadPathValidator>();
             builder.Services.AddScoped<IFileUploadService, FileUploadService>();

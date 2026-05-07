@@ -15,5 +15,9 @@ namespace BitcoinClub.ViewModels
         public string? PaymentId { get; set; }
 
         public string? PaymentRequest { get; set; }
+
+        public string? PaymentUrl { get; set; }
+
+        public DateTimeOffset? ExpiresAt { get; set; }
     }
 }

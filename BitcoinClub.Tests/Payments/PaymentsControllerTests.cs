@@ -48,9 +48,11 @@ namespace BitcoinClub.Tests.Payments
 
             Assert.Equal("prov-1", outVm.PaymentId);
             Assert.Equal("bolt11", outVm.PaymentRequest);
+            Assert.Equal("https://glow-pay.co/pay/prov-1", outVm.PaymentUrl);
             Assert.NotNull(outVm.PaymentRecordId);
 
             var paymentRow = await db.Payments.SingleAsync(p => p.UserId == userId);
+            Assert.Equal("glow-pay", paymentRow.Provider);
             Assert.Equal("prov-1", paymentRow.ProviderPaymentId);
             Assert.Equal("initiated", paymentRow.Status);
         }
@@ -77,9 +79,12 @@ namespace BitcoinClub.Tests.Payments
         private sealed class FakePaymentService : IPaymentService
         {
             public Task<PaymentInitiationResult> InitiateMembershipPaymentAsync(string userId, int amountSats, string description, CancellationToken cancellationToken = default)
-                => Task.FromResult(new PaymentInitiationResult(Guid.NewGuid(), "prov-1", "bolt11", amountSats));
+                => Task.FromResult(new PaymentInitiationResult(Guid.NewGuid(), "prov-1", "bolt11", amountSats, "https://glow-pay.co/pay/prov-1"));
 
             public Task<PaymentVerificationResult> VerifyPaymentAsync(Guid subscriptionId, string paymentId, CancellationToken cancellationToken = default)
+                => Task.FromResult(new PaymentVerificationResult(false, null, null));
+
+            public Task<PaymentVerificationResult> CompleteProviderPaymentAsync(string provider, string paymentId, DateTimeOffset? paidAt, CancellationToken cancellationToken = default)
                 => Task.FromResult(new PaymentVerificationResult(false, null, null));
         }
     }
